@@ -77,6 +77,16 @@ class addTestCenter(object):
 
     def clickEvents(self, parent):
         self.stateAddFunction(parent)
+        self.addButton.clicked.connect(lambda : self.addTcFunction(parent))
+
+    def addTcFunction(self,parent):
+        name  = self.name.text()
+        address = self.address.toPlainText()
+        city = self.city.currentText()
+        state = self.state.currentText()
+        pin = self.pinCode.text()
+        contact = self.contact.text()
+        
 
     def stateAddFunction(self,parent):
         for i in states.values():

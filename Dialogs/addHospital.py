@@ -78,11 +78,36 @@ class addHospital(object):
         self.pinCodeLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
         self.cityLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
         self.addButton.setText(_translate("addHospital", "ADD"))
-
         self.clickEvents(addHospital)
 
     def clickEvents(self, parent):
         self.stateAddFunction(parent)
+        self.addButton.clicked.connect(lambda : self.addHospitalFunction(parent))
+
+    def addHospitalFunction(self,parent):
+        name  = self.name.text()
+        address = self.address.toPlainText()
+        city = self.city.currentText()
+        state = self.state.currentText()
+        pin = self.pinCode.text()
+        contact = self.contact.text()
+
+        # Fetching from The api
+        # Add Hospitals
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        data = {
+            "name": name,
+            "address": address,
+            "city": city,
+            "state": state,
+            "contact": contact,
+            "pin": pin
+        }
+        r = requests.post(url=URL,data=data)
+        print(r.json())
+        parent.close()
+
 
     def stateAddFunction(self,parent):
         for i in states.values():

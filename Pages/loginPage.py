@@ -109,8 +109,8 @@ class loginPage(object):
     def eventsUi(self, loginPage):
         self.forgotPasswordLink.clicked.connect(lambda: self.forgotPasswordEvent(loginPage))
         self.passwordInput.returnPressed.connect(self.loginButton.click)
-        #self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
-        self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
+        self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
+        #self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
         self.superadminpage = superadminHome()
@@ -145,6 +145,26 @@ class loginPage(object):
             self.dialog = messageBox()
             self.dialog.infoBox('Invalid Credentials')
             return
+
+        param = {
+            "username" : usernameInput,
+            "password" : passwordInput
+        }
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        import requests
+        r = requests.get(url=URL,params=param)
+        data = r.json()
+        if len(data) == 0:
+            self.dialog = messageBox()
+            self.dialog.infoBox('Invalid Credentials')
+            return
+        if data[0]["dept"] == "SA":
+            self.superadminpage = superadminHome()
+            self.superadminpage.setup(loginPage)
+            return
+
+
+
 
 
 
