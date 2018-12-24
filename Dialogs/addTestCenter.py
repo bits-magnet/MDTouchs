@@ -75,4 +75,5 @@ class addTestCenter(object):
         self.clickEvents(addTestCenter)
 
     def clickEvents(self, parent):
-        return
+        pass
+    # changed Again
