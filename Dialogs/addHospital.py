@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Data.States import *
 
 class addHospital(object):
     def setup(self, addHospital):
@@ -81,4 +82,19 @@ class addHospital(object):
         self.clickEvents(addHospital)
 
     def clickEvents(self, parent):
-        pass
+        self.stateAddFunction(parent)
+
+    def stateAddFunction(self,parent):
+        for i in states.values():
+            self.state.addItem(i)
+        for i in cities["Andhra Pradesh"]:
+            self.city.addItem(i)
+        self.state.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+
+    def cityAddFunction(self,parent):
+        state = self.state.currentText()
+
+        while self.city.count() > 0:
+            self.city.removeItem(0)
+        for i in cities[state]:
+            self.city.addItem(i)

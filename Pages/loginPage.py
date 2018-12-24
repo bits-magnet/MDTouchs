@@ -147,41 +147,4 @@ class loginPage(object):
             return
 
 
-        import requests as rq
-        import json
-        URL = "https://mdtouch.herokuapp.com/api/login/"
-        r = rq.get(url=URL)
-        loginInfo = r.json()
-        ctr = 0
-        data = {}
-        for i in loginInfo:
-            if i["username"] == usernameInput and passwordInput == i["password"]:
-                ctr = 1
-                data = i
-                break
-        if ctr == 0:
-            self.userNameInput.setText("")
-            self.passwordInput.setText("")
-            self.dialog = messageBox()
-            self.dialog.warningBox('Username and Password Does not Match')
-        elif data["dept"] == "SA":
-            self.superadmin_home = superadminHome()
-            self.superadmin_home.setup(loginPage)
-        elif data["dept"] == 'DS':
-            pass
-        elif data == 'BB':
-            pass
-        elif l[0][0] == 'D':
-            # Doctor Ka Kholna hai
-            pass
-        elif l[0][0] == 'T':
-            # Open Test Center
-            pass
-        elif l[0][0] == 'ES':
-            # Open Emergency Services
-            pass
-        else:
-            # Nothing
-            pass
-
 
