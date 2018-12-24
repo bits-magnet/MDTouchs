@@ -86,7 +86,7 @@ class addTestCenter(object):
         state = self.state.currentText()
         pin = self.pinCode.text()
         contact = self.contact.text()
-        
+
 
     def stateAddFunction(self,parent):
         for i in states.values():
