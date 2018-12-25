@@ -86,7 +86,7 @@ class deleteEvent(object):
         self.creator.setText(_translate("deleteEvent", "creator"))
         self.date.setText(_translate("deleteEvent", "date"))
         self.venue.setText(_translate("deleteEvent", "venue"))
-        self.description.setText(_translate("deleteEvent", "description"))
+        self.description.setText(_translate("deleteEvent", "asdfghjklzxcvbnm,qwertyuiopasdfghjklzxcvbnmqwertyuioasdfghjklxcvbnm,qwertyuiosdfghjkxcvbnm,wertyuiosdfghjkcvbnm"))
         self.deleteButton.setText(_translate("deleteEvent", "Delete"))
 
         self.clickEvents(deleteEvent)

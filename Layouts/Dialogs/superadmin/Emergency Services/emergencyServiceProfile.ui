@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>selectEmergencyService</class>
- <widget class="QDialog" name="selectEmergencyService">
+ <class>emergencyServiceProfile</class>
+ <widget class="QDialog" name="emergencyServiceProfile">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>555</width>
-    <height>453</height>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string/>
+   <string>Emergency Service Profile</string>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>50</y>
+     <y>10</y>
      <width>531</width>
      <height>341</height>
     </rect>
@@ -240,27 +240,14 @@ font-weight: bold;</string>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>400</y>
-     <width>131</width>
-     <height>41</height>
+     <x>440</x>
+     <y>360</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>REMOVE</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="title">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>0</y>
-     <width>451</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; text-decoration: underline;&quot;&gt;Remove Emergency Service&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>OK</string>
    </property>
   </widget>
  </widget>
