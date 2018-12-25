@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 class addDispensary(object):
     def setup(self, addDispensary):
         addDispensary.setObjectName("addDispensary")
-        addDispensary.resize(750, 500)
+        addDispensary.resize(750, 480)
         self.title = QtWidgets.QLabel(addDispensary)
         self.title.setGeometry(QtCore.QRect(260, 0, 261, 51))
         self.title.setObjectName("title")
@@ -68,7 +68,7 @@ class addDispensary(object):
 
     def retranslateUi(self, addDispensary):
         _translate = QtCore.QCoreApplication.translate
-        addDispensary.setWindowTitle(_translate("addDispensary", "Dialog"))
+        addDispensary.setWindowTitle(_translate("addDispensary", " "))
         self.title.setText(_translate("addDispensary", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Dispensary</span></p></body></html>"))
         self.nameLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
         self.addressLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))

@@ -184,7 +184,7 @@ border-color: rgb(7, 7, 7);</string>
   </widget>
  </widget>
  <resources>
-  <include location="../MdTouch/Images/img.qrc"/>
+  <include location="../../Images/img.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 class addTestCenter(object):
     def setup(self, addTestCenter):
         addTestCenter.setObjectName("addTestCenter")
-        addTestCenter.resize(750, 500)
+        addTestCenter.resize(750, 480)
         self.title = QtWidgets.QLabel(addTestCenter)
         self.title.setGeometry(QtCore.QRect(260, 0, 261, 51))
         self.title.setObjectName("title")
@@ -62,7 +62,7 @@ class addTestCenter(object):
 
     def retranslateUi(self, addTestCenter):
         _translate = QtCore.QCoreApplication.translate
-        addTestCenter.setWindowTitle(_translate("addTestCenter", "Dialog"))
+        addTestCenter.setWindowTitle(_translate("addTestCenter", " "))
         self.title.setText(_translate("addTestCenter", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Test Center</span></p></body></html>"))
         self.nameLabel.setText(_translate("addTestCenter", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
         self.addressLabel.setText(_translate("addTestCenter", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))

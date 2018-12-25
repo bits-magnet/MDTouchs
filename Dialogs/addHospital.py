@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 class addHospital(object):
     def setup(self, addHospital):
         addHospital.setObjectName("addHospital")
-        addHospital.resize(750, 500)
+        addHospital.resize(750, 480)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -68,7 +68,7 @@ class addHospital(object):
 
     def retranslateUi(self, addHospital):
         _translate = QtCore.QCoreApplication.translate
-        addHospital.setWindowTitle(_translate("addHospital", "Dialog"))
+        addHospital.setWindowTitle(_translate("addHospital", " "))
         self.title.setText(_translate("addHospital", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Hospital</span></p></body></html>"))
         self.nameLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
         self.addressLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))

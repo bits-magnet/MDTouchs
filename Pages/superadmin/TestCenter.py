@@ -57,7 +57,7 @@ class TestCenter(object):
         self.broadcastLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.broadcastLabel.setObjectName("broadcastLabel")
         self.removeTestCentersLabel = QtWidgets.QLabel(self.centralwidget)
-        self.removeTestCentersLabel.setGeometry(QtCore.QRect(970, 360, 200, 90))
+        self.removeTestCentersLabel.setGeometry(QtCore.QRect(940, 360, 200, 90))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -65,7 +65,7 @@ class TestCenter(object):
         self.removeTestCentersLabel.setSizePolicy(sizePolicy)
         self.removeTestCentersLabel.setObjectName("removeTestCentersLabel")
         self.viewTestCentersLabel = QtWidgets.QLabel(self.centralwidget)
-        self.viewTestCentersLabel.setGeometry(QtCore.QRect(600, 360, 200, 90))
+        self.viewTestCentersLabel.setGeometry(QtCore.QRect(580, 360, 200, 90))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -321,6 +321,9 @@ class TestCenter(object):
 
     def clickOnTestCenters(self, parent, superadmin):
         superadmin.testcenter_home.setup(parent, superadmin)
+
+    def clickOnEmergency(self, parent, superadmin):
+        superadmin.emergency_home.setup(parent, superadmin)
 
     def clickOnDispensary(self, parent, superadmin):
         superadmin.dispensary_home.setup(parent, superadmin)

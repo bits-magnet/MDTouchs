@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.addDispensary import *
+from Dialogs.superadmin.Dispensaries.removeDispensary import *
 
 class Dispensary(object):
     def setup(self, Dispensary, superadmin):
@@ -19,7 +20,7 @@ class Dispensary(object):
         self.addDispensaryLabel.setSizePolicy(sizePolicy)
         self.addDispensaryLabel.setObjectName("addDispensaryLabel")
         self.viewDispensaryLabel = QtWidgets.QLabel(self.centralwidget)
-        self.viewDispensaryLabel.setGeometry(QtCore.QRect(610, 360, 180, 90))
+        self.viewDispensaryLabel.setGeometry(QtCore.QRect(590, 360, 180, 90))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -240,7 +241,7 @@ class Dispensary(object):
         self.back.setIconSize(QtCore.QSize(80, 80))
         self.back.setObjectName("back")
         self.removeDispensaryLabel = QtWidgets.QLabel(self.centralwidget)
-        self.removeDispensaryLabel.setGeometry(QtCore.QRect(970, 360, 180, 90))
+        self.removeDispensaryLabel.setGeometry(QtCore.QRect(960, 360, 180, 90))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -308,6 +309,7 @@ class Dispensary(object):
         self.back.clicked.connect(lambda: self.clickOnBack(parent, superadmin))
 
         self.addDispensary.clicked.connect(lambda: self.clickOnAddDispensary())
+        self.removeDispensary.clicked.connect(lambda: self.clickOnRemoveDispensary())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
@@ -339,6 +341,13 @@ class Dispensary(object):
     def clickOnAddDispensary(self):
         self.window = QDialog()
         self.dialog = addDispensary()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnRemoveDispensary(self):
+        self.window = QDialog()
+        self.dialog = removeDispensary()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

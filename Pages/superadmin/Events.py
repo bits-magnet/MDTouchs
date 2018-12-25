@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.superadmin.Events.addEvent import *
+from Dialogs.superadmin.Events.deleteEvent import *
 
 
 class Events(object):
@@ -283,6 +285,9 @@ class Events(object):
         self.logout.clicked.connect(lambda: self.clickOnLogOut(parent, superadmin))
         self.back.clicked.connect(lambda: self.clickOnBack(parent, superadmin))
 
+        self.addEvent.clicked.connect(lambda: self.clickOnAddEvent())
+        self.deleteEvent.clicked.connect(lambda: self.clickOnDeleteEvent())
+
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
 
@@ -309,3 +314,17 @@ class Events(object):
 
     def clickOnBack(self, parent, superadmin):
         superadmin.setup(parent)
+
+    def clickOnAddEvent(self):
+        self.window = QDialog()
+        self.dialog = addEvent()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnDeleteEvent(self):
+        self.window = QDialog()
+        self.dialog = deleteEvent()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()

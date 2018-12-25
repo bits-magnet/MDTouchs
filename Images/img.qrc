@@ -1,5 +1,7 @@
 <RCC>
   <qresource>
+    <file>doctor_icon.png</file>
+    <file>adminPic.png</file>
     <file>selectImage.png</file>
     <file>hospital.png</file>
     <file>event.jpg</file>
@@ -12,5 +14,4 @@
     <file>doctor.png</file>
     <file>sample_event.png</file>
   </qresource>
-  <qresource prefix="newPrefix"/>
 </RCC>

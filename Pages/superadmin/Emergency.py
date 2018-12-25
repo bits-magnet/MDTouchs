@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.superadmin.EmergencyServices.addEmergencyService import *
+from Dialogs.superadmin.EmergencyServices.removeEmergencyService import *
 
 class Emergency(object):
     def setup(self, Emergency, superadmin):
@@ -92,14 +94,14 @@ class Emergency(object):
         self.emergency.setIconSize(QtCore.QSize(50, 50))
         self.emergency.setObjectName("emergency")
         self.horizontalLayout_4.addWidget(self.emergency)
-        self.removeEmergencyServicesLabel = QtWidgets.QLabel(self.centralwidget)
-        self.removeEmergencyServicesLabel.setGeometry(QtCore.QRect(890, 360, 320, 90))
+        self.removeEmergencyServiceLabel = QtWidgets.QLabel(self.centralwidget)
+        self.removeEmergencyServiceLabel.setGeometry(QtCore.QRect(890, 360, 320, 90))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.removeEmergencyServicesLabel.sizePolicy().hasHeightForWidth())
-        self.removeEmergencyServicesLabel.setSizePolicy(sizePolicy)
-        self.removeEmergencyServicesLabel.setObjectName("removeEmergencyServicesLabel")
+        sizePolicy.setHeightForWidth(self.removeEmergencyServiceLabel.sizePolicy().hasHeightForWidth())
+        self.removeEmergencyServiceLabel.setSizePolicy(sizePolicy)
+        self.removeEmergencyServiceLabel.setObjectName("removeEmergencyServiceLabel")
         self.fraudLabel = QtWidgets.QLabel(self.centralwidget)
         self.fraudLabel.setGeometry(QtCore.QRect(250, 660, 160, 90))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -282,7 +284,7 @@ class Emergency(object):
     def retranslateUi(self, Emergency, superadmin):
         _translate = QtCore.QCoreApplication.translate
         Emergency.setWindowTitle(_translate("Emergency", "MainWindow"))
-        self.removeEmergencyServicesLabel.setText(_translate("Emergency", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Remove</span></p><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Emergency Services</span></p></body></html>"))
+        self.removeEmergencyServiceLabel.setText(_translate("Emergency", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Remove</span></p><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Emergency Service</span></p></body></html>"))
         self.fraudLabel.setText(_translate("Emergency", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Fraud</span></p><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Inspection</span></p></body></html>"))
         self.addEmergencyServicesLabel.setText(_translate("Emergency", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add</span></p><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Emergency Service</span></p></body></html>"))
         self.title.setText(_translate("Emergency", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -305,6 +307,9 @@ class Emergency(object):
         self.logout.clicked.connect(lambda: self.clickOnLogOut(parent, superadmin))
         self.inbox.clicked.connect(lambda: self.clickOnInbox(parent, superadmin))
         self.back.clicked.connect(lambda: self.clickOnBack(parent, superadmin))
+
+        self.addEmergencyService.clicked.connect(lambda: self.clickOnAddEmergencyService())
+        self.removeEmergencyService.clicked.connect(lambda: self.clickOnRemoveEmergencyService())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent,superadmin)
@@ -332,3 +337,17 @@ class Emergency(object):
 
     def clickOnBack(self, parent, superadmin):
         superadmin.setup(parent)
+
+    def clickOnAddEmergencyService(self):
+        self.window = QDialog()
+        self.dialog = addEmergencyService()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnRemoveEmergencyService(self):
+        self.window = QDialog()
+        self.dialog = removeEmergencyService()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
