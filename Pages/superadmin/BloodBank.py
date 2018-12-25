@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.superadmin.BloodBanks.addBloodBank import *
+from Dialogs.superadmin.BloodBanks.removeBloodBank import *
 
 class BloodBank(object):
     def setup(self, bloodBank, superadmin):
@@ -325,3 +327,17 @@ class BloodBank(object):
 
     def clickOnBack(self, parent, superadmin):
         superadmin.setup(parent)
+
+    def clickOnAddBloodBank(self):
+        self.window = QDialog()
+        self.dialog = addBloodBank()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnRemoveBloodBank(self):
+        self.window = QDialog()
+        self.dialog = removeBloodBank()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()

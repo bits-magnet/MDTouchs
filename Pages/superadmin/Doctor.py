@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.superadmin.Doctors.addDoctor import *
+from Dialogs.superadmin.Doctors.removeDoctor import *
 
 class Doctor(object):
     def setup(self, doctor,superadmin):
@@ -292,6 +294,9 @@ class Doctor(object):
         self.back.clicked.connect(lambda: self.clickOnBack(parent,superadmin))
         self.logout.clicked.connect(lambda: self.clickOnLogOut(parent, superadmin))
 
+        self.addDoctor.clicked.connect(lambda: self.clickOnAddDoctor())
+        self.removeDoctor.clicked.connect(lambda: self.clickOnRemoveDoctor())
+
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
 
@@ -318,3 +323,18 @@ class Doctor(object):
 
     def clickOnBack(self, parent, superadmin):
         superadmin.setup(parent)
+
+
+    def clickOnAddDoctor(self):
+        self.window = QDialog()
+        self.dialog = addDoctor()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnRemoveDoctor(self):
+        self.window = QDialog()
+        self.dialog = removeDoctor()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()

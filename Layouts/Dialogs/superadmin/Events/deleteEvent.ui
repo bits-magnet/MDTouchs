@@ -48,7 +48,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>70</y>
       <width>271</width>
       <height>201</height>
      </rect>
@@ -63,10 +63,10 @@ border-width:1px;
 border-color: rgb(7, 7, 7);</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel">
+   <widget class="QLabel" name="nameLabel">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>30</x>
       <y>10</y>
       <width>91</width>
       <height>31</height>
@@ -76,29 +76,28 @@ border-color: rgb(7, 7, 7);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Name :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_2">
+   <widget class="QLabel" name="name">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>120</x>
       <y>10</y>
-      <width>221</width>
+      <width>561</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:12pt;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">font-size:16pt;</string>
     </property>
     <property name="text">
      <string>event_name</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_3">
+   <widget class="QLabel" name="creatorLabel">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
-      <width>91</width>
+      <y>290</y>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -106,7 +105,7 @@ background-color: rgb(255, 255, 255);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Creator : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_4">
+   <widget class="QLabel" name="descriptionLabel">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -119,7 +118,7 @@ background-color: rgb(255, 255, 255);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Description :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_5">
+   <widget class="QLabel" name="dateLabel">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -132,7 +131,7 @@ background-color: rgb(255, 255, 255);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Date : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_6">
+   <widget class="QLabel" name="venueLabel">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -145,24 +144,23 @@ background-color: rgb(255, 255, 255);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Venue : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_7">
+   <widget class="QLabel" name="creator">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>250</y>
+      <x>120</x>
+      <y>290</y>
       <width>181</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:12pt;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">font-size:12pt;</string>
     </property>
     <property name="text">
      <string>creator</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_8">
+   <widget class="QLabel" name="date">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -172,14 +170,13 @@ background-color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:12pt;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">font-size:12pt;</string>
     </property>
     <property name="text">
      <string>date</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_9">
+   <widget class="QLabel" name="venue">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -189,14 +186,13 @@ background-color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:12pt;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">font-size:12pt;</string>
     </property>
     <property name="text">
      <string>venue</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eventNameLabel_10">
+   <widget class="QLabel" name="description">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -206,15 +202,17 @@ background-color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:12pt;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">font-size:12pt;</string>
     </property>
     <property name="text">
      <string>description</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="addButton">
+  <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -229,7 +227,7 @@ background-color: rgb(255, 255, 255);</string>
   </widget>
  </widget>
  <resources>
-  <include location="../../MDTouch/Images/img.qrc"/>
+  <include location="../../../../Images/img.qrc"/>
  </resources>
  <connections/>
 </ui>

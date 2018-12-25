@@ -1,13 +1,17 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from Data.States import *
+# -*- coding: utf-8 -*-
 
-class addTestCenter(object):
-    def setup(self, addTestCenter):
+# Form implementation generated from reading ui file 'addTestCenter.ui'
+#
+# Created by: PyQt5 UI code generator 5.9.2
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_addTestCenter(object):
+    def setupUi(self, addTestCenter):
         addTestCenter.setObjectName("addTestCenter")
-        addTestCenter.resize(750, 480)
+        addTestCenter.resize(750, 500)
         self.title = QtWidgets.QLabel(addTestCenter)
         self.title.setGeometry(QtCore.QRect(260, 0, 261, 51))
         self.title.setObjectName("title")
@@ -63,7 +67,7 @@ class addTestCenter(object):
 
     def retranslateUi(self, addTestCenter):
         _translate = QtCore.QCoreApplication.translate
-        addTestCenter.setWindowTitle(_translate("addTestCenter", " "))
+        addTestCenter.setWindowTitle(_translate("addTestCenter", "Dialog"))
         self.title.setText(_translate("addTestCenter", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Test Center</span></p></body></html>"))
         self.nameLabel.setText(_translate("addTestCenter", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
         self.addressLabel.setText(_translate("addTestCenter", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))
@@ -73,33 +77,3 @@ class addTestCenter(object):
         self.cityLabel.setText(_translate("addTestCenter", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
         self.addButton.setText(_translate("addTestCenter", "ADD"))
 
-        self.clickEvents(addTestCenter)
-
-    def clickEvents(self, parent):
-        self.stateAddFunction(parent)
-        self.addButton.clicked.connect(lambda : self.addTcFunction(parent))
-
-    def addTcFunction(self,parent):
-        name  = self.name.text()
-        address = self.address.toPlainText()
-        city = self.city.currentText()
-        state = self.state.currentText()
-        pin = self.pinCode.text()
-        contact = self.contact.text()
-
-
-    def stateAddFunction(self,parent):
-        for i in states.values():
-            self.state.addItem(i)
-        for i in cities["Andhra Pradesh"]:
-            self.city.addItem(i)
-        self.state.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
-
-    def cityAddFunction(self,parent):
-        state = self.state.currentText()
-
-        while self.city.count() > 0:
-            self.city.removeItem(0)
-
-        for i in cities[state]:
-            self.city.addItem(i)

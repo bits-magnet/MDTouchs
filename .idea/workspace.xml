@@ -5,7 +5,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25507724-9838-41de-a345-81452d7a9977" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/BloodBanks/addBloodBank.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/BloodBanks/removeBloodBank.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Dispensaries/addDispensary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Dispensaries/removeDispensary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Doctors/addDoctor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Doctors/removeDoctor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/EmergencyServices/addEmergencyService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/EmergencyServices/removeEmergencyService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Events/addEvent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Events/deleteEvent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Hospitals/addAdmin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dialogs/superadmin/Hospitals/deleteAdmin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/adminPic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/doctor_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Blood Banks/addBloodBank.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Blood Banks/addBloodBank.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Blood Banks/removeBloodBank.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Blood Banks/removeBloodBank.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Dispensaries/removeDispensary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Dispensaries/removeDispensary.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Doctors/addDoctor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Doctors/addDoctor.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Doctors/removeDoctor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Doctors/removeDoctor.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Emergency Services/addEmergencyService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Emergency Services/addEmergencyService.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Emergency Services/removeEmergencyService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Emergency Services/removeEmergencyService.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Events/addEvent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Events/addEvent.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Events/deleteEvent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Hospitals/addAdmin.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Hospitals/addHospital.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Hospitals/deleteAdmin.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Test Centers/addTestCenter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dialogs/addDispensary.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dialogs/addDispensary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dialogs/addHospital.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dialogs/addHospital.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dialogs/addTestCenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dialogs/addTestCenter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/img.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Images/img.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/addDispensary.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Dispensaries/addDispensary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/addDispensary.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Dispensaries/addDispensary.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/addHospital.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dialogs/superadmin/Hospitals/addHospital.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/addHospital.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Hospitals/addHospital.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/addTestCenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dialogs/superadmin/Test Centers/addTestCenter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/addTestCenter.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Test Centers/addTestCenter.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/deleteEvent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/deleteEvent.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Dialogs/superadmin/Events/deleteEvent.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/Dialogs/eventDescription.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Dialogs/eventDescription.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/BloodBanks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/BloodBanks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/BloodBanks.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/BloodBanks.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Dispensary.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Dispensary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Dispensary.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Dispensary.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Doctors.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Doctors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Doctors.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Doctors.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Emergency.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Emergency.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Emergency.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Emergency.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Events.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Events.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Events.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Events.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Home.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Home.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Home.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Hospitals.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Hospitals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/Hospitals.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/Hospitals.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/TestCenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/TestCenter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layouts/superadmin/TestCenter.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Layouts/Pages/superadmin/TestCenter.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/superadmin/BloodBank.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/superadmin/BloodBank.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/superadmin/Dispensary.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/superadmin/Dispensary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/superadmin/Doctor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/superadmin/Doctor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/superadmin/Emergency.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/superadmin/Emergency.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/superadmin/Events.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/superadmin/Events.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/superadmin/TestCenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/superadmin/TestCenter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/Dialogs/addHospital.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="159">
-              <caret line="94" column="22" lean-forward="true" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+              <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -43,7 +112,7 @@
         <entry file="file://$PROJECT_DIR$/Pages/loginPage.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="414">
-              <caret line="163" column="18" lean-forward="true" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
+              <caret line="163" column="18" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
               <folding>
                 <element signature="e#198#240#0" expanded="true" />
               </folding>
@@ -67,7 +136,7 @@
         <entry file="file://$PROJECT_DIR$/Data/States.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+              <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -345,8 +414,8 @@
     <list>
       <item itemvalue="Python.main" />
       <item itemvalue="Python.sample" />
-      <item itemvalue="Python.table" />
       <item itemvalue="Python.scroll_widget" />
+      <item itemvalue="Python.table" />
     </list>
     <recent_temporary>
       <list>
@@ -410,7 +479,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="25" width="1303" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25234374" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24962178" />
@@ -575,7 +643,7 @@
     <entry file="file://$PROJECT_DIR$/Data/States.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -592,7 +660,7 @@
     <entry file="file://$PROJECT_DIR$/Dialogs/addHospital.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
-          <caret line="94" column="22" lean-forward="true" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+          <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
@@ -602,7 +670,7 @@
     <entry file="file://$PROJECT_DIR$/Pages/loginPage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="163" column="18" lean-forward="true" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
+          <caret line="163" column="18" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
           <folding>
             <element signature="e#198#240#0" expanded="true" />
           </folding>
