@@ -2,8 +2,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Data.States import *
 
 class addDoctor(object):
+    def __init__(self):
+        self.last_city = ''
+
     def setup(self, addDoctor):
         addDoctor.setObjectName("addDoctor")
         addDoctor.resize(750, 480)
@@ -79,4 +83,56 @@ class addDoctor(object):
         self.clickEvents(addDoctor)
 
     def clickEvents(self, parent):
-        pass
+        self.stateAddFunction(parent)
+
+    def stateAddFunction(self,parent):
+        for i in states.values():
+            self.stateComboBox.addItem(i)
+        for i in cities["Andhra Pradesh"]:
+            self.cityComboBox.addItem(i)
+        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+        self.stateComboBox.currentIndexChanged.connect(lambda :self.hospitalComboBoxAdd(parent))
+
+    def cityAddFunction(self,parent):
+        state = self.stateComboBox.currentText()
+        i = self.cityComboBox.count()
+        flag = True
+        while i > 0:
+            flag = False
+            self.cityComboBox.removeItem(0)
+            i-=1
+        flag = True
+        for i in cities[state]:
+            flag = False
+            self.cityComboBox.addItem(i)
+        flag = True
+        if flag :
+            self.cityComboBox.currentIndexChanged.connect(lambda :self.hospitalComboBoxAdd(parent))
+
+    def hospitalComboBoxAdd(self,parent):
+        if self.last_city == self.cityComboBox.currentText() or self.cityComboBox.count() != len(cities[self.stateComboBox.currentText()]) or self.cityComboBox.itemText(self.cityComboBox.count()-1) != cities[self.stateComboBox.currentText()][-1]:
+            return
+        self.last_city = self.cityComboBox.currentText()
+        # First Erase all Hospitals
+        i = self.hospitalComboBox.count()
+        while i > 0:
+            i -= 1
+            self.hospitalComboBox.removeItem(0)
+
+        import requests
+        print(self.cityComboBox.currentText())
+        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        param ={
+            "city": self.cityComboBox.currentText()
+        }
+        r = requests.get(url=URL,params=param)
+        l = r.json()
+        print(l)
+        for i in l:
+            self.hospitalComboBox.addItem(str(i["name"]))
+
+        self.addButton.clicked.connect(lambda : self.addDoctorFunction(parent))
+
+    def addDoctorFunction(self,parent):
+        print("Blah")
+        parent.close()
