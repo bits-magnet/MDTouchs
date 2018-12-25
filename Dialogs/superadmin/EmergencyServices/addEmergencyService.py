@@ -115,7 +115,7 @@ class addEmergencyService(object):
         data = {
             "username":username,
             "password": "12345",
-            "dept": "D",
+            "dept": "ES",
             "email": username + "@email.com"
         }
         r = requests.post(url=URL,data=data)

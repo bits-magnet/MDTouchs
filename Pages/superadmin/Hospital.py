@@ -3,6 +3,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.addHospital import *
+from Dialogs.superadmin.Hospitals.addAdmin import *
+from Dialogs.superadmin.Hospitals.deleteAdmin import *
 
 class Hospital(object):
     def setup(self, Hospital,superadmin):
@@ -375,6 +377,8 @@ class Hospital(object):
         self.logout.clicked.connect(lambda : self.clickOnLogOut(parent,superadmin))
 
         self.addHospital.clicked.connect(lambda: self.clickOnAddHospital())
+        self.addAdmin.clicked.connect(lambda : self.clickOnAddAdmin())
+        self.removeAdmin.clicked.connect(lambda : self.clickOnRemoveAdmin())
 
     def clickOnBloodBank(self, parent, superadmin):
         superadmin.bloodbank_home.setup(parent, superadmin)
@@ -406,6 +410,20 @@ class Hospital(object):
     def clickOnAddHospital(self):
         self.window = QDialog()
         self.dialog = addHospital()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnAddAdmin(self):
+        self.window = QDialog()
+        self.dialog = addAdmin()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnRemoveAdmin(self):
+        self.window = QDialog()
+        self.dialog = deleteAdmin()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

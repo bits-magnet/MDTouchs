@@ -127,7 +127,7 @@ class addDispensary(object):
         data = {
             "username":username,
             "password": "12345",
-            "dept": "D",
+            "dept": "DS",
             "email": username + "@email.com"
         }
         r = requests.post(url=URL,data=data)

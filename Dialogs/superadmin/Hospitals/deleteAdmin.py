@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'deleteAdmin.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from Data.States import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_deleteAdmin(object):
-    def setupUi(self, deleteAdmin):
+class deleteAdmin(object):
+    def setup(self, deleteAdmin):
         deleteAdmin.setObjectName("deleteAdmin")
         deleteAdmin.resize(400, 350)
         self.title = QtWidgets.QLabel(deleteAdmin)
@@ -60,5 +56,23 @@ class Ui_deleteAdmin(object):
         self.stateLabel.setText(_translate("deleteAdmin", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State : </span></p></body></html>"))
         self.adminLabel.setText(_translate("deleteAdmin", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Admin :</span></p></body></html>"))
         self.deleteButton.setText(_translate("deleteAdmin", "DELETE"))
+        self.events(deleteAdmin)
 
+    def events(self,parent):
+        self.stateAddFunction(parent)
+
+    def stateAddFunction(self,parent):
+        for i in states.values():
+            self.stateComboBox.addItem(i)
+        for i in cities["Andhra Pradesh"]:
+            self.cityComboBox.addItem(i)
+        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+
+    def cityAddFunction(self,parent):
+        state = self.stateComboBox.currentText()
+
+        while self.cityComboBox.count() > 0:
+            self.cityComboBox.removeItem(0)
+        for i in cities[state]:
+            self.cityComboBox.addItem(i)
 

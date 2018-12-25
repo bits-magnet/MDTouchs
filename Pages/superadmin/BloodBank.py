@@ -297,6 +297,8 @@ class BloodBank(object):
         self.inbox.clicked.connect(lambda: self.clickOnInbox(parent, superadmin))
         self.logout.clicked.connect(lambda: self.clickOnLogOut(parent, superadmin))
         self.back.clicked.connect(lambda: self.clickOnBack(parent, superadmin))
+        self.addBloodBank.clicked.connect(lambda : self.clickOnAddBloodBank())
+        self.removeBloodBank.clicked.connect(lambda : self.clickOnRemoveBloodBank())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)

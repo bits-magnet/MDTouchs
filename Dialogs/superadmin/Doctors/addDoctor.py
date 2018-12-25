@@ -84,6 +84,7 @@ class addDoctor(object):
 
     def clickEvents(self, parent):
         self.stateAddFunction(parent)
+        self.addButton.clicked.connect(lambda : self.addDoctorFunction(parent))
 
     def stateAddFunction(self,parent):
         for i in states.values():
@@ -131,8 +132,61 @@ class addDoctor(object):
         for i in l:
             self.hospitalComboBox.addItem(str(i["name"]))
 
-        self.addButton.clicked.connect(lambda : self.addDoctorFunction(parent))
 
     def addDoctorFunction(self,parent):
-        print("Blah")
+        fname = self.firstName.text()
+        lname = self.lastName.text()
+        state = self.stateComboBox.currentText()
+        city = self.cityComboBox.currentText()
+        hospital = self.hospitalComboBox.currentText()
+        import requests
+        from random import randint
+        username = fname.replace(" ","") +  str(randint(0,100))
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        params = {
+            "username" : username
+        }
+        while True:
+            params = {
+                "username" : username
+            }
+            r = requests.get(url=URL,params=params)
+            if len(r.json()) > 0:
+                username = name.replace(" ","") +  str(randint(0,100))
+            else:
+                break
+        URLH = "https://mdtouch.herokuapp.com/api/hospital/"
+        r = requests.get(url=URLH,params={
+            "name" : hospital,
+            "city" : city,
+            "state" : state
+        })
+        print(r.json())
+        hospital_id = r.json()[0]["id"]
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        data = {
+            "username":username,
+            "password": "12345",
+            "dept": "D",
+            "email": username + "@email.com"
+        }
+        r = requests.post(url=URL,data=data)
+        l = r.json()
+        print(l)
+        id = l["id"]
+
+
+        URLD = "https://mdtouch.herokuapp.com/api/doctor/"
+        data1 = {
+            "firstName":fname,
+            "lastName": lname,
+            "email": username + "@email.com",
+            "address": "",
+            "city": city,
+            "state": state,
+            "username": id,
+            "workplace": hospital_id
+        }
+        r = requests.post(url=URLD,data=data1)
+        print(r.json())
         parent.close()

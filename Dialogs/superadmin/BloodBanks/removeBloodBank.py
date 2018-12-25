@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Data.States import *
 
 class removeBloodBank(object):
     def setup(self, removeBloodBank):
@@ -48,4 +49,25 @@ class removeBloodBank(object):
         self.stateLabel.setText(_translate("removeBloodBank", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State : </span></p></body></html>"))
         self.removeButton.setText(_translate("removeBloodBank", "REMOVE"))
         self.title.setText(_translate("removeBloodBank", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">REMOVE BLOOD BANK</span></p></body></html>"))
+        self.events(removeBloodBank)
+
+    def events(self,parent):
+        self.stateAddFunction(parent)
+
+    def stateAddFunction(self,parent):
+        for i in states.values():
+            self.stateComboBox.addItem(i)
+        for i in cities["Andhra Pradesh"]:
+            self.cityComboBox.addItem(i)
+
+        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+
+    def cityAddFunction(self,parent):
+        state = self.stateComboBox.currentText()
+
+        while self.cityComboBox.count() > 0:
+            self.cityComboBox.removeItem(0)
+
+        for i in cities[state]:
+            self.cityComboBox.addItem(i)
 

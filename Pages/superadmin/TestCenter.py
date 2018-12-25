@@ -307,6 +307,7 @@ class TestCenter(object):
         self.logout.clicked.connect(lambda: self.clickOnLogOut(parent, superadmin))
         self.inbox.clicked.connect(lambda: self.clickOnInbox(parent, superadmin))
         self.back.clicked.connect(lambda: self.clickOnBack(parent, superadmin))
+        self.events.clicked.connect(lambda : self.clickOnEvents(parent,superadmin))
 
         self.addTestCenter.clicked.connect(lambda: self.clickOnAddTestCenter())
 
