@@ -109,8 +109,8 @@ class loginPage(object):
     def eventsUi(self, loginPage):
         self.forgotPasswordLink.clicked.connect(lambda: self.forgotPasswordEvent(loginPage))
         self.passwordInput.returnPressed.connect(self.loginButton.click)
-        #self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
-        self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
+        self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
+        #self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
         self.superadminpage = superadminHome()
@@ -146,42 +146,25 @@ class loginPage(object):
             self.dialog.infoBox('Invalid Credentials')
             return
 
-
-        import requests as rq
-        import json
+        param = {
+            "username" : usernameInput,
+            "password" : passwordInput
+        }
         URL = "https://mdtouch.herokuapp.com/api/login/"
-        r = rq.get(url=URL)
-        loginInfo = r.json()
-        ctr = 0
-        data = {}
-        for i in loginInfo:
-            if i["username"] == usernameInput and passwordInput == i["password"]:
-                ctr = 1
-                data = i
-                break
-        if ctr == 0:
-            self.userNameInput.setText("")
-            self.passwordInput.setText("")
+        import requests
+        r = requests.get(url=URL,params=param)
+        data = r.json()
+        if len(data) == 0:
             self.dialog = messageBox()
-            self.dialog.warningBox('Username and Password Does not Match')
-        elif data["dept"] == "SA":
-            self.superadmin_home = superadminHome()
-            self.superadmin_home.setup(loginPage)
-        elif data["dept"] == 'DS':
-            pass
-        elif data == 'BB':
-            pass
-        elif l[0][0] == 'D':
-            # Doctor Ka Kholna hai
-            pass
-        elif l[0][0] == 'T':
-            # Open Test Center
-            pass
-        elif l[0][0] == 'ES':
-            # Open Emergency Services
-            pass
-        else:
-            # Nothing
-            pass
+            self.dialog.infoBox('Invalid Credentials')
+            return
+        if data[0]["dept"] == "SA":
+            self.superadminpage = superadminHome()
+            self.superadminpage.setup(loginPage)
+            return
+
+
+
+
 
 

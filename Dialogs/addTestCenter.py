@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Data.States import *
 
 class addTestCenter(object):
     def setup(self, addTestCenter):
@@ -75,5 +76,30 @@ class addTestCenter(object):
         self.clickEvents(addTestCenter)
 
     def clickEvents(self, parent):
-        pass
-    # changed Again
+        self.stateAddFunction(parent)
+        self.addButton.clicked.connect(lambda : self.addTcFunction(parent))
+
+    def addTcFunction(self,parent):
+        name  = self.name.text()
+        address = self.address.toPlainText()
+        city = self.city.currentText()
+        state = self.state.currentText()
+        pin = self.pinCode.text()
+        contact = self.contact.text()
+
+
+    def stateAddFunction(self,parent):
+        for i in states.values():
+            self.state.addItem(i)
+        for i in cities["Andhra Pradesh"]:
+            self.city.addItem(i)
+        self.state.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+
+    def cityAddFunction(self,parent):
+        state = self.state.currentText()
+
+        while self.city.count() > 0:
+            self.city.removeItem(0)
+
+        for i in cities[state]:
+            self.city.addItem(i)
