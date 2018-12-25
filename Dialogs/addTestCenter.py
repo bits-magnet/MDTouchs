@@ -87,6 +87,49 @@ class addTestCenter(object):
         pin = self.pinCode.text()
         contact = self.contact.text()
 
+        import requests
+        from random import randint
+        username = name.replace(" ","") +  str(randint(0,100))
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        params = {
+            "username" : username
+        }
+        while True:
+            params = {
+                "username" : username
+            }
+            r = requests.get(url=URL,params=params)
+            if len(r.json()) > 0:
+                username = name.replace(" ","") +  str(randint(0,100))
+            else:
+                break
+
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        data = {
+            "username":username,
+            "password": "12345",
+            "dept": "T",
+            "email": username + "@email.com"
+        }
+        r = requests.post(url=URL,data=data)
+        l = r.json()
+        print(l)
+        id = l["id"]
+
+        data1 = {
+            "name": name,
+            "address": address,
+            "city": city,
+            "pin": pin,
+            "state": state,
+            "username": id
+        }
+
+        URL1 = "https://mdtouch.herokuapp.com/api/testcentre/"
+        r = requests.post(url=URL1,data=data1)
+        print(r.json())
+        parent.close()
+
 
     def stateAddFunction(self,parent):
         for i in states.values():

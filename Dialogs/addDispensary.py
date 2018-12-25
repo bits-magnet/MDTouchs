@@ -84,14 +84,76 @@ class addDispensary(object):
 
     def clickEvents(self, parent):
         self.stateAddFunction(lambda :self.stateAddFunction(parent))
+        self.addButton.clicked.connect(lambda : self.addDispensaryFunction(parent))
 
+    def addDispensaryFunction(self,parent):
+        name  = self.name.text()
+        address = self.address.toPlainText()
+        city = self.city.currentText()
+        state = self.state.currentText()
+        pin = self.pinCode.text()
+        contact = self.contact.text()
+
+    def clickEvents(self, parent):
+        self.stateAddFunction(parent)
+        self.addButton.clicked.connect(lambda : self.addDispensaryFunction(parent))
+
+    def addDispensaryFunction(self,parent):
+        name  = self.name.text()
+        address = self.address.toPlainText()
+        city = self.city.currentText()
+        state = self.state.currentText()
+        pin = self.pinCode.text()
+        contact = self.contact.text()
+
+        import requests
+        from random import randint
+        username = name.replace(" ","") +  str(randint(0,100))
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        params = {
+            "username" : username
+        }
+        while True:
+            params = {
+                "username" : username
+            }
+            r = requests.get(url=URL,params=params)
+            if len(r.json()) > 0:
+                username = name.replace(" ","") +  str(randint(0,100))
+            else:
+                break
+
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        data = {
+            "username":username,
+            "password": "12345",
+            "dept": "D",
+            "email": username + "@email.com"
+        }
+        r = requests.post(url=URL,data=data)
+        l = r.json()
+        print(l)
+        id = l["id"]
+
+        data1 = {
+            "name": name,
+            "address": address,
+            "city": city,
+            "pin": pin,
+            "state": state,
+            "username": id
+        }
+
+        URL1 = "https://mdtouch.herokuapp.com/api/dispensaries/"
+        r = requests.post(url=URL1,data=data1)
+        print(r.json())
+        parent.close()
 
     def stateAddFunction(self,parent):
         for i in states.values():
             self.state.addItem(i)
         for i in cities["Andhra Pradesh"]:
             self.city.addItem(i)
-
         self.state.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
 
     def cityAddFunction(self,parent):
@@ -99,5 +161,6 @@ class addDispensary(object):
 
         while self.city.count() > 0:
             self.city.removeItem(0)
+
         for i in cities[state]:
             self.city.addItem(i)

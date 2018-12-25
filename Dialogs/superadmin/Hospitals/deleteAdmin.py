@@ -61,3 +61,4 @@ class Ui_deleteAdmin(object):
         self.adminLabel.setText(_translate("deleteAdmin", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Admin :</span></p></body></html>"))
         self.deleteButton.setText(_translate("deleteAdmin", "DELETE"))
 
+

@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Data.States import *
 
 class removeDoctor(object):
     def setup(self, removeDoctor):
@@ -59,4 +60,20 @@ class removeDoctor(object):
         self.clickEvents(removeDoctor)
 
     def clickEvents(self, parent):
-        pass
+        self.stateAddFunction(parent)
+
+    def stateAddFunction(self,parent):
+        for i in states.values():
+            self.stateComboBox.addItem(i)
+        for i in cities["Andhra Pradesh"]:
+            self.cityComboBox.addItem(i)
+        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+
+    def cityAddFunction(self,parent):
+        state = self.stateComboBox.currentText()
+
+        while self.cityComboBox.count() > 0:
+            self.cityComboBox.removeItem(0)
+
+        for i in cities[state]:
+            self.cityComboBox.addItem(i)
