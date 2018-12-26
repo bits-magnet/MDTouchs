@@ -12,7 +12,7 @@ class addBloodBank(object):
         self.title.setGeometry(QtCore.QRect(260, 0, 261, 51))
         self.title.setObjectName("title")
         self.frame = QtWidgets.QFrame(addBloodBank)
-        self.frame.setGeometry(QtCore.QRect(10, 60, 731, 341))
+        self.frame.setGeometry(QtCore.QRect(10, 60, 730, 340))
         self.frame.setStyleSheet("")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -72,10 +72,11 @@ class addBloodBank(object):
         self.pinCodeLabel.setText(_translate("addBloodBank", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
         self.cityLabel.setText(_translate("addBloodBank", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
         self.addButton.setText(_translate("addBloodBank", "ADD"))
-        self.events(addBloodBank)
 
-    def events(self,parent):
-        self.stateAddFunction(parent)
+        self.stateAddFunction(addBloodBank)
+        self.clickEvents(addBloodBank)
+
+    def clickEvents(self,parent):
         self.addButton.clicked.connect(lambda : self.addBloodBankCenterFunction(parent))
 
     def addBloodBankCenterFunction(self,parent):

@@ -2,8 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from Dialogs.addDispensary import *
-from Dialogs.superadmin.Dispensaries.removeDispensary import *
+from Dialogs.superadmin.Dispensaries.addDispensary import *
+from Dialogs.superadmin.Dispensaries.selectDispensary import *
 
 class Dispensary(object):
     def setup(self, Dispensary, superadmin):
@@ -347,7 +347,7 @@ class Dispensary(object):
 
     def clickOnRemoveDispensary(self):
         self.window = QDialog()
-        self.dialog = removeDispensary()
+        self.dialog = selectDispensary()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

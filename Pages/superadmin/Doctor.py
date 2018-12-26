@@ -3,7 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.Doctors.addDoctor import *
-from Dialogs.superadmin.Doctors.removeDoctor import *
+from Dialogs.superadmin.Doctors.selectDoctor import *
 
 class Doctor(object):
     def setup(self, doctor,superadmin):
@@ -334,7 +334,7 @@ class Doctor(object):
 
     def clickOnRemoveDoctor(self):
         self.window = QDialog()
-        self.dialog = removeDoctor()
+        self.dialog = selectDoctor()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

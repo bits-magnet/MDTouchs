@@ -64,21 +64,16 @@ class addEmergencyService(object):
 
     def retranslateUi(self, addEmergencyService):
         _translate = QtCore.QCoreApplication.translate
-        self.title.setText(_translate("addEmergencyService",
-                                      "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Emergency Service</span></p></body></html>"))
+        addEmergencyService.setWindowTitle(_translate("addEmergencyService", " "))
+        self.title.setText(_translate("addEmergencyService", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Emergency Service</span></p></body></html>"))
         self.addButton.setText(_translate("addEmergencyService", "ADD"))
-        self.nameLabel.setText(_translate("addEmergencyService",
-                                          "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
-        self.addressLabel.setText(_translate("addEmergencyService",
-                                             "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))
-        self.contactLabel.setText(_translate("addEmergencyService",
-                                             "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Contact No. :</span></p></body></html>"))
-        self.stateLabel.setText(_translate("addEmergencyService",
-                                           "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State :</span></p></body></html>"))
-        self.pinCodeLabel.setText(_translate("addEmergencyService",
-                                             "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
-        self.cityLabel.setText(_translate("addEmergencyService",
-                                          "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
+        self.nameLabel.setText(_translate("addEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
+        self.addressLabel.setText(_translate("addEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))
+        self.contactLabel.setText(_translate("addEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Contact No. :</span></p></body></html>"))
+        self.stateLabel.setText(_translate("addEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State :</span></p></body></html>"))
+        self.pinCodeLabel.setText(_translate("addEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
+        self.cityLabel.setText(_translate("addEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
+
 
         self.clickEvents(addEmergencyService)
 

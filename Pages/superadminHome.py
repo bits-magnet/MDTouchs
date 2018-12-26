@@ -7,7 +7,7 @@ from Pages.superadmin.BloodBank import *
 from Pages.superadmin.Doctor import *
 from Pages.superadmin.Events import *
 from Pages.superadmin.Dispensary import *
-from Pages.superadmin.Emergency import *
+from Pages.superadmin.EmergencyService import *
 from Pages.superadmin.TestCenter import *
 
 

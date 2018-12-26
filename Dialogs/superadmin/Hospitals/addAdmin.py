@@ -7,18 +7,19 @@ from Data.States import *
 class addAdmin(object):
     def setup(self, addAdmin):
         addAdmin.setObjectName("addAdmin")
-        addAdmin.resize(750, 482)
+        addAdmin.resize(712, 482)
+        addAdmin.setWindowTitle("")
         self.frame = QtWidgets.QFrame(addAdmin)
-        self.frame.setGeometry(QtCore.QRect(10, 60, 731, 341))
+        self.frame.setGeometry(QtCore.QRect(10, 60, 691, 341))
         self.frame.setStyleSheet("")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.firstNameLabel = QtWidgets.QLabel(self.frame)
-        self.firstNameLabel.setGeometry(QtCore.QRect(30, 20, 101, 41))
+        self.firstNameLabel.setGeometry(QtCore.QRect(20, 20, 101, 41))
         self.firstNameLabel.setObjectName("firstNameLabel")
         self.firstName = QtWidgets.QLineEdit(self.frame)
-        self.firstName.setGeometry(QtCore.QRect(140, 20, 211, 41))
+        self.firstName.setGeometry(QtCore.QRect(130, 20, 201, 41))
         self.firstName.setObjectName("firstName")
         self.uploadImage = QtWidgets.QPushButton(self.frame)
         self.uploadImage.setGeometry(QtCore.QRect(100, 280, 131, 41))
@@ -32,10 +33,10 @@ class addAdmin(object):
 "border-color: rgb(0, 0, 0);")
         self.widget.setObjectName("widget")
         self.lastNameLabel = QtWidgets.QLabel(self.frame)
-        self.lastNameLabel.setGeometry(QtCore.QRect(380, 20, 101, 41))
+        self.lastNameLabel.setGeometry(QtCore.QRect(350, 20, 101, 41))
         self.lastNameLabel.setObjectName("lastNameLabel")
         self.lastName = QtWidgets.QLineEdit(self.frame)
-        self.lastName.setGeometry(QtCore.QRect(490, 20, 211, 41))
+        self.lastName.setGeometry(QtCore.QRect(460, 20, 211, 41))
         self.lastName.setObjectName("lastName")
         self.stateLabel = QtWidgets.QLabel(self.frame)
         self.stateLabel.setGeometry(QtCore.QRect(350, 90, 111, 31))
@@ -56,10 +57,10 @@ class addAdmin(object):
         self.hospitalComboBox.setGeometry(QtCore.QRect(460, 240, 161, 27))
         self.hospitalComboBox.setObjectName("hospitalComboBox")
         self.addButton = QtWidgets.QPushButton(addAdmin)
-        self.addButton.setGeometry(QtCore.QRect(300, 420, 131, 41))
+        self.addButton.setGeometry(QtCore.QRect(290, 420, 131, 41))
         self.addButton.setObjectName("addButton")
         self.title = QtWidgets.QLabel(addAdmin)
-        self.title.setGeometry(QtCore.QRect(250, 0, 261, 51))
+        self.title.setGeometry(QtCore.QRect(226, 0, 260, 50))
         self.title.setObjectName("title")
 
         self.retranslateUi(addAdmin)
@@ -76,9 +77,10 @@ class addAdmin(object):
         self.hospitalLabel.setText(_translate("addAdmin", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Hospital : </span></p></body></html>"))
         self.addButton.setText(_translate("addAdmin", "ADD"))
         self.title.setText(_translate("addAdmin", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Admin</span></p></body></html>"))
-        self.events(addAdmin)
 
-    def events(self,parent):
+        self.clickEvents(addAdmin)
+
+    def clickEvents(self,parent):
         self.stateAddFunction(parent)
 
     def stateAddFunction(self,parent):

@@ -11,7 +11,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_addDispensary(object):
     def setupUi(self, addDispensary):
         addDispensary.setObjectName("addDispensary")
-        addDispensary.resize(750, 500)
+        addDispensary.resize(750, 475)
+        addDispensary.setWindowTitle("")
         self.title = QtWidgets.QLabel(addDispensary)
         self.title.setGeometry(QtCore.QRect(260, 0, 261, 51))
         self.title.setObjectName("title")
@@ -58,12 +59,6 @@ class Ui_addDispensary(object):
         self.city = QtWidgets.QComboBox(self.frame)
         self.city.setGeometry(QtCore.QRect(150, 250, 181, 27))
         self.city.setObjectName("city")
-        self.registrationNoLabel = QtWidgets.QLabel(self.frame)
-        self.registrationNoLabel.setGeometry(QtCore.QRect(400, 280, 101, 41))
-        self.registrationNoLabel.setObjectName("registrationNoLabel")
-        self.pinCode_2 = QtWidgets.QLineEdit(self.frame)
-        self.pinCode_2.setGeometry(QtCore.QRect(500, 290, 181, 27))
-        self.pinCode_2.setObjectName("pinCode_2")
         self.addButton = QtWidgets.QPushButton(addDispensary)
         self.addButton.setGeometry(QtCore.QRect(330, 420, 131, 41))
         self.addButton.setObjectName("addButton")
@@ -73,7 +68,6 @@ class Ui_addDispensary(object):
 
     def retranslateUi(self, addDispensary):
         _translate = QtCore.QCoreApplication.translate
-        addDispensary.setWindowTitle(_translate("addDispensary", "Dialog"))
         self.title.setText(_translate("addDispensary", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Dispensary</span></p></body></html>"))
         self.nameLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
         self.addressLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))
@@ -81,6 +75,5 @@ class Ui_addDispensary(object):
         self.stateLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State :</span></p></body></html>"))
         self.pinCodeLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
         self.cityLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
-        self.registrationNoLabel.setText(_translate("addDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Reg. No. :</span></p></body></html>"))
         self.addButton.setText(_translate("addDispensary", "ADD"))
 

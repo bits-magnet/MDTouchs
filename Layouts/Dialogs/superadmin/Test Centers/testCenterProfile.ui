@@ -125,7 +125,7 @@
    <widget class="QLabel" name="name">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>40</y>
       <width>281</width>
       <height>41</height>
@@ -141,7 +141,7 @@
    <widget class="QLabel" name="address">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>90</y>
       <width>281</width>
       <height>71</height>
@@ -160,7 +160,7 @@
    <widget class="QLabel" name="pinCode">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>170</y>
       <width>181</width>
       <height>41</height>
@@ -176,7 +176,7 @@
    <widget class="QLabel" name="state">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>210</y>
       <width>181</width>
       <height>41</height>
@@ -192,7 +192,7 @@
    <widget class="QLabel" name="city">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>260</y>
       <width>181</width>
       <height>41</height>
@@ -208,7 +208,7 @@
    <widget class="QLabel" name="contactNo">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>305</y>
       <width>181</width>
       <height>31</height>
@@ -237,7 +237,7 @@
    <widget class="QLabel" name="testCenterID">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>10</y>
       <width>281</width>
       <height>41</height>

@@ -16,7 +16,7 @@ class Ui_addBloodBank(object):
         self.title.setGeometry(QtCore.QRect(260, 0, 261, 51))
         self.title.setObjectName("title")
         self.frame = QtWidgets.QFrame(addBloodBank)
-        self.frame.setGeometry(QtCore.QRect(10, 60, 731, 341))
+        self.frame.setGeometry(QtCore.QRect(10, 60, 730, 340))
         self.frame.setStyleSheet("")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)

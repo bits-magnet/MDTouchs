@@ -10,7 +10,8 @@ class addDoctor(object):
 
     def setup(self, addDoctor):
         addDoctor.setObjectName("addDoctor")
-        addDoctor.resize(750, 480)
+        addDoctor.resize(750, 481)
+        addDoctor.setWindowTitle("")
         self.title = QtWidgets.QLabel(addDoctor)
         self.title.setGeometry(QtCore.QRect(250, 0, 261, 51))
         self.title.setObjectName("title")
@@ -24,16 +25,16 @@ class addDoctor(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.firstNameLabel = QtWidgets.QLabel(self.frame)
-        self.firstNameLabel.setGeometry(QtCore.QRect(30, 20, 101, 41))
+        self.firstNameLabel.setGeometry(QtCore.QRect(10, 20, 121, 41))
         self.firstNameLabel.setObjectName("firstNameLabel")
         self.firstName = QtWidgets.QLineEdit(self.frame)
-        self.firstName.setGeometry(QtCore.QRect(140, 20, 211, 41))
+        self.firstName.setGeometry(QtCore.QRect(120, 20, 211, 41))
         self.firstName.setObjectName("firstName")
         self.uploadImage = QtWidgets.QPushButton(self.frame)
-        self.uploadImage.setGeometry(QtCore.QRect(100, 280, 131, 41))
+        self.uploadImage.setGeometry(QtCore.QRect(90, 280, 131, 41))
         self.uploadImage.setObjectName("uploadImage")
         self.widget = QtWidgets.QWidget(self.frame)
-        self.widget.setGeometry(QtCore.QRect(60, 70, 221, 201))
+        self.widget.setGeometry(QtCore.QRect(50, 70, 221, 201))
         self.widget.setAutoFillBackground(False)
         self.widget.setStyleSheet("image: url(:/doctor_icon.png);\n"
 "border-style:solid;\n"
@@ -41,10 +42,10 @@ class addDoctor(object):
 "border-color: rgb(0, 0, 0);")
         self.widget.setObjectName("widget")
         self.lastNameLabel = QtWidgets.QLabel(self.frame)
-        self.lastNameLabel.setGeometry(QtCore.QRect(380, 20, 101, 41))
+        self.lastNameLabel.setGeometry(QtCore.QRect(350, 20, 111, 41))
         self.lastNameLabel.setObjectName("lastNameLabel")
         self.lastName = QtWidgets.QLineEdit(self.frame)
-        self.lastName.setGeometry(QtCore.QRect(490, 20, 211, 41))
+        self.lastName.setGeometry(QtCore.QRect(460, 20, 211, 41))
         self.lastName.setObjectName("lastName")
         self.stateLabel = QtWidgets.QLabel(self.frame)
         self.stateLabel.setGeometry(QtCore.QRect(350, 90, 111, 31))
@@ -70,7 +71,6 @@ class addDoctor(object):
 
     def retranslateUi(self, addDoctor):
         _translate = QtCore.QCoreApplication.translate
-        addDoctor.setWindowTitle(_translate("addDoctor", " "))
         self.title.setText(_translate("addDoctor", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Doctor</span></p></body></html>"))
         self.addButton.setText(_translate("addDoctor", "ADD"))
         self.firstNameLabel.setText(_translate("addDoctor", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">First Name : </span></p></body></html>"))

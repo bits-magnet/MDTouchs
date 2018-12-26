@@ -2,9 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from Dialogs.addHospital import *
+from Dialogs.superadmin.Hospitals.addHospital import *
+from Dialogs.superadmin.Hospitals.selectHospital import *
 from Dialogs.superadmin.Hospitals.addAdmin import *
-from Dialogs.superadmin.Hospitals.deleteAdmin import *
+from Dialogs.superadmin.Hospitals.selectAdmin import *
 
 class Hospital(object):
     def setup(self, Hospital,superadmin):
@@ -377,6 +378,7 @@ class Hospital(object):
         self.logout.clicked.connect(lambda : self.clickOnLogOut(parent,superadmin))
 
         self.addHospital.clicked.connect(lambda: self.clickOnAddHospital())
+        self.removeHospital.clicked.connect(lambda: self.clickOnRemoveHospital())
         self.addAdmin.clicked.connect(lambda : self.clickOnAddAdmin())
         self.removeAdmin.clicked.connect(lambda : self.clickOnRemoveAdmin())
 
@@ -414,6 +416,13 @@ class Hospital(object):
         self.window.setModal(True)
         self.window.show()
 
+    def clickOnRemoveHospital(self):
+        self.window = QDialog()
+        self.dialog = selectHospital()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
     def clickOnAddAdmin(self):
         self.window = QDialog()
         self.dialog = addAdmin()
@@ -423,7 +432,7 @@ class Hospital(object):
 
     def clickOnRemoveAdmin(self):
         self.window = QDialog()
-        self.dialog = deleteAdmin()
+        self.dialog = selectAdmin()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

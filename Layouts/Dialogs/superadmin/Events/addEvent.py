@@ -45,9 +45,6 @@ class Ui_addEvent(object):
         self.descriptionLabel = QtWidgets.QLabel(self.frame)
         self.descriptionLabel.setGeometry(QtCore.QRect(360, 160, 101, 31))
         self.descriptionLabel.setObjectName("descriptionLabel")
-        self.description = QtWidgets.QLineEdit(self.frame)
-        self.description.setGeometry(QtCore.QRect(360, 190, 351, 141))
-        self.description.setObjectName("description")
         self.uploadImage = QtWidgets.QPushButton(self.frame)
         self.uploadImage.setGeometry(QtCore.QRect(100, 280, 131, 41))
         self.uploadImage.setObjectName("uploadImage")
@@ -59,6 +56,10 @@ class Ui_addEvent(object):
 "border-width:1px;\n"
 "border-color: rgb(7, 7, 7);")
         self.widget.setObjectName("widget")
+        self.description = QtWidgets.QTextBrowser(self.frame)
+        self.description.setGeometry(QtCore.QRect(360, 190, 351, 141))
+        self.description.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextEditable|QtCore.Qt.TextSelectableByMouse)
+        self.description.setObjectName("description")
 
         self.retranslateUi(addEvent)
         QtCore.QMetaObject.connectSlotsByName(addEvent)

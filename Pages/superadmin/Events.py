@@ -3,7 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.Events.addEvent import *
-from Dialogs.superadmin.Events.deleteEvent import *
+from Dialogs.superadmin.Events.selectEvent import *
 
 
 class Events(object):
@@ -324,7 +324,7 @@ class Events(object):
 
     def clickOnDeleteEvent(self):
         self.window = QDialog()
-        self.dialog = deleteEvent()
+        self.dialog = selectEvent()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

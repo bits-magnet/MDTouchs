@@ -1,17 +1,13 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'addHospital.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Data.States import *
 
-class Ui_addHospital(object):
-    def setupUi(self, addHospital):
+class addHospital(object):
+    def setup(self, addHospital):
         addHospital.setObjectName("addHospital")
-        addHospital.resize(750, 500)
+        addHospital.resize(750, 480)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -73,7 +69,7 @@ class Ui_addHospital(object):
 
     def retranslateUi(self, addHospital):
         _translate = QtCore.QCoreApplication.translate
-        addHospital.setWindowTitle(_translate("addHospital", "Dialog"))
+        addHospital.setWindowTitle(_translate("addHospital", " "))
         self.title.setText(_translate("addHospital", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Hospital</span></p></body></html>"))
         self.nameLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
         self.addressLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))
@@ -82,4 +78,51 @@ class Ui_addHospital(object):
         self.pinCodeLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
         self.cityLabel.setText(_translate("addHospital", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
         self.addButton.setText(_translate("addHospital", "ADD"))
+
+        self.clickEvents(addHospital)
+
+    def clickEvents(self, parent):
+        self.stateAddFunction(parent)
+        self.addButton.clicked.connect(lambda : self.addHospitalFunction(parent))
+
+    def addHospitalFunction(self,parent):
+        name  = self.name.text()
+        address = self.address.toPlainText()
+        city = self.city.currentText()
+        state = self.state.currentText()
+        pin = self.pinCode.text()
+        contact = self.contact.text()
+
+        # Fetching from The api
+        # Add Hospitals
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        data = {
+            "name": name,
+            "address": address,
+            "city": city,
+            "state": state,
+            "contact": contact,
+            "pin": pin
+        }
+        r = requests.post(url=URL,data=data)
+        print(r.json())
+        parent.close()
+
+
+    def stateAddFunction(self,parent):
+        for i in states.values():
+            self.state.addItem(i)
+        for i in cities["Andhra Pradesh"]:
+            self.city.addItem(i)
+        self.state.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+
+    def cityAddFunction(self,parent):
+        state = self.state.currentText()
+
+        while self.city.count() > 0:
+            self.city.removeItem(0)
+        for i in cities[state]:
+            self.city.addItem(i)
+
 

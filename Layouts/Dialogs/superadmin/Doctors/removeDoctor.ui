@@ -221,7 +221,7 @@ border-color: rgb(0, 0, 0);</string>
      <string>hospital_name</string>
     </property>
    </widget>
-   <widget class="QLabel" name="firstName_2">
+   <widget class="QLabel" name="doctorID">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -238,7 +238,7 @@ font-weight:bold;</string>
      <string>DoctorID</string>
     </property>
    </widget>
-   <widget class="QLabel" name="firstNameLabel_2">
+   <widget class="QLabel" name="IDLabel">
     <property name="geometry">
      <rect>
       <x>30</x>

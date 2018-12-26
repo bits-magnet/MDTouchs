@@ -3,7 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.BloodBanks.addBloodBank import *
-from Dialogs.superadmin.BloodBanks.removeBloodBank import *
+from Dialogs.superadmin.BloodBanks.selectBloodBank import *
 
 class BloodBank(object):
     def setup(self, bloodBank, superadmin):
@@ -339,7 +339,7 @@ class BloodBank(object):
 
     def clickOnRemoveBloodBank(self):
         self.window = QDialog()
-        self.dialog = removeBloodBank()
+        self.dialog = selectBloodBank()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

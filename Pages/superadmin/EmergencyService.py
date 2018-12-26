@@ -3,7 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.EmergencyServices.addEmergencyService import *
-from Dialogs.superadmin.EmergencyServices.removeEmergencyService import *
+from Dialogs.superadmin.EmergencyServices.selectEmergencyService import *
 
 class Emergency(object):
     def setup(self, Emergency, superadmin):
@@ -347,7 +347,7 @@ class Emergency(object):
 
     def clickOnRemoveEmergencyService(self):
         self.window = QDialog()
-        self.dialog = removeEmergencyService()
+        self.dialog = selectEmergencyService()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()
