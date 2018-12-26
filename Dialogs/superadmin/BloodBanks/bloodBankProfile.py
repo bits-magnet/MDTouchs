@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import *
 
 
 class bloodBankProfile(object):
-    def setup(self, bloodBankProfile):
+    def setup(self, bloodBankProfile,data):
         bloodBankProfile.setObjectName("bloodBankProfile")
         bloodBankProfile.resize(562, 400)
         bloodBankProfile.setMinimumSize(QtCore.QSize(562, 400))
@@ -71,10 +71,10 @@ class bloodBankProfile(object):
         self.pushButton.setGeometry(QtCore.QRect(450, 360, 80, 28))
         self.pushButton.setObjectName("pushButton")
 
-        self.retranslateUi(bloodBankProfile)
+        self.retranslateUi(bloodBankProfile,data)
         QtCore.QMetaObject.connectSlotsByName(bloodBankProfile)
 
-    def retranslateUi(self, bloodBankProfile):
+    def retranslateUi(self, bloodBankProfile,data):
         _translate = QtCore.QCoreApplication.translate
         bloodBankProfile.setWindowTitle(_translate("bloodBankProfile", "Blood Bank Profile"))
         self.nameLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
@@ -93,4 +93,17 @@ class bloodBankProfile(object):
         self.bloodBankID.setText(_translate("bloodBankProfile", "BloodBankID"))
         self.pushButton.setText(_translate("bloodBankProfile", "OK"))
 
-        self.OKButton.clicked.connect(lambda: bloodBankProfile.close())
+        self.events(bloodBankProfile,data)
+
+    def events(self,parent,data):
+
+        print(data)
+        self.pinCode.setText(str(data["pin"]))
+        self.bloodBankID.setText(str(data["id"]))
+        self.name.setText(data['name'])
+        self.address.setText(data["address"])
+        self.contact.setText(str(data["contact"]))
+        self.state.setText(data["state"])
+        self.city.setText(data["city"])
+        # username Bhool Gye
+        self.pushButton.clicked.connect(lambda: parent.close())

@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import *
 
 
 class dispensaryProfile(object):
-    def setup(self, dispensaryProfile):
+    def setup(self, dispensaryProfile,data):
         dispensaryProfile.setObjectName("dispensaryProfile")
         dispensaryProfile.resize(456, 401)
         self.frame = QtWidgets.QFrame(dispensaryProfile)
@@ -72,7 +72,7 @@ class dispensaryProfile(object):
         self.retranslateUi(dispensaryProfile)
         QtCore.QMetaObject.connectSlotsByName(dispensaryProfile)
 
-    def retranslateUi(self, dispensaryProfile):
+    def retranslateUi(self, dispensaryProfile,data):
         _translate = QtCore.QCoreApplication.translate
         dispensaryProfile.setWindowTitle(_translate("dispensaryProfile", "Dispensary Profile"))
         self.nameLabel.setText(_translate("dispensaryProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
@@ -91,4 +91,15 @@ class dispensaryProfile(object):
         self.dispensaryID.setText(_translate("dispensaryProfile", "DispensaryID"))
         self.pushButton.setText(_translate("dispensaryProfile", "OK"))
 
-        self.OKButton.clicked.connect(lambda: dispensaryProfile.close())
+        self.events(dispensaryProfile,data)
+
+    def events(self,parent,data):
+        self.address.setText(str(data["address"]))
+        self.dispensaryID.setText(str(data["id"]))
+        self.pinCode.setText(str(data["pin"]))
+        self.state.setText(str(data["state"]))
+        self.city.setText(str(data["city"]))
+        self.contact.setText(str("Nil"))
+        self.name.setText(data["name"])
+
+        self.pushButton.clicked.connect(lambda: parent.close())

@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Data.States import *
+from Dialogs.superadmin.Hospitals.hospitalProfile import *
 
 class addHospital(object):
     def setup(self, addHospital):
@@ -106,8 +107,14 @@ class addHospital(object):
             "pin": pin
         }
         r = requests.post(url=URL,data=data)
-        print(r.json())
+        l = r.json()
+        print(l)
         parent.close()
+        self.window = QDialog()
+        self.dialog = hospitalProfile()
+        self.dialog.setup(self.window,l)
+        self.window.setModal(True)
+        self.window.show()
 
 
     def stateAddFunction(self,parent):
@@ -124,5 +131,7 @@ class addHospital(object):
             self.city.removeItem(0)
         for i in cities[state]:
             self.city.addItem(i)
+
+
 
 

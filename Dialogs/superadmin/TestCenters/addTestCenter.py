@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
+from Dialogs.superadmin.TestCenters.testCenterProfile import *
 
 class addTestCenter(object):
     def setup(self, addTestCenter):
@@ -127,8 +128,14 @@ class addTestCenter(object):
 
         URL1 = "https://mdtouch.herokuapp.com/api/testcentre/"
         r = requests.post(url=URL1,data=data1)
-        print(r.json())
+        l = r.json()
+        print(l)
         parent.close()
+        self.window = QDialog()
+        self.dialog = testCenterProfile()
+        self.dialog.setup(self.window,l)
+        self.window.setModal(True)
+        self.window.show()
 
 
     def stateAddFunction(self,parent):
