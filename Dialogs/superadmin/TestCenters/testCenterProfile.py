@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class testCenterProfile(object):
-    def setup(self, testCenterProfile):
+    def setup(self, testCenterProfile,data):
         testCenterProfile.setObjectName("testCenterProfile")
         testCenterProfile.resize(472, 433)
         self.OKButton = QtWidgets.QPushButton(testCenterProfile)
@@ -68,10 +68,10 @@ class testCenterProfile(object):
                                         "font-weight:bold;")
         self.testCenterID.setObjectName("testCenterID")
 
-        self.retranslateUi(testCenterProfile)
+        self.retranslateUi(testCenterProfile,data)
         QtCore.QMetaObject.connectSlotsByName(testCenterProfile)
 
-    def retranslateUi(self, testCenterProfile):
+    def retranslateUi(self, testCenterProfile,data):
         _translate = QtCore.QCoreApplication.translate
         testCenterProfile.setWindowTitle(_translate("testCenterProfile", "Test Center Profile"))
         self.OKButton.setText(_translate("testCenterProfile", "OK"))
@@ -89,6 +89,17 @@ class testCenterProfile(object):
         self.contactNo.setText(_translate("testCenterProfile", "contact_no"))
         self.IDLabel.setText(_translate("testCenterProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Test Center ID :</span></p></body></html>"))
         self.testCenterID.setText(_translate("testCenterProfile", "test_center_ID"))
+
+        self.events(testCenterProfile,data)
+
+    def events(self,parent,data):
+        self.address.setText(str(data["address"]))
+        self.testCenterID.setText(str(data["id"]))
+        self.pinCode.setText(str(data["pin"]))
+        self.state.setText(str(data["state"]))
+        self.city.setText(str(data["city"]))
+        self.contactNo.setText(str(data["contact"]))
+        self.name.setText(str(data["name"]))
         
-        self.OKButton.clicked.connect(lambda: testCenterProfile.close())
+        self.OKButton.clicked.connect(lambda: parent.close())
 

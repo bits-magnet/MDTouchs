@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class emergencyServiceProfile(object):
-    def setup(self, emergencyServiceProfile):
+    def setup(self, emergencyServiceProfile,data):
         emergencyServiceProfile.setObjectName("emergencyServiceProfile")
         emergencyServiceProfile.resize(555, 403)
         self.frame = QtWidgets.QFrame(emergencyServiceProfile)
@@ -68,10 +68,10 @@ class emergencyServiceProfile(object):
         self.OKButton.setGeometry(QtCore.QRect(440, 360, 91, 31))
         self.OKButton.setObjectName("OKButton")
 
-        self.retranslateUi(emergencyServiceProfile)
+        self.retranslateUi(emergencyServiceProfile,data)
         QtCore.QMetaObject.connectSlotsByName(emergencyServiceProfile)
 
-    def retranslateUi(self, emergencyServiceProfile):
+    def retranslateUi(self, emergencyServiceProfile,data):
         _translate = QtCore.QCoreApplication.translate
         emergencyServiceProfile.setWindowTitle(_translate("emergencyServiceProfile", "Emergency Service Profile"))
         self.state.setText(_translate("emergencyServiceProfile", "State"))
@@ -90,5 +90,16 @@ class emergencyServiceProfile(object):
         self.dispensaryID.setText(_translate("emergencyServiceProfile", "EmergencyServiceID"))
         self.OKButton.setText(_translate("emergencyServiceProfile", "OK"))
 
-        self.OKButton.clicked.connect(lambda: emergencyServiceProfile.close())
+        self,events(emergencyServiceProfile,data)
+
+    def events(self,parent,data):
+        self.address.setText(str(data["address"]))
+        self.dispensaryID.setText(str(data["id"]))
+        self.pinCode.setText(str(data["pin"]))
+        self.state.setText(str(data["state"]))
+        self.city.setText(str(data["city"]))
+        self.contact.setText(data["contact_number"])
+        self.name.setText(data["name"])
+
+        self.OKButton.clicked.connect(lambda: parent.close())
 

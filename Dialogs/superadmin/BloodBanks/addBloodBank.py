@@ -3,6 +3,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
+from Dialogs.superadmin.BloodBanks.bloodBankProfile import *
+from Dialogs.messageBox import *
+from Dialogs.superadmin.BloodBanks.selectBloodBank import *
 
 class addBloodBank(object):
     def setup(self, addBloodBank):
@@ -103,7 +106,6 @@ class addBloodBank(object):
                 username = name.replace(" ","") +  str(randint(0,100))
             else:
                 break
-
         URL = "https://mdtouch.herokuapp.com/api/login/"
         data = {
             "username": username,
@@ -115,6 +117,7 @@ class addBloodBank(object):
         l = r.json()
         print(l)
         id = l["id"]
+
 
         data1 = {
             "name": name,
@@ -129,8 +132,14 @@ class addBloodBank(object):
 
         URL1 = "https://mdtouch.herokuapp.com/api/bloodbankcenter/"
         r = requests.post(url=URL1,data=data1)
-        print(r.json())
+        l = r.json()
+        print(l)
         parent.close()
+        self.window = QDialog()
+        self.dialog = bloodBankProfile()
+        self.dialog.setup(self.window,l)
+        self.window.setModal(True)
+        self.window.show()
 
 
     def stateAddFunction(self,parent):

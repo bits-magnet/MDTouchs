@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
+from Dialogs.superadmin.Dispensaries.dispensaryProfile import *
 
 class addDispensary(object):
     def setup(self, addDispensary):
@@ -130,6 +131,11 @@ class addDispensary(object):
         r = requests.post(url=URL1,data=data1)
         print(r.json())
         parent.close()
+        self.window = QDialog()
+        self.dialog = dispensaryProfile()
+        self.dialog.setup(self.window,l)
+        self.window.setModal(True)
+        self.window.show()
 
     def stateAddFunction(self,parent):
         for i in states.values():

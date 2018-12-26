@@ -88,4 +88,4 @@ class doctorProfile(object):
         self.doctorID.setText(_translate("doctorProfile", "Doctor ID"))
         self.pushButton.setText(_translate("doctorProfile", "OK"))
 
-        self.OKButton.clicked.connect(lambda: doctorProfile.close())
+        self.pushButton.clicked.connect(lambda: doctorProfile.close())
