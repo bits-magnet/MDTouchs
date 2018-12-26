@@ -8,6 +8,8 @@ class addBloodBank(object):
     def setup(self, addBloodBank):
         addBloodBank.setObjectName("addBloodBank")
         addBloodBank.resize(750, 480)
+        addBloodBank.setMinimumSize(QtCore.QSize(750, 480))
+        addBloodBank.setMaximumSize(QtCore.QSize(750, 480))
         self.title = QtWidgets.QLabel(addBloodBank)
         self.title.setGeometry(QtCore.QRect(260, 0, 261, 51))
         self.title.setObjectName("title")

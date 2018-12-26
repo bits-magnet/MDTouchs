@@ -9,6 +9,8 @@ class selectBloodBank(object):
     def setup(self, selectBloodBank):
         selectBloodBank.setObjectName("selectBloodBank")
         selectBloodBank.resize(380, 350)
+        selectBloodBank.setMinimumSize(QtCore.QSize(380, 350))
+        selectBloodBank.setMaximumSize(QtCore.QSize(380, 350))
         self.frame = QtWidgets.QFrame(selectBloodBank)
         self.frame.setGeometry(QtCore.QRect(10, 60, 351, 221))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)

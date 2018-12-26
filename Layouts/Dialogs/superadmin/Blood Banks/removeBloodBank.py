@@ -12,6 +12,13 @@ class Ui_removeBloodBank(object):
     def setupUi(self, removeBloodBank):
         removeBloodBank.setObjectName("removeBloodBank")
         removeBloodBank.resize(562, 440)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(removeBloodBank.sizePolicy().hasHeightForWidth())
+        removeBloodBank.setSizePolicy(sizePolicy)
+        removeBloodBank.setMinimumSize(QtCore.QSize(562, 440))
+        removeBloodBank.setMaximumSize(QtCore.QSize(562, 440))
         removeBloodBank.setWindowTitle("")
         self.removeButton = QtWidgets.QPushButton(removeBloodBank)
         self.removeButton.setGeometry(QtCore.QRect(240, 400, 131, 28))
