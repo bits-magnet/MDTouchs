@@ -2,9 +2,10 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Dialogs.messageBox import *
 
 class removeHospital(object):
-    def setup(self, removeHospital):
+    def setup(self, removeHospital,hdata):
         removeHospital.setObjectName("removeHospital")
         removeHospital.resize(462, 454)
         self.removeButton = QtWidgets.QPushButton(removeHospital)
@@ -71,10 +72,10 @@ class removeHospital(object):
         self.title.setGeometry(QtCore.QRect(70, 0, 320, 50))
         self.title.setObjectName("title")
 
-        self.retranslateUi(removeHospital)
+        self.retranslateUi(removeHospital,hdata)
         QtCore.QMetaObject.connectSlotsByName(removeHospital)
 
-    def retranslateUi(self, removeHospital):
+    def retranslateUi(self, removeHospital,hdata):
         _translate = QtCore.QCoreApplication.translate
         removeHospital.setWindowTitle(_translate("removeHospital", "removeHospital"))
         self.removeButton.setText(_translate("removeHospital", "REMOVE"))
@@ -94,10 +95,26 @@ class removeHospital(object):
         self.dispensaryID.setText(_translate("removeHospital", "HospitalID"))
         self.title.setText(_translate("removeHospital", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Remove Hospital</span></p></body></html>"))
 
-        self.clickEvents(removeHospital)
+        self.clickEvents(removeHospital,hdata)
         
-    def clickEvents(self, parent):
-        self.removeButton.clicked.connect(lambda: self.clickOnRemoveButton(parent))
+    def clickEvents(self, parent,hdata):
+        self.dispensaryID.setText(str(hdata["id"]))
+        self.state.setText(hdata["state"])
+        self.city.setText(hdata["city"])
+        self.name.setText(hdata["name"])
+        self.address.setText(hdata["address"])
+        self.contact.setText(str(hdata["contact"]))
+        self.pinCode.setText(str(hdata["pin"]))
+        self.removeButton.clicked.connect(lambda: self.clickOnRemoveButton(parent,hdata))
 
-    def clickOnRemoveButton(self, parent):
-        pass
+    def clickOnRemoveButton(self, parent,hdata):
+        parent.close()
+        self.window = messageBox()
+        self.window.infoBox("Hospital with ID : " + str(hdata["id"]) + " is deleted.")
+
+        # Deleting Hospital
+
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/hospital/" + str(hdata["id"])
+        r = requests.delete(url=URL)
+        print(r)
