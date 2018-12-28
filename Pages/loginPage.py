@@ -12,6 +12,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Pages.superadminHome import *
+from Pages.doctorHome import *
 # import psycopg2 as pg2
 
 
@@ -115,6 +116,8 @@ class loginPage(object):
     def justLogin(self, loginPage):
         self.superadminpage = superadminHome()
         self.superadminpage.setup(loginPage)
+        self.doctorpage = doctorHome()
+        self.doctorpage.setup(loginPage)
 
 
 
