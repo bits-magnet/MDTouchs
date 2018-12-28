@@ -3,8 +3,13 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Data.States import *
+from Dialogs.superadmin.Hospitals.adminProfile import *
 
 class addAdmin(object):
+    def __init__(self):
+        self.last_city = ''
+        self.hospital_list = []
+
     def setup(self, addAdmin):
         addAdmin.setObjectName("addAdmin")
         addAdmin.resize(712, 482)
@@ -82,6 +87,7 @@ class addAdmin(object):
 
     def clickEvents(self,parent):
         self.stateAddFunction(parent)
+        self.addButton.clicked.connect(lambda : self.addAdminFunction(parent))
 
     def stateAddFunction(self,parent):
         for i in states.values():
@@ -89,11 +95,90 @@ class addAdmin(object):
         for i in cities["Andhra Pradesh"]:
             self.cityComboBox.addItem(i)
         self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+        self.stateComboBox.currentIndexChanged.connect(lambda :self.hospitalComboBoxAdd(parent))
 
     def cityAddFunction(self,parent):
         state = self.stateComboBox.currentText()
-
-        while self.cityComboBox.count() > 0:
+        i = self.cityComboBox.count()
+        flag = True
+        while i > 0:
+            flag = False
             self.cityComboBox.removeItem(0)
+            i-=1
+        flag = True
         for i in cities[state]:
+            flag = False
             self.cityComboBox.addItem(i)
+        flag = True
+        if flag :
+            self.cityComboBox.currentIndexChanged.connect(lambda :self.hospitalComboBoxAdd(parent))
+
+    def hospitalComboBoxAdd(self,parent):
+        if self.last_city == self.cityComboBox.currentText() or self.cityComboBox.count() != len(cities[self.stateComboBox.currentText()]) or self.cityComboBox.itemText(self.cityComboBox.count()-1) != cities[self.stateComboBox.currentText()][-1]:
+            return
+        self.last_city = self.cityComboBox.currentText()
+        # First Erase all Hospitals
+        i = self.hospitalComboBox.count()
+        while i > 0:
+            i -= 1
+            self.hospitalComboBox.removeItem(0)
+
+        import requests
+        print(self.cityComboBox.currentText())
+        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        param ={
+            "city": self.cityComboBox.currentText()
+        }
+        r = requests.get(url=URL,params=param)
+        l = r.json()
+        print(l)
+        self.hospital_list = l
+        for i in l:
+            self.hospitalComboBox.addItem(str(i["name"]))
+
+    def addAdminFunction(self,parent):
+        fname = self.firstName.text()
+        lname = self.lastName.text()
+        state = self.stateComboBox.currentText()
+        city = self.cityComboBox.currentText()
+        hospital = self.hospitalComboBox.currentText()
+        import requests
+        from random import randint
+        username = fname.replace(" ","") +  str(randint(0,100))
+
+        hdata = {}
+        for i in self.hospital_list:
+            if i["name"] == hospital:
+                hdata = i
+                break
+
+
+
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/login/"
+        data = {
+            "username": username,
+            "password": "12345",
+            "dept": "H",
+            "email": username+"@email.com"
+        }
+        r = requests.post(url=URL,data=data)
+        l = r.json()
+        print(l)
+        id = l["id"]
+        URL1 = "https://mdtouch.herokuapp.com/api/administrator/"
+        data2 = {
+
+            "firstName": fname,
+            "lastName": lname,
+            "username": id,
+            "workplace": hdata["id"]
+        }
+        r = requests.post(url=URL1,data=data2)
+        l = r.json()
+        parent.close()
+        self.window = QDialog()
+        self.dialog = hospitalProfile()
+        self.dialog.setup(self.window,l,hdata)
+        self.window.setModal(True)
+        self.window.show()

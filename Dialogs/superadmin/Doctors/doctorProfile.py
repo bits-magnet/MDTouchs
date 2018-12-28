@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class doctorProfile(object):
-    def setup(self, doctorProfile):
+    def setup(self, doctorProfile,data,hdata):
         doctorProfile.setObjectName("doctorProfile")
         doctorProfile.resize(723, 400)
         self.frame = QtWidgets.QFrame(doctorProfile)
@@ -68,10 +68,10 @@ class doctorProfile(object):
         self.pushButton.setGeometry(QtCore.QRect(620, 360, 80, 28))
         self.pushButton.setObjectName("pushButton")
 
-        self.retranslateUi(doctorProfile)
+        self.retranslateUi(doctorProfile,data,hdata)
         QtCore.QMetaObject.connectSlotsByName(doctorProfile)
 
-    def retranslateUi(self, doctorProfile):
+    def retranslateUi(self, doctorProfile,data,hdata):
         _translate = QtCore.QCoreApplication.translate
         doctorProfile.setWindowTitle(_translate("doctorProfile", "Doctor Profile"))
         self.firstNameLabel.setText(_translate("doctorProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">First Name : </span></p></body></html>"))
@@ -87,5 +87,15 @@ class doctorProfile(object):
         self.doctorIDLabel.setText(_translate("doctorProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Doctor ID :</span></p></body></html>"))
         self.doctorID.setText(_translate("doctorProfile", "Doctor ID"))
         self.pushButton.setText(_translate("doctorProfile", "OK"))
+        self.events(doctorProfile,data,hdata)
 
-        self.pushButton.clicked.connect(lambda: doctorProfile.close())
+    def events(self,parent,data,hdata):
+        self.state.setText(str(hdata["state"]))
+        self.city.setText(str(hdata["city"]))
+        self.lastName.setText(str(data["lastName"]))
+        self.firstName.setText(data["firstName"])
+        self.doctorID.setText(str(data["id"]))
+        self.hospital.setText(str(hdata["name"]) + "," + str(hdata["city"]))
+
+
+        self.pushButton.clicked.connect(lambda: parent.close())

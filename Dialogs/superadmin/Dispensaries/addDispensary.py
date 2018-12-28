@@ -129,7 +129,8 @@ class addDispensary(object):
 
         URL1 = "https://mdtouch.herokuapp.com/api/dispensaries/"
         r = requests.post(url=URL1,data=data1)
-        print(r.json())
+        l = r.json()
+        print(l)
         parent.close()
         self.window = QDialog()
         self.dialog = dispensaryProfile()
