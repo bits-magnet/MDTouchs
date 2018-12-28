@@ -9,8 +9,6 @@ import threading
 class addDoctor(object):
     def __init__(self):
         self.last_city = ''
-        self.obj = loadingOverlay()
-        self.flag = True
 
     def setup(self, addDoctor):
         addDoctor.setObjectName("addDoctor")
@@ -91,25 +89,11 @@ class addDoctor(object):
         self.stateAddFunction(parent)
         self.addButton.clicked.connect(lambda : self.addDoctorFunction(parent))
 
-    def showLoading(self, parent):
-        thread_1 = threading.Thread(target = self.cityAddFunction, args=(parent,))
-        thread_1.start()
-        self.widget = QtWidgets.QWidget()
-        self.widget.show()
-        self.obj = loadingOverlay(self.widget)
-        while thread_1.isAlive():
-            self.obj.paintEvent()
-            self.obj.show()
-        else:
-            self.obj.hide()
-
-
     def stateAddFunction(self,parent):
         for i in states.values():
             self.stateComboBox.addItem(i)
         for i in cities["Andhra Pradesh"]:
             self.cityComboBox.addItem(i)
-        self.stateComboBox.currentIndexChanged.connect(lambda : self.showLoading(parent))
         self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
         self.stateComboBox.currentIndexChanged.connect(lambda :self.hospitalComboBoxAdd(parent))
 
