@@ -6,6 +6,7 @@ from Dialogs.superadmin.Hospitals.addHospital import *
 from Dialogs.superadmin.Hospitals.selectHospital import *
 from Dialogs.superadmin.Hospitals.addAdmin import *
 from Dialogs.superadmin.Hospitals.selectAdmin import *
+from Dialogs.superadmin.Hospitals.viewHospitals import *
 
 class Hospital(object):
     def setup(self, Hospital,superadmin):
@@ -381,6 +382,7 @@ class Hospital(object):
         self.removeHospital.clicked.connect(lambda: self.clickOnRemoveHospital())
         self.addAdmin.clicked.connect(lambda : self.clickOnAddAdmin())
         self.removeAdmin.clicked.connect(lambda : self.clickOnRemoveAdmin())
+        self.viewHospitals.clicked.connect(lambda : self.clickOnViewHospitals())
 
     def clickOnBloodBank(self, parent, superadmin):
         superadmin.bloodbank_home.setup(parent, superadmin)
@@ -408,6 +410,14 @@ class Hospital(object):
 
     def clickOnBack(self, parent, superadmin):
         superadmin.setup(parent)
+
+    def clickOnViewHospitals(self):
+        self.window = QDialog()
+        self.dialog = viewHospital()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnAddHospital(self):
         self.window = QDialog()
