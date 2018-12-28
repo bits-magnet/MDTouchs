@@ -7,6 +7,8 @@ class emergencyServiceProfile(object):
     def setup(self, emergencyServiceProfile,data):
         emergencyServiceProfile.setObjectName("emergencyServiceProfile")
         emergencyServiceProfile.resize(555, 403)
+        emergencyServiceProfile.setMinimumSize(QtCore.QSize(555, 403))
+        emergencyServiceProfile.setMaximumSize(QtCore.QSize(555, 403))
         self.frame = QtWidgets.QFrame(emergencyServiceProfile)
         self.frame.setGeometry(QtCore.QRect(10, 10, 531, 341))
         self.frame.setStyleSheet("")

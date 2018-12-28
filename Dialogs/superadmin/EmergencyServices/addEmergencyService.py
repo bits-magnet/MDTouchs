@@ -10,6 +10,8 @@ class addEmergencyService(object):
         addEmergencyService.setObjectName("addEmergencyService")
         addEmergencyService.resize(750, 480)
         addEmergencyService.setWindowTitle("")
+        addEmergencyService.setMinimumSize(QtCore.QSize(750, 480))
+        addEmergencyService.setMaximumSize(QtCore.QSize(750,480))
         self.title = QtWidgets.QLabel(addEmergencyService)
         self.title.setGeometry(QtCore.QRect(220, 0, 371, 51))
         self.title.setObjectName("title")

@@ -9,6 +9,8 @@ class selectEmergencyService(object):
     def setup(self, selectEmergencyService):
         selectEmergencyService.setObjectName("selectEmergencyService")
         selectEmergencyService.resize(415, 313)
+        selectEmergencyService.setMinimumSize(QtCore.QSize(415, 313))
+        selectEmergencyService.setMaximumSize(QtCore.QSize(415, 313))
         self.title = QtWidgets.QLabel(selectEmergencyService)
         self.title.setGeometry(QtCore.QRect(10, 0, 391, 51))
         self.title.setObjectName("title")
@@ -54,7 +56,7 @@ class selectEmergencyService(object):
         selectEmergencyService.setWindowTitle(_translate("selectEmergencyService", " "))
         self.title.setText(_translate("selectEmergencyService", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Select Emergency Service</span></p></body></html>"))
         self.cityLabel.setText(_translate("selectEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City : </span></p></body></html>"))
-        self.emergencyServiceLabel.setText(_translate("selectEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Emergency Service :</span></p></body></html>"))
+        self.emergencyServiceLabel.setText(_translate("selectEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">E. Service :</span></p></body></html>"))
         self.stateLabel.setText(_translate("selectEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State : </span></p></body></html>"))
         self.ORLabel.setText(_translate("selectEmergencyService", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">OR</span></p></body></html>"))
         self.searchByID.setPlaceholderText(_translate("selectEmergencyService", "Search by Emergency Service ID"))

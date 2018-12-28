@@ -8,6 +8,8 @@ class bloodBankProfile(object):
     def setup(self, bloodBankProfile,data):
         bloodBankProfile.setObjectName("bloodBankProfile")
         bloodBankProfile.resize(562, 400)
+        bloodBankProfile.setMinimumSize(QtCore.QSize(562, 400))
+        bloodBankProfile.setMaximumSize(QtCore.QSize(562, 400))
         self.frame = QtWidgets.QFrame(bloodBankProfile)
         self.frame.setGeometry(QtCore.QRect(10, 10, 541, 341))
         self.frame.setStyleSheet("")

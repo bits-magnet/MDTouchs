@@ -8,6 +8,8 @@ class removeBloodBank(object):
     def setup(self, removeBloodBank):
         removeBloodBank.setObjectName("removeBloodBank")
         removeBloodBank.resize(562, 440)
+        removeBloodBank.setMinimumSize(QtCore.QSize(562, 440))
+        removeBloodBank.setMaximumSize(QtCore.QSize(562, 440))
         removeBloodBank.setWindowTitle("")
         self.removeButton = QtWidgets.QPushButton(removeBloodBank)
         self.removeButton.setGeometry(QtCore.QRect(240, 400, 131, 28))

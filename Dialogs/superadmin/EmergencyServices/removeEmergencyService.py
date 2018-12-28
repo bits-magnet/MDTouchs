@@ -8,6 +8,8 @@ class removeEmergencyService(object):
         removeEmergencyService.setObjectName("removeEmergencyService")
         removeEmergencyService.resize(555, 453)
         removeEmergencyService.setWindowTitle("")
+        removeEmergencyService.setMinimumSize(QtCore.QSize(555, 453))
+        removeEmergencyService.setMaximumSize(QtCore.QSize(555, 453))
         self.frame = QtWidgets.QFrame(removeEmergencyService)
         self.frame.setGeometry(QtCore.QRect(10, 50, 531, 341))
         self.frame.setStyleSheet("")
