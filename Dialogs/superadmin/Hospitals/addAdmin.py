@@ -144,7 +144,7 @@ class addAdmin(object):
         hospital = self.hospitalComboBox.currentText()
         import requests
         from random import randint
-        username = fname.replace(" ","") +  str(randint(0,100))
+        username = fname.replace(" ","") + "admin" +  str(randint(0,100))
 
         hdata = {}
         for i in self.hospital_list:
@@ -178,7 +178,7 @@ class addAdmin(object):
         l = r.json()
         parent.close()
         self.window = QDialog()
-        self.dialog = hospitalProfile()
+        self.dialog = adminProfile()
         self.dialog.setup(self.window,l,hdata)
         self.window.setModal(True)
         self.window.show()
