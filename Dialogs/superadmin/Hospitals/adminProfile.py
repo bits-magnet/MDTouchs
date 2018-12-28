@@ -87,4 +87,4 @@ class adminProfile(object):
         self.state.setText(hdata["state"])
         self.hospital.setText(hdata["name"] + "," + hdata["city"])
 
-        self.pushButton.clicked.connect(lambda: adminProfile.close())
+        self.pushButton.clicked.connect(lambda: parent.close())
