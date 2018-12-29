@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import *
 from Dialogs.superadmin.TestCenters.addTestCenter import *
 from Dialogs.superadmin.TestCenters.selectTestCenter import *
 from Dialogs.broadcast import *
+from Dialogs.superadmin.TestCenters.viewTestCenters import *
 
 class TestCenter(object):
     def setup(self, TestCenter, superadmin):
@@ -314,6 +315,7 @@ class TestCenter(object):
         self.addTestCenter.clicked.connect(lambda: self.clickOnAddTestCenter())
         self.removeTestCenter.clicked.connect(lambda: self.clickOnRemoveTestCenter())
         self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
+        self.viewTestCenter.clicked.connect(lambda : self.clickOnViewTestCenter())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
@@ -364,5 +366,12 @@ class TestCenter(object):
         self.window = QDialog()
         self.dialog = broadcast()
         self.dialog.setup(self.window, caller.TestCenter)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnViewTestCenter(self):
+        self.window = QDialog()
+        self.dialog = viewTestCenter()
+        self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

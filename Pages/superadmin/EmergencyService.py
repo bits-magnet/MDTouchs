@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import *
 from Dialogs.superadmin.EmergencyServices.addEmergencyService import *
 from Dialogs.superadmin.EmergencyServices.selectEmergencyService import *
 from Dialogs.broadcast import *
+from Dialogs.superadmin.EmergencyServices.viewEs import *
 
 class Emergency(object):
     def setup(self, Emergency, superadmin):
@@ -307,11 +308,13 @@ class Emergency(object):
         self.doctors.clicked.connect(lambda: self.clickOnDoctors(parent, superadmin))
         self.logout.clicked.connect(lambda: self.clickOnLogOut(parent, superadmin))
         self.inbox.clicked.connect(lambda: self.clickOnInbox(parent, superadmin))
+        self.events.clicked.connect(lambda : self.clickOnEvents(parent,superadmin))
         self.back.clicked.connect(lambda: self.clickOnBack(parent, superadmin))
 
         self.addEmergencyService.clicked.connect(lambda: self.clickOnAddEmergencyService())
         self.removeEmergencyService.clicked.connect(lambda: self.clickOnRemoveEmergencyService())
         self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
+        self.viewEmergencyServices.clicked.connect(lambda : self.clickOnViewEs())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent,superadmin)
@@ -360,3 +363,11 @@ class Emergency(object):
         self.dialog.setup(self.window, caller.EmergencyService)
         self.window.setModal(True)
         self.window.show()
+
+    def clickOnViewEs(self):
+        self.window = QDialog()
+        self.dialog = viewEs()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+

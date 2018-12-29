@@ -11,14 +11,14 @@ class Widget1(QWidget):
         QWidget.__init__(self,parent=None)
         layout = QFrame(self)
         layout.setGeometry(0,0,1271,119)
-        self.hospitalIdLabel = QLabel(layout)
-        self.hospitalIdLabel.setGeometry(QRect(10,10,170,30))
-        self.hospitalIdLabel.setText("Id : 123")
-        self.hospitalNameLabel = QLabel(layout)
-        self.hospitalIdLabel.setStyleSheet("text-align:left;font-size:16pt;font-weight:550;")
-        self.hospitalNameLabel.setGeometry(QRect(180,10,1000,30))
-        self.hospitalNameLabel.setText("Patidar Samaj Hospital ")
-        self.hospitalNameLabel.setStyleSheet("align:left;font-size:20pt;font-weight:600;")
+        self.eventIdLabel = QLabel(layout)
+        self.eventIdLabel.setGeometry(QRect(10,10,170,30))
+        self.eventIdLabel.setText("Id : 123")
+        self.eventNameLabel = QLabel(layout)
+        self.eventIdLabel.setStyleSheet("text-align:left;font-size:16pt;font-weight:550;")
+        self.eventNameLabel.setGeometry(QRect(180,10,1000,30))
+        self.eventNameLabel.setText("Patidar Samaj event ")
+        self.eventNameLabel.setStyleSheet("align:left;font-size:20pt;font-weight:600;")
         self.addresslabel = QLabel(layout)
         self.addresslabel.setGeometry(QRect(190,40,500,80))
         self.addresslabel.setStyleSheet("font-weight: 500; font-size : 9pt")
@@ -33,7 +33,7 @@ class Widget1(QWidget):
         self.stateLabel.setStyleSheet("align:left;font-size:12pt;font-weight:550;")
 
 
-class viewHospital(object):
+class viewEvent(object):
     def __init__(self):
         self.dataToFill = []
     def setup(self, EventListDialog):
@@ -101,9 +101,9 @@ class viewHospital(object):
 
     def retranslateUi(self, EventListDialog):
         _translate = QtCore.QCoreApplication.translate
-        EventListDialog.setWindowTitle(_translate("HospitalListDialog", "Dialog"))
-        self.eventListHeader.setText(_translate("EventListDialog", "HOSPITALS"))
-        self.searchEventInput.setPlaceholderText(_translate("EventListDialog", "Enter Hospital ID or Name"))
+        EventListDialog.setWindowTitle(_translate("eventListDialog", "Dialog"))
+        self.eventListHeader.setText(_translate("EventListDialog", "Event List"))
+        self.searchEventInput.setPlaceholderText(_translate("EventListDialog", "Enter event ID or Name"))
         self.searchButton.setText(_translate("EventListDialog", "Search"))
         self.exitButton.setText(_translate("EventListDialog", "Exit"))
         self.tableWidget.horizontalHeader().hide()
@@ -129,9 +129,9 @@ class viewHospital(object):
     def placeholder(self,EventListDialog):
         a = self.comboBox.currentText()
         if "Id" in a:
-            self.searchEventInput.setPlaceholderText("Enter Hospital  Id")
+            self.searchEventInput.setPlaceholderText("Enter event  Id")
         else:
-            self.searchEventInput.setPlaceholderText("Enter Hospital Name")
+            self.searchEventInput.setPlaceholderText("Enter event Name")
 
 
     def fillEventdata(self,EventListDialog):
@@ -151,14 +151,14 @@ class viewHospital(object):
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
 
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText("Hospital ID")
+        item.setText("event ID")
 
 
     # Add data From Database
 
     def addRowDataFunction(self,EventListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/hospital/"
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/event/"
         self.dataToFill = []
         if self.searchEventInput.text()== "":
             print("Yes")
@@ -247,7 +247,7 @@ class viewHospital(object):
         if len(self.dataToFill) == 0:
             self.tableWidget.setRowCount(0)
             self.dialog = messageBox()
-            self.dialog.infoBox("No Hospitals Found")
+            self.dialog.infoBox("No events Found")
             return
         i = 0
         print(self.dataToFill)
@@ -255,8 +255,8 @@ class viewHospital(object):
         for hdata in self.dataToFill:
 
             self.table = Widget1()
-            self.table.hospitalNameLabel.setText(str(hdata["name"]))
-            self.table.hospitalIdLabel.setText("Id : " + str(hdata["id"]))
+            self.table.eventNameLabel.setText(str(hdata["name"]))
+            self.table.eventIdLabel.setText("Id : " + str(hdata["id"]))
             self.table.cityLabel.setText("City : " + str(hdata["city"]))
             self.table.stateLabel.setText("State : " + str(hdata["state"]))
             self.table.addresslabel.setText(hdata["address"])
