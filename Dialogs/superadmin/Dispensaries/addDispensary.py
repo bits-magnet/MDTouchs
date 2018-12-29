@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
 from Dialogs.superadmin.Dispensaries.dispensaryProfile import *
-
+from Dialogs.accountCreated import *
 class addDispensary(object):
     def setup(self, addDispensary):
         addDispensary.setObjectName("addDispensary")
@@ -114,9 +114,9 @@ class addDispensary(object):
             "email": username + "@email.com"
         }
         r = requests.post(url=URL,data=data)
-        l = r.json()
-        print(l)
-        id = l["id"]
+        loginData = r.json()
+        print(loginData)
+        id = loginData["id"]
 
         data1 = {
             "name": name,
@@ -133,8 +133,8 @@ class addDispensary(object):
         print(l)
         parent.close()
         self.window = QDialog()
-        self.dialog = dispensaryProfile()
-        self.dialog.setup(self.window,l)
+        self.dialog = accountCreated()
+        self.dialog.setup(self.window,"Dispensary",l,loginData)
         self.window.setModal(True)
         self.window.show()
 

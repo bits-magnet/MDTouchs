@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
 from Dialogs.superadmin.TestCenters.testCenterProfile import *
+from Dialogs.accountCreated import *
 
 class addTestCenter(object):
     def setup(self, addTestCenter):
@@ -114,9 +115,9 @@ class addTestCenter(object):
             "email": username + "@email.com"
         }
         r = requests.post(url=URL,data=data)
-        l = r.json()
-        print(l)
-        id = l["id"]
+        loginData = r.json()
+        print(loginData)
+        id = loginData["id"]
 
         data1 = {
             "name": name,
@@ -133,8 +134,8 @@ class addTestCenter(object):
         print(l)
         parent.close()
         self.window = QDialog()
-        self.dialog = testCenterProfile()
-        self.dialog.setup(self.window,l)
+        self.dialog = accountCreated()
+        self.dialog.setup(self.window,"TestCenter",l,loginData)
         self.window.setModal(True)
         self.window.show()
 

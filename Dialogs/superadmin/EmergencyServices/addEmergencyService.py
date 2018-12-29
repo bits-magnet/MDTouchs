@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
 from Dialogs.superadmin.EmergencyServices.emergencyServiceProfile import *
+from Dialogs.accountCreated import *
 
 class addEmergencyService(object):
     def setup(self, addEmergencyService):
@@ -117,9 +118,9 @@ class addEmergencyService(object):
             "email": username + "@email.com"
         }
         r = requests.post(url=URL,data=data)
-        l = r.json()
-        print(l)
-        id = l["id"]
+        loginData = r.json()
+        print(loginData)
+        id = loginData["id"]
 
         data1 = {
             "name": name,
@@ -137,8 +138,8 @@ class addEmergencyService(object):
         l = r.json()
         parent.close()
         self.window = QDialog()
-        self.dialog = emergencyServiceProfile()
-        self.dialog.setup(self.window,l)
+        self.dialog = accountCreated()
+        self.dialog.setup(self.window,"ES",l,loginData)
         self.window.setModal(True)
         self.window.show()
 

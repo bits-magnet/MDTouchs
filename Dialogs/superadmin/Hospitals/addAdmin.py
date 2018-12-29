@@ -164,9 +164,9 @@ class addAdmin(object):
             "email": username+"@email.com"
         }
         r = requests.post(url=URL,data=data)
-        l = r.json()
-        print(l)
-        id = l["id"]
+        loginData = r.json()
+        print(loginData)
+        id = loginData["id"]
         URL1 = "https://mdtouch.herokuapp.com/api/administrator/"
         data2 = {
 
@@ -179,7 +179,7 @@ class addAdmin(object):
         l = r.json()
         parent.close()
         self.window = QDialog()
-        self.dialog = accountInfo()
-        self.dialog.setup(self.window,l,hdata)
+        self.dialog = accountCreated()
+        self.dialog.setup(self.window,"Admin",l,loginData,hdata)
         self.window.setModal(True)
         self.window.show()

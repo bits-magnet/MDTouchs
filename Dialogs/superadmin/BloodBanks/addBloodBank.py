@@ -6,7 +6,7 @@ from Data.States import *
 from Dialogs.superadmin.BloodBanks.bloodBankProfile import *
 from Dialogs.messageBox import *
 from Dialogs.superadmin.BloodBanks.selectBloodBank import *
-
+from Dialogs.accountCreated import *
 class addBloodBank(object):
     def setup(self, addBloodBank):
         addBloodBank.setObjectName("addBloodBank")
@@ -116,9 +116,9 @@ class addBloodBank(object):
             "email": username+"@email.com"
         }
         r = requests.post(url=URL,data=data)
-        l = r.json()
-        print(l)
-        id = l["id"]
+        loginData = r.json()
+        print(loginData)
+        id = loginData["id"]
 
 
         data1 = {
@@ -138,8 +138,8 @@ class addBloodBank(object):
         print(l)
         parent.close()
         self.window = QDialog()
-        self.dialog = bloodBankProfile()
-        self.dialog.setup(self.window,l)
+        self.dialog = accountCreated()
+        self.dialog.setup(self.window,"BloodBank",l,loginData)
         self.window.setModal(True)
         self.window.show()
 

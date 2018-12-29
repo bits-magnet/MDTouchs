@@ -106,10 +106,10 @@ class loginPage(object):
         self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
-        #self.superadminpage = superadminHome()
-        #self.superadminpage.setup(loginPage)
-        self.doctorpage = doctorHome()
-        self.doctorpage.setup(loginPage)
+        self.superadminpage = superadminHome()
+        self.superadminpage.setup(loginPage)
+        #self.doctorpage = doctorHome()
+        #self.doctorpage.setup(loginPage)
 
 
 

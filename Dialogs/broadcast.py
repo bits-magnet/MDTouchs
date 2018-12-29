@@ -57,10 +57,10 @@ class broadcast():
         self.stateComboBox.setGeometry(QtCore.QRect(130, 60, 201, 27))
         self.stateComboBox.setObjectName("stateComboBox")
 
-        self.retranslateUi(broadcast)
+        self.retranslateUi(broadcast,callerID)
         QtCore.QMetaObject.connectSlotsByName(broadcast)
 
-    def retranslateUi(self, broadcast):
+    def retranslateUi(self, broadcast,callerID):
         _translate = QtCore.QCoreApplication.translate
         broadcast.setWindowTitle(_translate("broadcast", " "))
         self.message.setPlaceholderText(_translate("broadcast", "Type your message here..."))
@@ -70,7 +70,7 @@ class broadcast():
         self.cityLabel.setText(_translate("broadcast", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City : </span></p></body></html>"))
         self.stateLabel.setText(_translate("broadcast", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State : </span></p></body></html>"))
 
-        self.clickEvents(broadcast)
+        self.clickEvents(broadcast,callerID)
 
-    def clickEvents(self, parent):
+    def clickEvents(self, parent,callerId):
         pass

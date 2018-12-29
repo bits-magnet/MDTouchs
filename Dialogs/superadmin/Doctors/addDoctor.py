@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
 from Dialogs.superadmin.Doctors.doctorProfile import *
+from Dialogs.accountCreated import *
 
 class addDoctor(object):
     def __init__(self):
@@ -182,9 +183,9 @@ class addDoctor(object):
             "email": username + "@email.com"
         }
         r = requests.post(url=URL,data=data)
-        l = r.json()
-        print(l)
-        id = l["id"]
+        loginData = r.json()
+        print(loginData)
+        id = loginData["id"]
 
 
         URLD = "https://mdtouch.herokuapp.com/api/administrator/"
@@ -199,8 +200,8 @@ class addDoctor(object):
 
         parent.close()
         self.window = QDialog()
-        self.dialog = doctorProfile()
-        self.dialog.setup(self.window,l,hdata)
+        self.dialog = accountCreated()
+        self.dialog.setup(self.window,"Doctor",l,loginData,hdata)
         self.window.setModal(True)
         self.window.show()
 

@@ -2,9 +2,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.superadmin.Hospitals.adminProfile import *
+from Dialogs.superadmin.BloodBanks.bloodBankProfile import *
+from Dialogs.superadmin.Doctors.doctorProfile import *
+from Dialogs.superadmin.Dispensaries.dispensaryProfile import *
+from Dialogs.superadmin.TestCenters.testCenterProfile import *
+from Dialogs.superadmin.EmergencyServices.emergencyServiceProfile import *
 
 class accountCreated(object):
-    def setup(self, accountCreated):
+    def setup(self, accountCreated,type,data,logindata,hospitalData = None):
         accountCreated.setObjectName("accountCreated")
         accountCreated.resize(452, 272)
         accountCreated.setMinimumSize(QtCore.QSize(452, 272))
@@ -46,10 +52,10 @@ class accountCreated(object):
         self.OKButton.setGeometry(QtCore.QRect(340, 230, 80, 28))
         self.OKButton.setObjectName("OKButton")
 
-        self.retranslateUi(accountCreated)
+        self.retranslateUi(accountCreated,type,data,logindata,hospitalData)
         QtCore.QMetaObject.connectSlotsByName(accountCreated)
 
-    def retranslateUi(self, accountCreated):
+    def retranslateUi(self, accountCreated,type,data,logindata,hospitalData):
         _translate = QtCore.QCoreApplication.translate
         accountCreated.setWindowTitle(_translate("accountCreated", "Account Created"))
         self.usernameLabel.setText(_translate("accountCreated", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">username :</span></p></body></html>"))
@@ -62,11 +68,55 @@ class accountCreated(object):
         self.notice2.setText(_translate("accountCreated", "<html><head/><body><p>Click OK to view Account Profile</p></body></html>"))
         self.OKButton.setText(_translate("accountCreated", "OK"))
 
-        self.inputEvents(accountCreated)
-        self.clickEvents(accountCreated)
+        #self.inputEvents(accountCreated,data,logindata)
+        self.clickEvents(accountCreated,type,data,logindata,hospitalData)
 
-    def clickEvents(self, parent):
-        self.OKButton.clicked.connect(lambda: parent.close())
+    def clickEvents(self, parent,type,data,logindata,hospitalData):
+        self.OKButton.clicked.connect(lambda : self.inputEvents(parent,type,data,logindata,hospitalData))
+        print(data)
+        print(logindata)
+        self.ID.setText(str(logindata["id"]))
+        self.username.setText(str(logindata["username"]))
+        self.password.setText(str(logindata["password"]))
+        print(logindata)
 
-    def inputEvents(self, parent):
-        pass
+    def inputEvents(self, parent,type,data,logindata,hospitalData):
+        parent.close()
+        if type == "Admin":
+            self.window = QDialog()
+            self.dialog = adminProfile()
+            self.dialog.setup(self.window,data,hospitalData)
+            self.window.setModal(True)
+            self.window.show()
+        elif type == "BloodBank":
+            self.window = QDialog()
+            self.dialog = bloodBankProfile()
+            self.dialog.setup(self.window,data)
+            self.window.setModal(True)
+            self.window.show()
+        elif type == "Disensary":
+            self.window = QDialog()
+            self.dialog = dispensaryProfile()
+            self.dialog.setup(self.window,data)
+            self.window.setModal(True)
+            self.window.show()
+        elif type == "ES":
+            self.window = QDialog()
+            self.dialog = emergencyServiceProfile()
+            self.dialog.setup(self.window,data)
+            self.window.setModal(True)
+            self.window.show()
+        elif type == "Doctor":
+            self.window = QDialog()
+            self.dialog = doctorProfile()
+            self.dialog.setup(self.window,data,hospitalData)
+            self.window.setModal(True)
+            self.window.show()
+        elif type == "TestCenter":
+            self.window = QDialog()
+            self.dialog = testCenterProfile()
+            self.dialog.setup(self.window,data)
+            self.window.setModal(True)
+            self.window.show()
+
+
