@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.Dispensaries.addDispensary import *
 from Dialogs.superadmin.Dispensaries.selectDispensary import *
+from Dialogs.broadcast import *
 
 class Dispensary(object):
     def setup(self, Dispensary, superadmin):
@@ -310,6 +311,7 @@ class Dispensary(object):
 
         self.addDispensary.clicked.connect(lambda: self.clickOnAddDispensary())
         self.removeDispensary.clicked.connect(lambda: self.clickOnRemoveDispensary())
+        self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
@@ -349,5 +351,12 @@ class Dispensary(object):
         self.window = QDialog()
         self.dialog = selectDispensary()
         self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBroadcast(self):
+        self.window = QDialog()
+        self.dialog = broadcast()
+        self.dialog.setup(self.window, caller.Dispensary)
         self.window.setModal(True)
         self.window.show()

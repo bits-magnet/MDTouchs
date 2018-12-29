@@ -1,5 +1,6 @@
 <RCC>
   <qresource>
+    <file>bar-graph-horiz.svg</file>
     <file>doctor_icon.png</file>
     <file>adminPic.png</file>
     <file>selectImage.png</file>

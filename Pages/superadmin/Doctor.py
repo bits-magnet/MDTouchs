@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.Doctors.addDoctor import *
 from Dialogs.superadmin.Doctors.selectDoctor import *
+from Dialogs.broadcast import *
 
 class Doctor(object):
     def setup(self, doctor,superadmin):
@@ -296,6 +297,7 @@ class Doctor(object):
 
         self.addDoctor.clicked.connect(lambda: self.clickOnAddDoctor())
         self.removeDoctor.clicked.connect(lambda: self.clickOnRemoveDoctor())
+        self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
@@ -336,5 +338,12 @@ class Doctor(object):
         self.window = QDialog()
         self.dialog = selectDoctor()
         self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBroadcast(self):
+        self.window = QDialog()
+        self.dialog = broadcast()
+        self.dialog.setup(self.window, caller.Doctor)
         self.window.setModal(True)
         self.window.show()
