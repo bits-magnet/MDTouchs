@@ -82,32 +82,33 @@ class selectAdmin(object):
 
     def clickOnDeleteAdmin(self, parent):
         id = self.searchByID.text()
-        if id.isdigit():
-            import requests
-            URL = "https://mdtouch.herokuapp.com/api/administrator/" + str(id)
-            r = requests.get(url= URL)
-            data = r.json()
-            if data == {"detail": "Not found."}:
-                self.window = messageBox()
-                self.window.infoBox("Id Does Not Exists")
-                self.searchByID.setText("")
-                return
-            else:
-                URL = "https://mdtouch.herokuapp.com/api/hospital/" + str(data["workplace"])
-                r = requests.get(url=URL)
-                hdata = r.json()
-                parent.close()
-                self.window = QDialog()
-                self.dialog = deleteAdmin()
-                self.dialog.setup(self.window,data,hdata)
-                self.window.setModal(True)
-                self.window.show()
-                return
+        if id != "":
+            if id.isdigit():
+                import requests
+                URL = "https://mdtouch.herokuapp.com/api/administrator/" + str(id)
+                r = requests.get(url= URL)
+                data = r.json()
+                if data == {"detail": "Not found."}:
+                    self.window = messageBox()
+                    self.window.infoBox("Id Does Not Exists")
+                    self.searchByID.setText("")
+                    return
+                else:
+                    URL = "https://mdtouch.herokuapp.com/api/hospital/" + str(data["workplace"])
+                    r = requests.get(url=URL)
+                    hdata = r.json()
+                    parent.close()
+                    self.window = QDialog()
+                    self.dialog = deleteAdmin()
+                    self.dialog.setup(self.window,data,hdata)
+                    self.window.setModal(True)
+                    self.window.show()
+                    return
 
-        else:
-            self.window = messageBox()
-            self.window.infoBox("Id is a Integer")
-            self.searchByID.setText("")
+            else:
+                self.window = messageBox()
+                self.window.infoBox("Id is a Integer")
+                self.searchByID.setText("")
             return
 
         if self.adminComboBox.count() == 0:

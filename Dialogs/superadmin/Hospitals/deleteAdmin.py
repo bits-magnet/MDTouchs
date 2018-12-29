@@ -88,13 +88,13 @@ class deleteAdmin(object):
         self.clickEvents(deleteAdmin,adminData,hdata)
 
     def clickEvents(self,parent,adminData,hdata):
+
         self.firstName.setText(str(adminData["firstName"]))
         self.lastName.setText(str(adminData["lastName"]))
         self.state.setText(str(hdata["state"]))
         self.hospital.setText(str(hdata["name"]))
         self.city.setText(str(hdata["city"]))
         self.deleteAdmin.clicked.connect(lambda : self.clickOnDelete(parent,adminData,hdata))
-
     def clickOnDelete(self, parent,adminData,hdata):
         parent.close()
         self.window = messageBox()

@@ -4,8 +4,14 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
 from Dialogs.superadmin.Doctors.removeDoctor import *
+from Dialogs.messageBox import *
 
 class selectDoctor(object):
+    def __init__(self):
+        self.last_city = ''
+        self.hospital_list = []
+        self.doctor_list = []
+        self.last_hospital = ''
     def setup(self, selectDoctor):
         selectDoctor.setObjectName("selectDoctor")
         selectDoctor.resize(380, 350)
@@ -59,33 +65,143 @@ class selectDoctor(object):
         self.ORLabel.setText(_translate("selectDoctor", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">OR</span></p></body></html>"))
         self.searchByID.setPlaceholderText(_translate("selectDoctor", "Search by Doctor ID"))
         self.removeButton.setText(_translate("selectDoctor", "SELECT"))
+    '''
 
-        self.stateAddFunction(selectDoctor)
         self.clickEvents(selectDoctor)
 
     def clickEvents(self, parent):
+        self.stateAddFunction(selectDoctor)
         self.removeButton.clicked.connect(lambda: self.clickOnRemoveButton(parent))
 
+    # Do Not Delete This Code Mrudul Add The Hospital ComboBox Here
+
     def clickOnRemoveButton(self, parent):
+        id = self.searchByID.text()
+        if id != "":
+            if id.isdigit():
+                import requests
+                URL = "https://mdtouch.herokuapp.com/api/doctor/" + str(id)
+                r = requests.get(url= URL)
+                data = r.json()
+                if data == {"detail": "Not found."}:
+                    self.window = messageBox()
+                    self.window.infoBox("Id Does Not Exists")
+                    self.searchByID.setText("")
+                    return
+                else:
+                    URL = "https://mdtouch.herokuapp.com/api/hospital/" + str(data["workplace"])
+                    r = requests.get(url=URL)
+                    hdata = r.json()
+                    parent.close()
+                    self.window = QDialog()
+                    self.dialog =
+                    self.dialog.setup(self.window,data,hdata)
+                    self.window.setModal(True)
+                    self.window.show()
+                    return
+
+            else:
+                self.window = messageBox()
+                self.window.infoBox("Id is a Integer")
+                self.searchByID.setText("")
+            return
+
+        if self.doctorComboBox.count() == 0:
+            self.window = messageBox()
+            self.window.infoBox("Select the hospital first")
+            return
+        doctor_name = self.doctorComboBox.currentText()
+        doctorData = {}
+        hdata = {}
+        for i in self.doctor_list:
+            if doctor_name == i["firstName"] + " " + i["lastName"]:
+                doctorData = i
+                break
+        for i in self.hospital_list:
+            if i["name"] == self.hospitalComboBox.currentText():
+                hdata = i
+                break
+        parent.close()
         self.window = QDialog()
         self.dialog = removeDoctor()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,doctorData,hdata)
         self.window.setModal(True)
         self.window.show()
-            
 
-    def stateAddFunction(self, parent):
+
+    def stateAddFunction(self,parent):
         for i in states.values():
             self.stateComboBox.addItem(i)
         for i in cities["Andhra Pradesh"]:
             self.cityComboBox.addItem(i)
-        self.stateComboBox.currentIndexChanged.connect(lambda: self.cityAddFunction(parent))
+        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+        self.stateComboBox.currentIndexChanged.connect(lambda :self.hospitalComboBoxAdd(parent))
+        #self.stateComboBox.currentIndexChanged.connect(lambda : self.doctorComboBoxAdd(parent))
 
-    def cityAddFunction(self, parent):
+    def cityAddFunction(self,parent):
         state = self.stateComboBox.currentText()
-
-        while self.cityComboBox.count() > 0:
+        i = self.cityComboBox.count()
+        flag = True
+        while i > 0:
+            flag = False
             self.cityComboBox.removeItem(0)
-
+            i-=1
+        flag = True
         for i in cities[state]:
-            self.city.addItem(i)
+            flag = False
+            self.cityComboBox.addItem(i)
+        flag = True
+        self.cityComboBox.currentIndexChanged.connect(lambda :self.hospitalComboBoxAdd(parent))
+
+    def hospitalComboBoxAdd(self,parent):
+        if self.last_city == self.cityComboBox.currentText() or self.cityComboBox.count() != len(cities[self.stateComboBox.currentText()]) or self.cityComboBox.itemText(self.cityComboBox.count()-1) != cities[self.stateComboBox.currentText()][-1]:
+            return
+        self.last_city = self.cityComboBox.currentText()
+        # First Erase all Hospitals
+        i = self.hospitalComboBox.count()
+        while i > 0:
+            i -= 1
+            self.hospitalComboBox.removeItem(0)
+
+        import requests
+        print(self.cityComboBox.currentText())
+        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        param ={
+            "city": self.cityComboBox.currentText()
+        }
+        r = requests.get(url=URL,params=param)
+        l = r.json()
+        print(l)
+        self.hospital_list = l
+        for i in l:
+            self.hospitalComboBox.addItem(str(i["name"]))
+        self.hospitalComboBox.currentIndexChanged.connect(lambda : self.doctorComboBoxAdd(parent))
+
+    def doctorComboBoxAdd(self,parent):
+        i = self.doctorComboBox.count()
+        while i > 0:
+            i -= 1
+            self.doctorComboBox.removeItem(0)
+        workplace_id = 0
+        print(self.hospital_list)
+        for i in self.hospital_list:
+            if i["name"] == self.hospitalComboBox.currentText():
+                workplace_id = i["id"]
+                break
+        if workplace_id == 0:
+            return
+
+        print(workplace_id)
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/doctor/"
+        param = {
+            "workplace" : int(workplace_id)
+        }
+        r = requests.get(url=URL,params=param)
+        self.doctor_list = r.json()
+        print(self.doctor_list)
+        for i in self.doctor_list:
+            self.doctorComboBox.addItem(str(i["firstName"]) + " " + i["lastName"])
+    '''
+
+
