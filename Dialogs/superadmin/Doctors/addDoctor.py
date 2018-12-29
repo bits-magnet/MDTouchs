@@ -3,8 +3,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
-from Dialogs .loadingOverlay import *
-import threading
 
 class addDoctor(object):
     def __init__(self):

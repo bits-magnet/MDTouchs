@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.EmergencyServices.addEmergencyService import *
 from Dialogs.superadmin.EmergencyServices.selectEmergencyService import *
+from Dialogs.broadcast import *
 
 class Emergency(object):
     def setup(self, Emergency, superadmin):
@@ -310,6 +311,7 @@ class Emergency(object):
 
         self.addEmergencyService.clicked.connect(lambda: self.clickOnAddEmergencyService())
         self.removeEmergencyService.clicked.connect(lambda: self.clickOnRemoveEmergencyService())
+        self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent,superadmin)
@@ -349,5 +351,12 @@ class Emergency(object):
         self.window = QDialog()
         self.dialog = selectEmergencyService()
         self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBroadcast(self):
+        self.window = QDialog()
+        self.dialog = broadcast()
+        self.dialog.setup(self.window, caller.EmergencyService)
         self.window.setModal(True)
         self.window.show()

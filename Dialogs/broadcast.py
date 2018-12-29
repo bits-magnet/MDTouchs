@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'broadcast.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
-class Ui_broadcast(object):
-    def setupUi(self, broadcast):
+from Pages.caller import *
+
+
+class broadcast():
+
+    def setup(self, broadcast, callerID):
+        print(callerID)
         broadcast.setObjectName("broadcast")
         broadcast.resize(342, 400)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -70,3 +70,7 @@ class Ui_broadcast(object):
         self.cityLabel.setText(_translate("broadcast", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City : </span></p></body></html>"))
         self.stateLabel.setText(_translate("broadcast", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State : </span></p></body></html>"))
 
+        self.clickEvents(broadcast)
+
+    def clickEvents(self, parent):
+        pass

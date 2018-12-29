@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>Account Created</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="usernameLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -38,7 +38,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;username :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="passwordLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -51,7 +51,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;password : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="IDLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -64,7 +64,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;ID : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="ID">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -80,7 +80,7 @@
     <string>id</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="username">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -96,7 +96,7 @@
     <string>username</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="password">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -127,7 +127,7 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="notice1">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -144,7 +144,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QLabel" name="label_8">
+  <widget class="QLabel" name="notice2">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -157,7 +157,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click OK to view Account Profile&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="OKButton">
    <property name="geometry">
     <rect>
      <x>340</x>

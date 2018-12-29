@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'loginPage.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -114,8 +106,8 @@ class loginPage(object):
         self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
-        self.superadminpage = superadminHome()
-        self.superadminpage.setup(loginPage)
+        #self.superadminpage = superadminHome()
+        #self.superadminpage.setup(loginPage)
         self.doctorpage = doctorHome()
         self.doctorpage.setup(loginPage)
 

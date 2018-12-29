@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.doctor.editProfile import *
 
 class doctorHome(object):
     def setup(self, doctorHome):
@@ -215,8 +216,8 @@ class doctorHome(object):
         self.writePrescriptionLabel.setObjectName("writePrescriptionLabel")
         self.searchPrescriptionsLabel = QtWidgets.QLabel(self.centralwidget)
         self.searchPrescriptionsLabel.setGeometry(QtCore.QRect(400, 410, 240, 40))
-        self.searchPrescriptionsLabel.setMinimumSize(QtCore.QSize(240, 40))
-        self.searchPrescriptionsLabel.setMaximumSize(QtCore.QSize(240, 40))
+        self.searchPrescriptionsLabel.setMinimumSize(QtCore.QSize(250, 40))
+        self.searchPrescriptionsLabel.setMaximumSize(QtCore.QSize(250, 40))
         self.searchPrescriptionsLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.searchPrescriptionsLabel.setObjectName("searchPrescriptionsLabel")
         self.consultsLabel = QtWidgets.QLabel(self.centralwidget)
@@ -297,4 +298,11 @@ class doctorHome(object):
         self.clickEvents(doctorHome)
 
     def clickEvents(self, parent):
-        pass
+        self.editProfile.clicked.connect(lambda: self.clickOnEditProfile(parent))
+
+    def clickOnEditProfile(self, parent):
+        self.window = QDialog()
+        self.dialog = editProfile()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()

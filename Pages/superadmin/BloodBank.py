@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.BloodBanks.addBloodBank import *
 from Dialogs.superadmin.BloodBanks.selectBloodBank import *
+from Dialogs.broadcast import *
 
 class BloodBank(object):
     def setup(self, bloodBank, superadmin):
@@ -297,8 +298,11 @@ class BloodBank(object):
         self.inbox.clicked.connect(lambda: self.clickOnInbox(parent, superadmin))
         self.logout.clicked.connect(lambda: self.clickOnLogOut(parent, superadmin))
         self.back.clicked.connect(lambda: self.clickOnBack(parent, superadmin))
+
+
         self.addBloodBank.clicked.connect(lambda : self.clickOnAddBloodBank())
         self.removeBloodBank.clicked.connect(lambda : self.clickOnRemoveBloodBank())
+        self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
@@ -341,5 +345,12 @@ class BloodBank(object):
         self.window = QDialog()
         self.dialog = selectBloodBank()
         self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBroadcast(self):
+        self.window = QDialog()
+        self.dialog = broadcast()
+        self.dialog.setup(self.window, caller.BloodBank)
         self.window.setModal(True)
         self.window.show()
