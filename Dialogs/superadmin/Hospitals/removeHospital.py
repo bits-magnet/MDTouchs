@@ -113,8 +113,8 @@ class removeHospital(object):
         self.window.infoBox("Hospital with ID : " + str(hdata["id"]) + " is deleted.")
 
         # Deleting Hospital
-
         import requests
         URL = "https://mdtouch.herokuapp.com/MDTouch/api/hospital/" + str(hdata["id"])
         r = requests.delete(url=URL)
         print(r)
+

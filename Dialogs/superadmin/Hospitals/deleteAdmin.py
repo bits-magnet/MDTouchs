@@ -3,9 +3,10 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from Data.States import *
+from Dialogs.messageBox import *
 
 class deleteAdmin(object):
-    def setup(self, deleteAdmin):
+    def setup(self, deleteAdmin,adminData,hdata):
         deleteAdmin.setObjectName("deleteAdmin")
         deleteAdmin.resize(622, 455)
         deleteAdmin.setWindowTitle("")
@@ -65,10 +66,10 @@ class deleteAdmin(object):
         self.deleteAdmin.setGeometry(QtCore.QRect(270, 410, 81, 31))
         self.deleteAdmin.setObjectName("deleteAdmin")
 
-        self.retranslateUi(deleteAdmin)
+        self.retranslateUi(deleteAdmin,adminData,hdata)
         QtCore.QMetaObject.connectSlotsByName(deleteAdmin)
 
-    def retranslateUi(self, deleteAdmin):
+    def retranslateUi(self, deleteAdmin,adminData,hdata):
         _translate = QtCore.QCoreApplication.translate
         deleteAdmin.setWindowTitle(_translate("deleteAdmin", " "))
         self.title.setText(_translate("deleteAdmin", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Delete Admin</span></p></body></html>"))
@@ -84,12 +85,25 @@ class deleteAdmin(object):
         self.hospital.setText(_translate("deleteAdmin", "hospital"))
         self.deleteAdmin.setText(_translate("deleteAdmin", "DELETE"))
 
-        self.clickEvents(deleteAdmin)
+        self.clickEvents(deleteAdmin,adminData,hdata)
 
-    def clickEvents(self,parent):
-        self.deleteAdmin.clicked.connect(lambda : self.clickOnDelete(parent))
+    def clickEvents(self,parent,adminData,hdata):
+        self.firstName.setText(str(adminData["firstName"]))
+        self.lastName.setText(str(adminData["lastName"]))
+        self.state.setText(str(hdata["state"]))
+        self.hospital.setText(str(hdata["name"]))
+        self.city.setText(str(hdata["city"]))
+        self.deleteAdmin.clicked.connect(lambda : self.clickOnDelete(parent,adminData,hdata))
 
-    def clickOnDelete(self, parent):
-        pass
+    def clickOnDelete(self, parent,adminData,hdata):
+        parent.close()
+        self.window = messageBox()
+        self.window.infoBox("Hospital with ID : " + str(hdata["id"]) + " is deleted.")
+
+        # Deleting Hospital
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(adminData["username"])
+        r = requests.delete(url=URL)
+        print(r)
         
 
