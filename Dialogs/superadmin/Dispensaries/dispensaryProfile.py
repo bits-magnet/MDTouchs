@@ -69,7 +69,7 @@ class dispensaryProfile(object):
         self.pushButton.setGeometry(QtCore.QRect(350, 360, 80, 28))
         self.pushButton.setObjectName("pushButton")
 
-        self.retranslateUi(dispensaryProfile)
+        self.retranslateUi(dispensaryProfile,data)
         QtCore.QMetaObject.connectSlotsByName(dispensaryProfile)
 
     def retranslateUi(self, dispensaryProfile,data):

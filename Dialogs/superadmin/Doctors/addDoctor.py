@@ -3,10 +3,12 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
+from Dialogs.superadmin.Doctors.doctorProfile import *
 
 class addDoctor(object):
     def __init__(self):
         self.last_city = ''
+        self.hospital_list = []
 
     def setup(self, addDoctor):
         addDoctor.setObjectName("addDoctor")
@@ -71,7 +73,6 @@ class addDoctor(object):
 
     def retranslateUi(self, addDoctor):
         _translate = QtCore.QCoreApplication.translate
-        addDoctor.setWindowTitle(_translate("addDoctor", " "))
         self.title.setText(_translate("addDoctor", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add Doctor</span></p></body></html>"))
         self.addButton.setText(_translate("addDoctor", "ADD"))
         self.firstNameLabel.setText(_translate("addDoctor", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">First Name : </span></p></body></html>"))
@@ -130,6 +131,7 @@ class addDoctor(object):
         r = requests.get(url=URL,params=param)
         l = r.json()
         print(l)
+        self.hospital_list = l
         for i in l:
             self.hospitalComboBox.addItem(str(i["name"]))
 
@@ -143,6 +145,7 @@ class addDoctor(object):
         import requests
         from random import randint
         username = fname.replace(" ","") +  str(randint(0,100))
+        '''
         URL = "https://mdtouch.herokuapp.com/api/login/"
         params = {
             "username" : username
@@ -156,19 +159,26 @@ class addDoctor(object):
                 username = name.replace(" ","") +  str(randint(0,100))
             else:
                 break
+        '''
+        hdata = {}
+        for i in self.hospital_list:
+            if i["name"] == hospital and i["city"] == city and state ==i["state"]:
+                hdata = i
+                break
+        '''
         URLH = "https://mdtouch.herokuapp.com/api/hospital/"
         r = requests.get(url=URLH,params={
             "name" : hospital,
             "city" : city,
             "state" : state
         })
-        print(r.json())
-        hospital_id = r.json()[0]["id"]
+        '''
+        hospital_id = hdata["id"]
         URL = "https://mdtouch.herokuapp.com/api/login/"
         data = {
             "username":username,
             "password": "12345",
-            "dept": "D",
+            "dept": "H",
             "email": username + "@email.com"
         }
         r = requests.post(url=URL,data=data)
@@ -177,17 +187,20 @@ class addDoctor(object):
         id = l["id"]
 
 
-        URLD = "https://mdtouch.herokuapp.com/api/doctor/"
+        URLD = "https://mdtouch.herokuapp.com/api/administrator/"
         data1 = {
             "firstName":fname,
             "lastName": lname,
-            "email": username + "@email.com",
-            "address": "",
-            "city": city,
-            "state": state,
             "username": id,
             "workplace": hospital_id
         }
         r = requests.post(url=URLD,data=data1)
-        print(r.json())
+        l = r.json()
+
         parent.close()
+        self.window = QDialog()
+        self.dialog = doctorProfile()
+        self.dialog.setup(self.window,l,hdata)
+        self.window.setModal(True)
+        self.window.show()
+

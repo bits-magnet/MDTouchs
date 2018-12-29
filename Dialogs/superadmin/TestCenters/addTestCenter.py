@@ -91,6 +91,7 @@ class addTestCenter(object):
         import requests
         from random import randint
         username = name.replace(" ","") +  str(randint(0,100))
+        '''
         URL = "https://mdtouch.herokuapp.com/api/login/"
         params = {
             "username" : username
@@ -104,7 +105,7 @@ class addTestCenter(object):
                 username = name.replace(" ","") +  str(randint(0,100))
             else:
                 break
-
+        '''
         URL = "https://mdtouch.herokuapp.com/api/login/"
         data = {
             "username":username,

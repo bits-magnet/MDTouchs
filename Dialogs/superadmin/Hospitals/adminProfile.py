@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class adminProfile(object):
-    def setup(self, adminProfile):
+    def setup(self, adminProfile,data,hdata):
         adminProfile.setObjectName("adminProfile")
         adminProfile.resize(621, 411)
         self.frame = QtWidgets.QFrame(adminProfile)
@@ -60,10 +60,10 @@ class adminProfile(object):
         self.pushButton.setGeometry(QtCore.QRect(520, 370, 80, 28))
         self.pushButton.setObjectName("pushButton")
 
-        self.retranslateUi(adminProfile)
+        self.retranslateUi(adminProfile,data,hdata)
         QtCore.QMetaObject.connectSlotsByName(adminProfile)
 
-    def retranslateUi(self, adminProfile):
+    def retranslateUi(self, adminProfile,data,hdata):
         _translate = QtCore.QCoreApplication.translate
         adminProfile.setWindowTitle(_translate("adminProfile", "Admin Profile"))
         self.firstNameLabel.setText(_translate("adminProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">First Name : </span></p></body></html>"))
@@ -78,4 +78,13 @@ class adminProfile(object):
         self.hospital.setText(_translate("adminProfile", "hospital"))
         self.pushButton.setText(_translate("adminProfile", "OK"))
 
-        self.OKButton.clicked.connect(lambda: adminProfile.close())
+        self.events(adminProfile,data,hdata)
+
+    def events(self,parent,data,hdata):
+        self.firstName.setText(data["firstName"])
+        self.lastName.setText(data["lastName"])
+        self.city.setText(hdata["city"])
+        self.state.setText(hdata["state"])
+        self.hospital.setText(hdata["name"] + "," + hdata["city"])
+
+        self.pushButton.clicked.connect(lambda: parent.close())
