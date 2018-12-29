@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Data.States import *
 from Dialogs.superadmin.Hospitals.adminProfile import *
+from Dialogs.accountCreated import *
 
 class addAdmin(object):
     def __init__(self):
@@ -178,7 +179,7 @@ class addAdmin(object):
         l = r.json()
         parent.close()
         self.window = QDialog()
-        self.dialog = adminProfile()
+        self.dialog = accountInfo()
         self.dialog.setup(self.window,l,hdata)
         self.window.setModal(True)
         self.window.show()

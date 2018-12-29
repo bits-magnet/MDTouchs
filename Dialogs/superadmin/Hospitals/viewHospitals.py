@@ -15,7 +15,7 @@ class Widget1(QWidget):
         self.hospitalIdLabel.setGeometry(QRect(10,10,170,30))
         self.hospitalIdLabel.setText("Id : 123")
         self.hospitalNameLabel = QLabel(layout)
-        self.hospitalIdLabel.setStyleSheet("align:left;font-size:16pt;font-weight:550;")
+        self.hospitalIdLabel.setStyleSheet("text-align:left;font-size:16pt;font-weight:550;")
         self.hospitalNameLabel.setGeometry(QRect(180,10,1000,30))
         self.hospitalNameLabel.setText("Patidar Samaj Hospital ")
         self.hospitalNameLabel.setStyleSheet("align:left;font-size:20pt;font-weight:600;")
