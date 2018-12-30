@@ -3,6 +3,10 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.doctor.editProfile import *
+from Dialogs.doctor.viewHospitals import *
+from Dialogs.doctor.viewBloodBankCenters import *
+from Dialogs.doctor.viewDispensaries import *
+from Dialogs.doctor.viewTestCenters import *
 
 class doctorHome(object):
     def setup(self, doctorHome):
@@ -299,10 +303,46 @@ class doctorHome(object):
 
     def clickEvents(self, parent):
         self.editProfile.clicked.connect(lambda: self.clickOnEditProfile(parent))
+        self.searchBloodBankCenters.clicked.connect(lambda : self.clickOnSearchBloodBankCenter())
+        self.searchDispensaries.clicked.connect(lambda : self.clickOnSearchDispensary())
+        self.searchHospitals.clicked.connect(lambda : self.clickOnSearchHospital())
+        self.searchTestCenters.clicked.connect(lambda : self.clickOnSearchTestCenter())
+        self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
+
+    def clickOnLogoutButton(self,parent):
+        parent.loginpage.setup(parent)
 
     def clickOnEditProfile(self, parent):
         self.window = QDialog()
         self.dialog = editProfile()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchDispensary(self):
+        self.window = QDialog()
+        self.dialog = viewDispensary()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchBloodBankCenter(self):
+        self.window = QDialog()
+        self.dialog = viewBloodBankCenter()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchTestCenter(self):
+        self.window = QDialog()
+        self.dialog = viewTestCenter()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchHospital(self):
+        self.window = QDialog()
+        self.dialog = viewHospital()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()
