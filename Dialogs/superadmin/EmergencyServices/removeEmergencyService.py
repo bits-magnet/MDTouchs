@@ -2,9 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.messageBox import *
 
 class removeEmergencyService(object):
-    def setup(self, removeEmergencyService):
+    def setup(self, removeEmergencyService,esData):
         removeEmergencyService.setObjectName("removeEmergencyService")
         removeEmergencyService.resize(555, 453)
         removeEmergencyService.setWindowTitle("")
@@ -74,10 +75,10 @@ class removeEmergencyService(object):
         self.title.setGeometry(QtCore.QRect(40, 0, 451, 51))
         self.title.setObjectName("title")
 
-        self.retranslateUi(removeEmergencyService)
+        self.retranslateUi(removeEmergencyService,esData)
         QtCore.QMetaObject.connectSlotsByName(removeEmergencyService)
 
-    def retranslateUi(self, removeEmergencyService):
+    def retranslateUi(self, removeEmergencyService,esData):
         _translate = QtCore.QCoreApplication.translate
         removeEmergencyService.setWindowTitle(_translate("removeEmergencyService", " "))
         self.state.setText(_translate("removeEmergencyService", "State"))
@@ -97,10 +98,27 @@ class removeEmergencyService(object):
         self.removeButton.setText(_translate("removeEmergencyService", "REMOVE"))
         self.title.setText(_translate("removeEmergencyService", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Remove Emergency Service</span></p></body></html>"))
 
-        self.clickEvents(removeEmergencyService)
+        self.clickEvents(removeEmergencyService,esData)
 
-    def clickEvents(self, parent):
-        self.removeButton.clicked.connect(lambda: self.clickOnRemoveButton(parent))
+    def clickEvents(self, parent,esData):
+        self.state.setText(esData["state"])
+        self.city.setText(esData["city"])
+        self.contact.setText(str(esData["contact_number"]))
+        self.dispensaryID.setText(str(esData["id"]))
+        self.address.setText(esData["address"])
+        self.name.setText(esData["name"])
+        self.pinCode.setText(str(esData["pin"]))
+        self.removeButton.clicked.connect(lambda: self.clickOnRemoveButton(parent,esData))
 
-    def clickOnRemoveButton(self, parent):
+    def clickOnRemoveButton(self, parent,esData):
+        print(esData)
+        parent.close()
+        self.window = messageBox()
+        self.window.infoBox("Emergency Service with ID : " + str(esData["id"]) + " is deleted.")
+
+        # Deleting Hospital
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(esData["username"])
+        r = requests.delete(url=URL)
+        print(r)
         pass

@@ -3,9 +3,10 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
+from Dialogs.messageBox import *
 
 class removeBloodBank(object):
-    def setup(self, removeBloodBank):
+    def setup(self, removeBloodBank,bbData):
         removeBloodBank.setObjectName("removeBloodBank")
         removeBloodBank.resize(562, 440)
         removeBloodBank.setMinimumSize(QtCore.QSize(562, 440))
@@ -75,10 +76,10 @@ class removeBloodBank(object):
 "font-weight: bold;")
         self.bloodBankID.setObjectName("bloodBankID")
 
-        self.retranslateUi(removeBloodBank)
+        self.retranslateUi(removeBloodBank,bbData)
         QtCore.QMetaObject.connectSlotsByName(removeBloodBank)
 
-    def retranslateUi(self, removeBloodBank):
+    def retranslateUi(self, removeBloodBank,bbData):
         _translate = QtCore.QCoreApplication.translate
         removeBloodBank.setWindowTitle(_translate("removeBloodBank", " "))
         self.removeButton.setText(_translate("removeBloodBank", "REMOVE"))
@@ -98,11 +99,26 @@ class removeBloodBank(object):
         self.IDLabel.setText(_translate("removeBloodBank", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">ID :</span></p></body></html>"))
         self.bloodBankID.setText(_translate("removeBloodBank", "BloodBankID"))
 
-        self.clickEvents(removeBloodBank)
+        self.clickEvents(removeBloodBank,bbData)
 
-    def clickEvents(self,parent):
-        self.removeButton.clicked.connect(lambda: self.clickOnRemoveBloodBank(parent))
+    def clickEvents(self,parent,bbData):
+        self.bloodBankID.setText(str(bbData["id"]))
+        self.name.setText(bbData["name"])
+        self.pinCode.setText(str(bbData["pin"]))
+        self.city.setText(str(bbData["city"]))
+        self.state.setText(str(bbData["state"]))
+        self.contact.setText(str(bbData["contact"]))
+        self.address.setText(str(bbData["address"]))
+        self.removeButton.clicked.connect(lambda: self.clickOnRemoveBloodBank(parent,bbData))
 
-    def clickOnRemoveBloodBank(self, parent):
-        pass
+    def clickOnRemoveBloodBank(self, parent,bbData):
+        parent.close()
+        self.window = messageBox()
+        self.window.infoBox("Hospital with ID : " + str(bbData["id"]) + " is deleted.")
+
+        # Deleting Hospital
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(bbData["username"])
+        r = requests.delete(url=URL)
+        print(r)
 

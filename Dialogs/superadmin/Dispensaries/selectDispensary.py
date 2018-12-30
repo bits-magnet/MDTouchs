@@ -4,8 +4,12 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Data.States import *
 from Dialogs.superadmin.Dispensaries.removeDispensary import *
+from Dialogs.messageBox import *
 
 class selectDispensary(object):
+    def __init__(self):
+        self.last_city = ''
+        self.dispensary_list = []
     def setup(self, selectDispensary):
         selectDispensary.setObjectName("selectDispensary")
         selectDispensary.resize(362, 330)
@@ -67,24 +71,89 @@ class selectDispensary(object):
         self.removeButton.clicked.connect(lambda: self.clickOnRemoveDispensary(parent))
 
     def clickOnRemoveDispensary(self, parent):
+        if self.dispensaryComboBox.count() == 0 and self.searchByID.text() == "":
+            self.dialog = messageBox()
+            self.dialog.warningBox("Select the dispensary or Enter the Id")
+            return
+        if self.searchByID.text() != "":
+            id = self.searchByID.text()
+            print(id)
+            if id.isdigit():
+                import requests
+                url = "https://mdtouch.herokuapp.com/api/dispensaries/" + id
+                r = requests.get(url= url)
+                l = r.json()
+                print(l)
+                if l == {'detail': 'Not found.'}:
+                    self.dialog = messageBox()
+                    self.dialog.warningBox("No Id Match")
+                    return
+                else:
+                    self.window = QDialog()
+                    self.dialog = removeDispensary()
+                    self.dialog.setup(self.window,l)
+                    self.window.setModal(True)
+                    self.window.show()
+                    parent.close()
+                    return
+            else:
+                self.dialog = messageBox()
+                self.dialog.warningBox("Id must be integer")
+            return
+        dispensarydata = {}
+        for i in self.dispensary_list:
+            if i["name"] == self.dispensaryComboBox.currentText():
+                dispensarydata = i
+        parent.close()
         self.window = QDialog()
         self.dialog = removeDispensary()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,dispensarydata)
         self.window.setModal(True)
         self.window.show()
-
+    
     def stateAddFunction(self,parent):
         for i in states.values():
             self.stateComboBox.addItem(i)
         for i in cities["Andhra Pradesh"]:
             self.cityComboBox.addItem(i)
         self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
-
+        self.stateComboBox.currentIndexChanged.connect(lambda :self.dispensaryComboBoxAdd(parent))
+    
     def cityAddFunction(self,parent):
         state = self.stateComboBox.currentText()
-
-        while self.cityComboBox.count() > 0:
+        i = self.cityComboBox.count()
+        flag = True
+        while i > 0:
+            flag = False
             self.cityComboBox.removeItem(0)
-
+            i-=1
+        flag = True
         for i in cities[state]:
+            flag = False
             self.cityComboBox.addItem(i)
+        flag = True
+        if flag :
+            self.cityComboBox.currentIndexChanged.connect(lambda :self.dispensaryComboBoxAdd(parent))
+    
+    def dispensaryComboBoxAdd(self,parent):
+        if self.last_city == self.cityComboBox.currentText() or self.cityComboBox.count() != len(cities[self.stateComboBox.currentText()]) or self.cityComboBox.itemText(self.cityComboBox.count()-1) != cities[self.stateComboBox.currentText()][-1]:
+            return
+        self.last_city = self.cityComboBox.currentText()
+        # First Erase all dispensarys
+        i = self.dispensaryComboBox.count()
+        while i > 0:
+            i -= 1
+            self.dispensaryComboBox.removeItem(0)
+    
+        import requests
+        print(self.cityComboBox.currentText())
+        URL = "https://mdtouch.herokuapp.com/api/dispensaries"
+        param ={
+            "city": self.cityComboBox.currentText()
+        }
+        r = requests.get(url=URL,params=param)
+        l = r.json()
+        print(l)
+        self.dispensary_list = l
+        for i in l:
+            self.dispensaryComboBox.addItem(str(i["name"]))

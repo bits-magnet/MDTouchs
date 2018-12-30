@@ -95,6 +95,7 @@ class selectHospital(object):
                     self.dialog.setup(self.window,l)
                     self.window.setModal(True)
                     self.window.show()
+                    parent.close()
                     return
             else:
                 self.dialog = messageBox()
