@@ -105,8 +105,8 @@ class loginPage(object):
     def eventsUi(self, loginPage):
         self.forgotPasswordLink.clicked.connect(lambda: self.forgotPasswordEvent(loginPage))
         self.passwordInput.returnPressed.connect(self.loginButton.click)
-        #self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
-        self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
+        self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
+        #self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
         logintype = 'D'
@@ -173,6 +173,26 @@ class loginPage(object):
             self.superadminpage = superadminHome()
             self.superadminpage.setup(loginPage)
             return
+        if data[0]["dept"] == "D":
+            self.doctorpage = doctorHome()
+            self.doctorpage.setup(loginPage,data[0])
+            return
+        if data[0]["dept"] == "DS":
+            self.dispensarypage = dispensaryHome()
+            self.dispensarypage.setup(loginPage)
+            return
+        if data[0]["dept"] == "BB":
+            self.bloodBankpage = bloodBankHome()
+            self.bloodBankpage.setup(loginPage)
+            return
+        if data[0]["dept"] == "TC":
+            self.testCenterpage = testCenterHome()
+            self.testCenterpage.setup(loginPage)
+            return
+
+
+
+
 
 
 
