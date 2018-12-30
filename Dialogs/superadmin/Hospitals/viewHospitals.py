@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
+from Dialogs.superadmin.Hospitals.hospitalProfile import *
 
 
 class Widget1(QWidget):
@@ -278,8 +279,11 @@ class viewHospital(object):
 
 
     def cellClick(self,row,col):
-        print(self.dataToFill[row])
-        print(row,col)
+        self.window = QDialog()
+        self.dialog = hospitalProfile()
+        self.dialog.setup(self.window,self.dataToFill[row])
+        self.window.setModal(True)
+        self.window.show()
 
 
     # Exit Button FUnction

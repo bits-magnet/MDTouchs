@@ -98,7 +98,8 @@ class testCenterProfile(object):
         self.pinCode.setText(str(data["pin"]))
         self.state.setText(str(data["state"]))
         self.city.setText(str(data["city"]))
-        self.contactNo.setText(str(data["contact"]))
+        #self.contactNo.setText(str(data["contact"]))
+        self.contactNo.setText("nil")
         self.name.setText(str(data["name"]))
         
         self.OKButton.clicked.connect(lambda: parent.close())

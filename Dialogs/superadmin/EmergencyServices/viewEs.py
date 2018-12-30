@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
+from Dialogs.superadmin.EmergencyServices.emergencyServiceProfile import *
 
 
 class Widget1(QWidget):
@@ -158,7 +159,7 @@ class viewEs(object):
 
     def addRowDataFunction(self,esListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/es/"
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/emergencyservice/"
         self.dataToFill = []
         if self.searchesInput.text()== "":
             print("Yes")
@@ -247,7 +248,7 @@ class viewEs(object):
         if len(self.dataToFill) == 0:
             self.tableWidget.setRowCount(0)
             self.dialog = messageBox()
-            self.dialog.infoBox("No ess Found")
+            self.dialog.infoBox("No Emergency Services Found")
             return
         i = 0
         print(self.dataToFill)
@@ -278,8 +279,11 @@ class viewEs(object):
 
 
     def cellClick(self,row,col):
-        print(self.dataToFill[row])
-        print(row,col)
+        self.window = QDialog()
+        self.dialog = emergencyServiceProfile()
+        self.dialog.setup(self.window,self.dataToFill[row])
+        self.window.setModal(True)
+        self.window.show()
 
 
     # Exit Button FUnction

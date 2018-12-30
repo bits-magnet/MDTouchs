@@ -92,7 +92,7 @@ class emergencyServiceProfile(object):
         self.dispensaryID.setText(_translate("emergencyServiceProfile", "EmergencyServiceID"))
         self.OKButton.setText(_translate("emergencyServiceProfile", "OK"))
 
-        self,events(emergencyServiceProfile,data)
+        self.events(emergencyServiceProfile,data)
 
     def events(self,parent,data):
         self.address.setText(str(data["address"]))
