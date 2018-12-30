@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>380</width>
-    <height>350</height>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string> </string>
+   <string/>
   </property>
   <widget class="QLabel" name="title">
    <property name="geometry">
@@ -32,7 +32,7 @@
      <x>10</x>
      <y>60</y>
      <width>351</width>
-     <height>231</height>
+     <height>291</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -45,7 +45,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>130</y>
+      <y>140</y>
       <width>161</width>
       <height>27</height>
      </rect>
@@ -55,7 +55,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>180</y>
+      <y>240</y>
       <width>161</width>
       <height>27</height>
      </rect>
@@ -65,7 +65,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>80</y>
+      <y>90</y>
       <width>161</width>
       <height>27</height>
      </rect>
@@ -75,7 +75,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>130</y>
+      <y>140</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -88,7 +88,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>180</y>
+      <y>240</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -101,7 +101,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>80</y>
+      <y>90</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -139,13 +139,36 @@
      <string>Search by Doctor ID</string>
     </property>
    </widget>
+   <widget class="QLabel" name="hospitalLabel">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>190</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Hospital : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="hospitalComboBox">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>190</y>
+      <width>161</width>
+      <height>27</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
-  <widget class="QPushButton" name="selectButton">
+  <widget class="QPushButton" name="selectButton_2">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>310</y>
-     <width>131</width>
+     <x>140</x>
+     <y>360</y>
+     <width>80</width>
      <height>28</height>
     </rect>
    </property>
