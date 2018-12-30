@@ -5,6 +5,9 @@ from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Pages.superadminHome import *
 from Pages.doctorHome import *
+from Pages.dispensaryHome import *
+from Pages.bloodBankHome import *
+from Pages.testCenterHome import *
 # import psycopg2 as pg2
 
 
@@ -106,10 +109,22 @@ class loginPage(object):
         self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
-        self.superadminpage = superadminHome()
-        self.superadminpage.setup(loginPage)
-        #self.doctorpage = doctorHome()
-        #self.doctorpage.setup(loginPage)
+        logintype = 'Di'
+        if logintype == 'SA':
+            self.superadminpage = superadminHome()
+            self.superadminpage.setup(loginPage)
+        elif logintype == 'D':
+            self.doctorpage = doctorHome()
+            self.doctorpage.setup(loginPage)
+        elif logintype == 'Di':
+            self.dispensarypage = dispensaryHome()
+            self.dispensarypage.setup(loginPage)
+        elif logintype == 'BB':
+            self.bloodBankpage = bloodBankHome()
+            self.bloodBankpage.setup(loginPage)
+        elif logintype == 'TC':
+            self.testCenterpage = testCenterHome()
+            self.testCenterpage.setup(loginPage)
 
 
 

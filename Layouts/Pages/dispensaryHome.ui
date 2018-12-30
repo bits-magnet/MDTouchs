@@ -102,7 +102,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLineEdit" name="deleteIdInput">
     <property name="geometry">
      <rect>
-      <x>1080</x>
+      <x>1050</x>
       <y>340</y>
       <width>151</width>
       <height>31</height>
@@ -118,7 +118,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLineEdit" name="setMedicineIdInput">
     <property name="geometry">
      <rect>
-      <x>1080</x>
+      <x>1050</x>
       <y>410</y>
       <width>131</width>
       <height>31</height>
@@ -137,7 +137,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="setQuantityButton">
     <property name="geometry">
      <rect>
-      <x>1080</x>
+      <x>1050</x>
       <y>440</y>
       <width>251</width>
       <height>31</height>
@@ -153,7 +153,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="deleteButton">
     <property name="geometry">
      <rect>
-      <x>1230</x>
+      <x>1200</x>
       <y>340</y>
       <width>101</width>
       <height>31</height>
@@ -169,7 +169,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLineEdit" name="quantityInput">
     <property name="geometry">
      <rect>
-      <x>1210</x>
+      <x>1180</x>
       <y>410</y>
       <width>121</width>
       <height>31</height>
@@ -188,8 +188,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="viewBills">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>350</y>
+      <x>70</x>
+      <y>330</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -232,8 +232,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="events">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>540</y>
+      <x>70</x>
+      <y>520</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -270,8 +270,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="createBill">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>160</y>
+      <x>80</x>
+      <y>140</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -308,7 +308,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="addMedicine">
     <property name="geometry">
      <rect>
-      <x>1080</x>
+      <x>1050</x>
       <y>140</y>
       <width>100</width>
       <height>100</height>
@@ -352,8 +352,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="changePassword">
     <property name="geometry">
      <rect>
-      <x>1230</x>
-      <y>510</y>
+      <x>1200</x>
+      <y>520</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -396,8 +396,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="profile">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>510</y>
+      <x>1050</x>
+      <y>520</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -478,7 +478,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="notices">
     <property name="geometry">
      <rect>
-      <x>1230</x>
+      <x>1200</x>
       <y>140</y>
       <width>100</width>
       <height>100</height>
@@ -516,7 +516,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="noticesLabel">
     <property name="geometry">
      <rect>
-      <x>1230</x>
+      <x>1200</x>
       <y>250</y>
       <width>101</width>
       <height>31</height>
@@ -532,7 +532,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="addMedicineLabel">
     <property name="geometry">
      <rect>
-      <x>1080</x>
+      <x>1050</x>
       <y>240</y>
       <width>111</width>
       <height>71</height>
@@ -548,9 +548,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="changePasswordLabel">
     <property name="geometry">
      <rect>
-      <x>1230</x>
-      <y>620</y>
-      <width>111</width>
+      <x>1190</x>
+      <y>630</y>
+      <width>131</width>
       <height>61</height>
      </rect>
     </property>
@@ -564,8 +564,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="profileLabel">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>620</y>
+      <x>1050</x>
+      <y>630</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -580,8 +580,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="createBillLabel">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>260</y>
+      <x>50</x>
+      <y>240</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -596,8 +596,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="viewBillsLabel">
     <property name="geometry">
      <rect>
-      <x>75</x>
-      <y>450</y>
+      <x>45</x>
+      <y>430</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -612,8 +612,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="eventsLabel">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>650</y>
+      <x>50</x>
+      <y>630</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -628,9 +628,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>240</x>
       <y>150</y>
-      <width>731</width>
+      <width>771</width>
       <height>541</height>
      </rect>
     </property>
@@ -645,7 +645,7 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>29</y>
-       <width>731</width>
+       <width>771</width>
        <height>511</height>
       </rect>
      </property>
@@ -678,7 +678,7 @@ text-align : left;</string>
       <number>5</number>
      </property>
      <property name="columnCount">
-      <number>7</number>
+      <number>6</number>
      </property>
      <attribute name="horizontalHeaderCascadingSectionResizes">
       <bool>false</bool>
@@ -703,11 +703,6 @@ text-align : left;</string>
      </column>
      <column>
       <property name="text">
-       <string>Price</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
        <string>Quantity</string>
       </property>
      </column>
@@ -718,12 +713,12 @@ text-align : left;</string>
      </column>
      <column>
       <property name="text">
-       <string>Manufacture Date</string>
+       <string>Expiry Date</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Expiry Date</string>
+       <string>Manufacturing Date</string>
       </property>
      </column>
     </widget>
@@ -732,7 +727,7 @@ text-align : left;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>411</width>
+       <width>421</width>
        <height>31</height>
       </rect>
      </property>
@@ -746,7 +741,7 @@ text-align : left;</string>
     <widget class="QComboBox" name="filterComboBox">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>420</x>
        <y>0</y>
        <width>211</width>
        <height>31</height>
@@ -782,16 +777,16 @@ text-align : left;</string>
      </item>
      <item>
       <property name="text">
-       <string>Sort by Expiary Date</string>
+       <string>Sort by Expiry Date</string>
       </property>
      </item>
     </widget>
     <widget class="QPushButton" name="searchButton">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>630</x>
        <y>0</y>
-       <width>111</width>
+       <width>141</width>
        <height>31</height>
       </rect>
      </property>

@@ -270,6 +270,38 @@ text-decoration: underline</string>
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="addTest">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:none;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../Images/add_test.png</normaloff>../../Images/add_test.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
@@ -282,6 +314,38 @@ text-decoration: underline</string>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="events">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:none;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../Images/event.jpg</normaloff>../../Images/event.jpg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QPushButton" name="notices">
        <property name="minimumSize">
@@ -383,7 +447,7 @@ text-decoration: underline</string>
    <widget class="QLabel" name="testRecordsLabel">
     <property name="geometry">
      <rect>
-      <x>565</x>
+      <x>415</x>
       <y>290</y>
       <width>221</width>
       <height>51</height>
@@ -422,7 +486,7 @@ text-decoration: underline</string>
    <widget class="QLabel" name="testRequestsLabel">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>160</x>
       <y>290</y>
       <width>221</width>
       <height>51</height>
@@ -461,7 +525,7 @@ text-decoration: underline</string>
    <widget class="QLabel" name="createBillLabel">
     <property name="geometry">
      <rect>
-      <x>910</x>
+      <x>700</x>
       <y>290</y>
       <width>221</width>
       <height>51</height>
@@ -497,10 +561,10 @@ text-decoration: underline</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="noticesLabl">
+   <widget class="QLabel" name="noticesLabel">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>420</x>
       <y>550</y>
       <width>221</width>
       <height>51</height>
@@ -539,7 +603,7 @@ text-decoration: underline</string>
    <widget class="QLabel" name="profileLabel">
     <property name="geometry">
      <rect>
-      <x>565</x>
+      <x>705</x>
       <y>550</y>
       <width>221</width>
       <height>51</height>
@@ -578,7 +642,7 @@ text-decoration: underline</string>
    <widget class="QLabel" name="changePasswordLabel">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>990</x>
       <y>555</y>
       <width>221</width>
       <height>71</height>
@@ -609,6 +673,84 @@ text-decoration: underline</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Change&lt;br&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="addTestLabel">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>290</y>
+      <width>221</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>400</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14pt;
+font-weight:bold;
+text-decoration: underline</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Add Test&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="eventsLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>560</y>
+      <width>221</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>400</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14pt;
+font-weight:bold;
+text-decoration: underline</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Events&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
