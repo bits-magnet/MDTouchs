@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'hospitalHome.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
-class Ui_hospitalHome(object):
-    def setupUi(self, hospitalHome):
+class hospitalHome(object):
+    def setup(self, hospitalHome):
         hospitalHome.setObjectName("hospitalHome")
         hospitalHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(hospitalHome)
@@ -33,7 +28,7 @@ class Ui_hospitalHome(object):
         self.inbox.setStyleSheet("border:none;")
         self.inbox.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Images/inbox_1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../MDTouch/Images/inbox_1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.inbox.setIcon(icon)
         self.inbox.setIconSize(QtCore.QSize(50, 50))
         self.inbox.setObjectName("inbox")
@@ -49,7 +44,7 @@ class Ui_hospitalHome(object):
         self.bills.setStyleSheet("border:none;")
         self.bills.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../Images/medical_bills.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../MDTouch/Images/medical_bills.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.bills.setIcon(icon1)
         self.bills.setIconSize(QtCore.QSize(100, 100))
         self.bills.setObjectName("bills")
@@ -60,7 +55,7 @@ class Ui_hospitalHome(object):
         self.changePassword.setStyleSheet("border:none;")
         self.changePassword.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../Images/change_password.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("../MDTouch/Images/change_password.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.changePassword.setIcon(icon2)
         self.changePassword.setIconSize(QtCore.QSize(100, 100))
         self.changePassword.setObjectName("changePassword")
@@ -71,7 +66,7 @@ class Ui_hospitalHome(object):
         self.beds.setStyleSheet("border:none;")
         self.beds.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../../Images/hospital_bed.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("../MDTouch/Images/hospital_bed.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.beds.setIcon(icon3)
         self.beds.setIconSize(QtCore.QSize(100, 100))
         self.beds.setObjectName("beds")
@@ -82,7 +77,7 @@ class Ui_hospitalHome(object):
         self.events.setStyleSheet("border:none;")
         self.events.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../../Images/event.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("../MDTouch/Images/event.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.events.setIcon(icon4)
         self.events.setIconSize(QtCore.QSize(100, 100))
         self.events.setObjectName("events")
@@ -93,7 +88,7 @@ class Ui_hospitalHome(object):
         self.statistics.setStyleSheet("border:none;")
         self.statistics.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../../Images/statistics.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("../MDTouch/Images/statistics.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.statistics.setIcon(icon5)
         self.statistics.setIconSize(QtCore.QSize(100, 100))
         self.statistics.setObjectName("statistics")
@@ -127,7 +122,7 @@ class Ui_hospitalHome(object):
         self.searchEmergencyServices.setStyleSheet("border:none;")
         self.searchEmergencyServices.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../../Images/emergency.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("../MDTouch/Images/emergency.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.searchEmergencyServices.setIcon(icon6)
         self.searchEmergencyServices.setIconSize(QtCore.QSize(100, 100))
         self.searchEmergencyServices.setObjectName("searchEmergencyServices")
@@ -138,7 +133,7 @@ class Ui_hospitalHome(object):
         self.searchBloodBankCenters.setStyleSheet("border:none;")
         self.searchBloodBankCenters.setText("")
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap("../../Images/view_bloodBanks.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap("../MDTouch/Images/view_bloodBanks.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.searchBloodBankCenters.setIcon(icon7)
         self.searchBloodBankCenters.setIconSize(QtCore.QSize(100, 100))
         self.searchBloodBankCenters.setObjectName("searchBloodBankCenters")
@@ -149,7 +144,7 @@ class Ui_hospitalHome(object):
         self.searchTestCenters.setStyleSheet("border:none;")
         self.searchTestCenters.setText("")
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap("../../Images/search_testCenters.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap("../MDTouch/Images/search_testCenters.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.searchTestCenters.setIcon(icon8)
         self.searchTestCenters.setIconSize(QtCore.QSize(100, 100))
         self.searchTestCenters.setObjectName("searchTestCenters")
@@ -160,7 +155,7 @@ class Ui_hospitalHome(object):
         self.searchDispensaries.setStyleSheet("border:none;")
         self.searchDispensaries.setText("")
         icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap("../../Images/search_medicines.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap("../MDTouch/Images/search_medicines.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.searchDispensaries.setIcon(icon9)
         self.searchDispensaries.setIconSize(QtCore.QSize(100, 100))
         self.searchDispensaries.setObjectName("searchDispensaries")
@@ -177,7 +172,7 @@ class Ui_hospitalHome(object):
         self.profile.setStyleSheet("border:none;")
         self.profile.setText("")
         icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap("../../Images/edit_profile.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon10.addPixmap(QtGui.QPixmap("../MDTouch/Images/edit_profile.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.profile.setIcon(icon10)
         self.profile.setIconSize(QtCore.QSize(100, 100))
         self.profile.setObjectName("profile")
@@ -188,7 +183,7 @@ class Ui_hospitalHome(object):
         self.doctors.setStyleSheet("border:none;")
         self.doctors.setText("")
         icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap("../../Images/doc.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon11.addPixmap(QtGui.QPixmap("../MDTouch/Images/doc.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.doctors.setIcon(icon11)
         self.doctors.setIconSize(QtCore.QSize(100, 100))
         self.doctors.setObjectName("doctors")
@@ -199,7 +194,7 @@ class Ui_hospitalHome(object):
         self.patients.setStyleSheet("border:none;")
         self.patients.setText("")
         icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap("../../Images/patients.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon12.addPixmap(QtGui.QPixmap("../MDTouch/Images/patients.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.patients.setIcon(icon12)
         self.patients.setIconSize(QtCore.QSize(100, 100))
         self.patients.setObjectName("patients")
@@ -210,7 +205,7 @@ class Ui_hospitalHome(object):
         self.appointments.setStyleSheet("border:none;")
         self.appointments.setText("")
         icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap("../../Images/appointments.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon13.addPixmap(QtGui.QPixmap("../MDTouch/Images/appointments.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.appointments.setIcon(icon13)
         self.appointments.setIconSize(QtCore.QSize(100, 100))
         self.appointments.setObjectName("appointments")
@@ -221,7 +216,7 @@ class Ui_hospitalHome(object):
         self.notices.setStyleSheet("border:none;")
         self.notices.setText("")
         icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap("../../Images/notices.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon14.addPixmap(QtGui.QPixmap("../MDTouch/Images/notices.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.notices.setIcon(icon14)
         self.notices.setIconSize(QtCore.QSize(100, 100))
         self.notices.setObjectName("notices")
@@ -251,7 +246,7 @@ class Ui_hospitalHome(object):
         self.logout.setStyleSheet("border:none;")
         self.logout.setText("")
         icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap("../../Images/LogoutIcon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon15.addPixmap(QtGui.QPixmap("../MDTouch/Images/LogoutIcon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.logout.setIcon(icon15)
         self.logout.setIconSize(QtCore.QSize(50, 50))
         self.logout.setObjectName("logout")
@@ -345,3 +340,7 @@ class Ui_hospitalHome(object):
         self.eventsLabel.setText(_translate("hospitalHome", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Events</span></p></body></html>"))
         self.statisticsLabel.setText(_translate("hospitalHome", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Statistics</span></p></body></html>"))
 
+        self.clickEvents(hospitalHome)
+
+    def clickEvents(self, parent):
+        pass

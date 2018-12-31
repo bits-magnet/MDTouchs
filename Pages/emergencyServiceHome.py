@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'emergencyServiceHome.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
-class Ui_emergencyServiceHome(object):
-    def setupUi(self, emergencyServiceHome):
+class emergencyServiceHome(object):
+    def setup(self, emergencyServiceHome):
         emergencyServiceHome.setObjectName("emergencyServiceHome")
         emergencyServiceHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(emergencyServiceHome)
@@ -21,7 +16,7 @@ class Ui_emergencyServiceHome(object):
         self.logout.setStyleSheet("border:none;")
         self.logout.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Images/LogoutIcon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../MDTouch/Images/LogoutIcon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.logout.setIcon(icon)
         self.logout.setIconSize(QtCore.QSize(50, 50))
         self.logout.setObjectName("logout")
@@ -102,7 +97,7 @@ class Ui_emergencyServiceHome(object):
         self.inbox.setStyleSheet("border:none;")
         self.inbox.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../Images/inbox_1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../MDTouch/Images/inbox_1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.inbox.setIcon(icon1)
         self.inbox.setIconSize(QtCore.QSize(50, 50))
         self.inbox.setObjectName("inbox")
@@ -118,7 +113,7 @@ class Ui_emergencyServiceHome(object):
         self.requests.setStyleSheet("border:none;")
         self.requests.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../Images/test_requests.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("../MDTouch/Images/test_requests.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.requests.setIcon(icon2)
         self.requests.setIconSize(QtCore.QSize(100, 100))
         self.requests.setObjectName("requests")
@@ -129,7 +124,7 @@ class Ui_emergencyServiceHome(object):
         self.records.setStyleSheet("border:none;")
         self.records.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../../Images/medical_records.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("../MDTouch/Images/medical_records.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.records.setIcon(icon3)
         self.records.setIconSize(QtCore.QSize(100, 100))
         self.records.setObjectName("records")
@@ -140,7 +135,7 @@ class Ui_emergencyServiceHome(object):
         self.viewAmbulances.setStyleSheet("border:none;")
         self.viewAmbulances.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../../Images/remove_ambulance.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("../MDTouch/Images/remove_ambulance.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.viewAmbulances.setIcon(icon4)
         self.viewAmbulances.setIconSize(QtCore.QSize(100, 100))
         self.viewAmbulances.setObjectName("viewAmbulances")
@@ -151,7 +146,7 @@ class Ui_emergencyServiceHome(object):
         self.addAmbulance.setStyleSheet("border:none;")
         self.addAmbulance.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../../Images/ambulance.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("../MDTouch/Images/ambulance.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.addAmbulance.setIcon(icon5)
         self.addAmbulance.setIconSize(QtCore.QSize(100, 100))
         self.addAmbulance.setObjectName("addAmbulance")
@@ -193,7 +188,7 @@ class Ui_emergencyServiceHome(object):
         self.notices.setStyleSheet("border:none;")
         self.notices.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../../Images/notices.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("../MDTouch/Images/notices.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.notices.setIcon(icon6)
         self.notices.setIconSize(QtCore.QSize(100, 100))
         self.notices.setObjectName("notices")
@@ -204,7 +199,7 @@ class Ui_emergencyServiceHome(object):
         self.profile.setStyleSheet("border:none;")
         self.profile.setText("")
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap("../../Images/profile.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap("../MDTouch/Images/profile.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.profile.setIcon(icon7)
         self.profile.setIconSize(QtCore.QSize(100, 100))
         self.profile.setObjectName("profile")
@@ -215,7 +210,7 @@ class Ui_emergencyServiceHome(object):
         self.changePassword.setStyleSheet("border:none;")
         self.changePassword.setText("")
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap("../../Images/change_password.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap("../MDTouch/Images/change_password.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.changePassword.setIcon(icon8)
         self.changePassword.setIconSize(QtCore.QSize(100, 100))
         self.changePassword.setObjectName("changePassword")
@@ -268,4 +263,10 @@ class Ui_emergencyServiceHome(object):
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36pt; font-weight:600; text-decoration: underline;\">MDTouch</span></p></body></html>"))
         self.emergencyServiceName.setText(_translate("emergencyServiceHome", "emergency_service_name"))
         self.recordsLabel.setText(_translate("emergencyServiceHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Records</span></p></body></html>"))
+
+
+        self.clickEvents(emergencyServiceHome)
+
+    def clickEvents(self, parent):
+        pass
 

@@ -8,6 +8,8 @@ from Pages.doctorHome import *
 from Pages.dispensaryHome import *
 from Pages.bloodBankHome import *
 from Pages.testCenterHome import *
+from Pages.hospitalHome import *
+from Pages.emergencyServiceHome import *
 # import psycopg2 as pg2
 
 
@@ -125,6 +127,12 @@ class loginPage(object):
         elif logintype == 'TC':
             self.testCenterpage = testCenterHome()
             self.testCenterpage.setup(loginPage)
+        elif logintype == 'H':
+            self.hospitalpage = hospitalHome()
+            self.hospitalpage.setup(loginPage)
+        elif logintype == 'ES':
+            self.emergencyservicepage = emergencyServiceHome()
+            self.emergencyservicepage.setup(loginPage)
 
 
 
