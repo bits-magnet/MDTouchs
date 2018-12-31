@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
+from Dialogs.superadmin.TestCenters.testCenterProfile import *
 
 
 class Widget1(QWidget):
@@ -158,7 +159,7 @@ class viewTestCenter(object):
 
     def addRowDataFunction(self,testCenterListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/testCenter/"
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/testcentre/"
         self.dataToFill = []
         if self.searchtestCenterInput.text()== "":
             print("Yes")
@@ -247,7 +248,7 @@ class viewTestCenter(object):
         if len(self.dataToFill) == 0:
             self.tableWidget.setRowCount(0)
             self.dialog = messageBox()
-            self.dialog.infoBox("No testCenters Found")
+            self.dialog.infoBox("No Test Centers Found")
             return
         i = 0
         print(self.dataToFill)
@@ -278,8 +279,11 @@ class viewTestCenter(object):
 
 
     def cellClick(self,row,col):
-        print(self.dataToFill[row])
-        print(row,col)
+        self.window = QDialog()
+        self.dialog = testCenterProfile()
+        self.dialog.setup(self.window,self.dataToFill[row])
+        self.window.setModal(True)
+        self.window.show()
 
 
     # Exit Button FUnction

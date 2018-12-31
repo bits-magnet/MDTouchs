@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
+from Dialogs.superadmin.BloodBanks.bloodBankProfile import *
 
 
 class Widget1(QWidget):
@@ -158,7 +159,7 @@ class viewBloodBankCenter(object):
 
     def addRowDataFunction(self,bloodBankCenterListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodBankCenter/"
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/"
         self.dataToFill = []
         if self.searchbloodBankCenterInput.text()== "":
             print("Yes")
@@ -278,7 +279,11 @@ class viewBloodBankCenter(object):
 
 
     def cellClick(self,row,col):
-        print(self.dataToFill[row])
+        self.window = QDialog()
+        self.dialog = bloodBankProfile()
+        self.dialog.setup(self.window,self.dataToFill[row])
+        self.window.setModal(True)
+        self.window.show()
         print(row,col)
 
 

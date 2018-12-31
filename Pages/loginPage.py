@@ -109,7 +109,7 @@ class loginPage(object):
         self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
-        logintype = 'Di'
+        logintype = 'SA'
         if logintype == 'SA':
             self.superadminpage = superadminHome()
             self.superadminpage.setup(loginPage)
@@ -173,6 +173,26 @@ class loginPage(object):
             self.superadminpage = superadminHome()
             self.superadminpage.setup(loginPage)
             return
+        if data[0]["dept"] == "D":
+            self.doctorpage = doctorHome()
+            self.doctorpage.setup(loginPage,data[0])
+            return
+        if data[0]["dept"] == "DS":
+            self.dispensarypage = dispensaryHome()
+            self.dispensarypage.setup(loginPage)
+            return
+        if data[0]["dept"] == "BB":
+            self.bloodBankpage = bloodBankHome()
+            self.bloodBankpage.setup(loginPage)
+            return
+        if data[0]["dept"] == "TC":
+            self.testCenterpage = testCenterHome()
+            self.testCenterpage.setup(loginPage)
+            return
+
+
+
+
 
 
 

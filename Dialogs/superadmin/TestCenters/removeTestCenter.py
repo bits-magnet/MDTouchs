@@ -2,9 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.messageBox import *
 
 class removeTestCenter(object):
-    def setup(self, removeTestCenter):
+    def setup(self, removeTestCenter,tcData):
         removeTestCenter.setObjectName("removeTestCenter")
         removeTestCenter.resize(475, 478)
         self.title = QtWidgets.QLabel(removeTestCenter)
@@ -71,10 +72,10 @@ class removeTestCenter(object):
 "font-weight:bold;")
         self.testCenterID.setObjectName("testCenterID")
 
-        self.retranslateUi(removeTestCenter)
+        self.retranslateUi(removeTestCenter,tcData)
         QtCore.QMetaObject.connectSlotsByName(removeTestCenter)
 
-    def retranslateUi(self, removeTestCenter):
+    def retranslateUi(self, removeTestCenter,tcData):
         _translate = QtCore.QCoreApplication.translate
         removeTestCenter.setWindowTitle(_translate("removeTestCenter", " "))
         self.title.setText(_translate("removeTestCenter", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Remove Test Center</span></p></body></html>"))
@@ -94,10 +95,26 @@ class removeTestCenter(object):
         self.IDLabel.setText(_translate("removeTestCenter", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Test Center ID :</span></p></body></html>"))
         self.testCenterID.setText(_translate("removeTestCenter", "test_center_ID"))
 
-        self.clickEvents(removeTestCenter)
+        self.clickEvents(removeTestCenter,tcData)
 
-    def clickEvents(self, parent):
-        self.removeButton.clicked.connect(lambda: self.clickOnRemoveButon(parent))
+    def clickEvents(self, parent,tcData):
+        self.testCenterID.setText(str(tcData["id"]))
+        self.name.setText(str(tcData["name"]))
+        self.address.setText(str(tcData["address"]))
+        self.pinCode.setText(str(tcData["pin"]))
+        self.state.setText(str(tcData["state"]))
+        self.city.setText(str(tcData["city"]))
+        self.contactNo.setText(str("nil"))
+        self.removeButton.clicked.connect(lambda: self.clickOnRemoveButton(parent,tcData))
 
-    def clickOnRemoveButton(self, parent):
-        pass
+    def clickOnRemoveButton(self, parent,tcData):
+        print(tcData)
+        parent.close()
+        self.window = messageBox()
+        self.window.infoBox("Test Center with ID : " + str(tcData["id"]) + " is deleted.")
+
+        # Deleting TestCenter
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(tcData["username"])
+        r = requests.delete(url=URL)
+        print(r)

@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
+from Dialogs.superadmin.Dispensaries.dispensaryProfile import *
 
 
 class Widget1(QWidget):
@@ -157,8 +158,7 @@ class viewDispensary(object):
     # Add data From Database
 
     def addRowDataFunction(self,dispensaryListDialog):
-        print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/dispensary/"
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/dispensaries/"
         self.dataToFill = []
         if self.searchdispensaryInput.text()== "":
             print("Yes")
@@ -278,8 +278,11 @@ class viewDispensary(object):
 
 
     def cellClick(self,row,col):
-        print(self.dataToFill[row])
-        print(row,col)
+        self.window = QDialog()
+        self.dialog = dispensaryProfile()
+        self.dialog.setup(self.window,self.dataToFill[row])
+        self.window.setModal(True)
+        self.window.show()
 
 
     # Exit Button FUnction

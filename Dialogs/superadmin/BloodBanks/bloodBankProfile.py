@@ -105,5 +105,4 @@ class bloodBankProfile(object):
         self.contact.setText(str(data["contact"]))
         self.state.setText(data["state"])
         self.city.setText(data["city"])
-        # username Bhool Gye
         self.pushButton.clicked.connect(lambda: parent.close())

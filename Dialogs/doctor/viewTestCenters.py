@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
-from Dialogs.superadmin.Hospitals.hospitalProfile import *
+from Dialogs.superadmin.TestCenters.testCenterProfile import *
 
 
 class Widget1(QWidget):
@@ -12,14 +12,14 @@ class Widget1(QWidget):
         QWidget.__init__(self,parent=None)
         layout = QFrame(self)
         layout.setGeometry(0,0,1271,119)
-        self.hospitalIdLabel = QLabel(layout)
-        self.hospitalIdLabel.setGeometry(QRect(10,10,170,30))
-        self.hospitalIdLabel.setText("Id : 123")
-        self.hospitalNameLabel = QLabel(layout)
-        self.hospitalIdLabel.setStyleSheet("text-align:left;font-size:16pt;font-weight:550;")
-        self.hospitalNameLabel.setGeometry(QRect(180,10,1000,30))
-        self.hospitalNameLabel.setText("Patidar Samaj Hospital ")
-        self.hospitalNameLabel.setStyleSheet("align:left;font-size:20pt;font-weight:600;")
+        self.testCenterIdLabel = QLabel(layout)
+        self.testCenterIdLabel.setGeometry(QRect(10,10,170,30))
+        self.testCenterIdLabel.setText("Id : 123")
+        self.testCenterNameLabel = QLabel(layout)
+        self.testCenterIdLabel.setStyleSheet("text-align:left;font-size:16pt;font-weight:550;")
+        self.testCenterNameLabel.setGeometry(QRect(180,10,1000,30))
+        self.testCenterNameLabel.setText("Patidar Samaj testCenter ")
+        self.testCenterNameLabel.setStyleSheet("align:left;font-size:20pt;font-weight:600;")
         self.addresslabel = QLabel(layout)
         self.addresslabel.setGeometry(QRect(190,40,500,80))
         self.addresslabel.setStyleSheet("font-weight: 500; font-size : 9pt")
@@ -34,62 +34,62 @@ class Widget1(QWidget):
         self.stateLabel.setStyleSheet("align:left;font-size:12pt;font-weight:550;")
 
 
-class viewHospital(object):
+class viewTestCenter(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, EventListDialog):
-        EventListDialog.setObjectName("EventListDialog")
-        EventListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
-        EventListDialog.resize(1291, 700)
-        EventListDialog.setFixedSize(1291,700)
+    def setup(self, testCenterListDialog):
+        testCenterListDialog.setObjectName("testCenterListDialog")
+        testCenterListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
+        testCenterListDialog.resize(1291, 700)
+        testCenterListDialog.setFixedSize(1291,700)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(EventListDialog.sizePolicy().hasHeightForWidth())
-        EventListDialog.setSizePolicy(sizePolicy)
-        self.tableWidget = QtWidgets.QTableWidget(EventListDialog)
+        sizePolicy.setHeightForWidth(testCenterListDialog.sizePolicy().hasHeightForWidth())
+        testCenterListDialog.setSizePolicy(sizePolicy)
+        self.tableWidget = QtWidgets.QTableWidget(testCenterListDialog)
         self.tableWidget.setGeometry(QtCore.QRect(10, 110, 1271, 520))
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
-        self.eventListHeader = QtWidgets.QLabel(EventListDialog)
-        self.eventListHeader.setGeometry(QtCore.QRect(10, 0, 1281, 61))
-        self.eventListHeader.setStyleSheet("font: 68 39pt \"Ubuntu\";\n"
-                                           "text-decoration : underline;\n"
-                                           "")
-        self.eventListHeader.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.eventListHeader.setObjectName("eventListHeader")
-        self.searchEventInput = QtWidgets.QLineEdit(EventListDialog)
-        self.searchEventInput.setGeometry(QtCore.QRect(10, 80, 460, 31))
-        self.searchEventInput.setObjectName("searchEventInput")
-        self.searchButton = QtWidgets.QPushButton(EventListDialog)
+        self.testCenterListHeader = QtWidgets.QLabel(testCenterListDialog)
+        self.testCenterListHeader.setGeometry(QtCore.QRect(10, 0, 1281, 61))
+        self.testCenterListHeader.setStyleSheet("font: 68 39pt \"Ubuntu\";\n"
+                                                "text-decoration : underline;\n"
+                                                "")
+        self.testCenterListHeader.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.testCenterListHeader.setObjectName("testCenterListHeader")
+        self.searchtestCenterInput = QtWidgets.QLineEdit(testCenterListDialog)
+        self.searchtestCenterInput.setGeometry(QtCore.QRect(10, 80, 460, 31))
+        self.searchtestCenterInput.setObjectName("searchtestCenterInput")
+        self.searchButton = QtWidgets.QPushButton(testCenterListDialog)
         self.searchButton.setGeometry(QtCore.QRect(1170, 80, 111, 31))
         self.searchButton.setObjectName("searchButton")
-        self.comboBox = QtWidgets.QComboBox(EventListDialog)
+        self.comboBox = QtWidgets.QComboBox(testCenterListDialog)
         self.comboBox.setGeometry(QtCore.QRect(470,80,200,31))
         self.comboBox.setObjectName("comboBox")
-        self.stateComboBox = QtWidgets.QComboBox(EventListDialog)
+        self.stateComboBox = QtWidgets.QComboBox(testCenterListDialog)
         self.stateComboBox.setGeometry(QtCore.QRect(670,80,200,31))
-        self.exitButton = QtWidgets.QPushButton(EventListDialog)
+        self.exitButton = QtWidgets.QPushButton(testCenterListDialog)
         self.exitButton.setGeometry(QtCore.QRect(580, 650, 121, 25))
-        self.cityComboBox = QtWidgets.QComboBox(EventListDialog)
+        self.cityComboBox = QtWidgets.QComboBox(testCenterListDialog)
         self.cityComboBox.setGeometry(QtCore.QRect(870,80,300,31))
         self.cityComboBox.addItem("All Cities")
         self.stateComboBox.addItem("All States")
 
         self.exitButton.setObjectName("exitButton")
 
-        self.retranslateUi(EventListDialog)
-        self.stateAddFunction(EventListDialog)
-        QtCore.QMetaObject.connectSlotsByName(EventListDialog)
+        self.retranslateUi(testCenterListDialog)
+        self.stateAddFunction(testCenterListDialog)
+        QtCore.QMetaObject.connectSlotsByName(testCenterListDialog)
 
-    def stateAddFunction(self,EventListDialog):
+    def stateAddFunction(self,testCenterListDialog):
         for i in states.values():
             self.stateComboBox.addItem(i)
 
-        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(EventListDialog))
+        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(testCenterListDialog))
 
-    def cityAddFunction(self,EventListDialog):
+    def cityAddFunction(self,testCenterListDialog):
         state = self.stateComboBox.currentText()
 
         while self.cityComboBox.count() > 1:
@@ -100,42 +100,42 @@ class viewHospital(object):
             self.cityComboBox.addItem(i)
 
 
-    def retranslateUi(self, EventListDialog):
+    def retranslateUi(self, testCenterListDialog):
         _translate = QtCore.QCoreApplication.translate
-        EventListDialog.setWindowTitle(_translate("HospitalListDialog", "Dialog"))
-        self.eventListHeader.setText(_translate("EventListDialog", "HOSPITALS"))
-        self.searchEventInput.setPlaceholderText(_translate("EventListDialog", "Enter Hospital ID or Name"))
-        self.searchButton.setText(_translate("EventListDialog", "Search"))
-        self.exitButton.setText(_translate("EventListDialog", "Exit"))
+        testCenterListDialog.setWindowTitle(_translate("testCenterListDialog", "Dialog"))
+        self.testCenterListHeader.setText(_translate("testCenterListDialog", "Test Center"))
+        self.searchtestCenterInput.setPlaceholderText(_translate("testCenterListDialog", "Enter testCenter ID or Name"))
+        self.searchButton.setText(_translate("testCenterListDialog", "Search"))
+        self.exitButton.setText(_translate("testCenterListDialog", "Exit"))
         self.tableWidget.horizontalHeader().hide()
-        self.searchEventInput.setPlaceholderText("Enter Id")
+        self.searchtestCenterInput.setPlaceholderText("Enter Id")
         self.tableWidget.verticalHeader().hide()
         self.comboBox.addItem("Search By Id")
         self.comboBox.addItem("Search By Name")
-        self.comboBox.currentIndexChanged.connect(lambda : self.placeholder(EventListDialog))
+        self.comboBox.currentIndexChanged.connect(lambda : self.placeholder(testCenterListDialog))
 
         #############
 
-        self.fillEventdata(EventListDialog)
-        self.events(EventListDialog)
+        self.filltestCenterdata(testCenterListDialog)
+        self.testCenters(testCenterListDialog)
 
 
     # Fil rows and column in an data
-    def events(self,EventListDialog):
+    def testCenters(self,testCenterListDialog):
 
         # Exit Button Functionality
-        self.searchButton.clicked.connect(lambda : self.addRowDataFunction(EventListDialog))
-        self.exitButton.clicked.connect(lambda : self.exitFunction(EventListDialog))
+        self.searchButton.clicked.connect(lambda : self.addRowDataFunction(testCenterListDialog))
+        self.exitButton.clicked.connect(lambda : self.exitFunction(testCenterListDialog))
 
-    def placeholder(self,EventListDialog):
+    def placeholder(self,testCenterListDialog):
         a = self.comboBox.currentText()
         if "Id" in a:
-            self.searchEventInput.setPlaceholderText("Enter Hospital  Id")
+            self.searchtestCenterInput.setPlaceholderText("Enter testCenter  Id")
         else:
-            self.searchEventInput.setPlaceholderText("Enter Hospital Name")
+            self.searchtestCenterInput.setPlaceholderText("Enter testCenter Name")
 
 
-    def fillEventdata(self,EventListDialog):
+    def filltestCenterdata(self,testCenterListDialog):
 
         self.tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
         self.tableWidget.setAutoScrollMargin(100)
@@ -152,16 +152,16 @@ class viewHospital(object):
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
 
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText("Hospital ID")
+        item.setText("testCenter ID")
 
 
     # Add data From Database
 
-    def addRowDataFunction(self,EventListDialog):
+    def addRowDataFunction(self,testCenterListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/hospital/"
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/testcentre/"
         self.dataToFill = []
-        if self.searchEventInput.text()== "":
+        if self.searchtestCenterInput.text()== "":
             print("Yes")
             if self.stateComboBox.currentText() == "All States":
                 print("All States")
@@ -190,7 +190,7 @@ class viewHospital(object):
                     self.dataToFill = l
             print(self.dataToFill)
         elif self.comboBox.currentText() == "Search By Id":
-            id =  self.searchEventInput.text()
+            id =  self.searchtestCenterInput.text()
             if id.isdigit():
                 import requests
                 url = URL + id
@@ -210,7 +210,7 @@ class viewHospital(object):
                 self.tableWidget.setRowCount(0)
                 return
         else:
-            name = self.searchEventInput.text()
+            name = self.searchtestCenterInput.text()
             print(name)
             if self.stateComboBox.currentText() == "All States":
                 import requests
@@ -248,7 +248,7 @@ class viewHospital(object):
         if len(self.dataToFill) == 0:
             self.tableWidget.setRowCount(0)
             self.dialog = messageBox()
-            self.dialog.infoBox("No Hospitals Found")
+            self.dialog.infoBox("No Test Centers Found")
             return
         i = 0
         print(self.dataToFill)
@@ -256,8 +256,8 @@ class viewHospital(object):
         for hdata in self.dataToFill:
 
             self.table = Widget1()
-            self.table.hospitalNameLabel.setText(str(hdata["name"]))
-            self.table.hospitalIdLabel.setText("Id : " + str(hdata["id"]))
+            self.table.testCenterNameLabel.setText(str(hdata["name"]))
+            self.table.testCenterIdLabel.setText("Id : " + str(hdata["id"]))
             self.table.cityLabel.setText("City : " + str(hdata["city"]))
             self.table.stateLabel.setText("State : " + str(hdata["state"]))
             self.table.addresslabel.setText(hdata["address"])
@@ -270,7 +270,7 @@ class viewHospital(object):
 
             i += 1
         self.tableWidget.cellClicked.connect(self.cellClick)
-        self.searchEventInput.setText("")
+        self.searchtestCenterInput.setText("")
 
 
 
@@ -280,7 +280,7 @@ class viewHospital(object):
 
     def cellClick(self,row,col):
         self.window = QDialog()
-        self.dialog = hospitalProfile()
+        self.dialog = testCenterProfile()
         self.dialog.setup(self.window,self.dataToFill[row])
         self.window.setModal(True)
         self.window.show()
@@ -288,6 +288,6 @@ class viewHospital(object):
 
     # Exit Button FUnction
 
-    def exitFunction(self,EventListDialog):
-        EventListDialog.close()
+    def exitFunction(self,testCenterListDialog):
+        testCenterListDialog.close()
 

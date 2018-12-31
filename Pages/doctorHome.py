@@ -3,9 +3,15 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.doctor.editProfile import *
+from Dialogs.doctor.viewHospitals import *
+from Dialogs.doctor.viewBloodBankCenters import *
+from Dialogs.doctor.viewDispensaries import *
+from Dialogs.doctor.viewTestCenters import *
+from Dialogs.changePassword import *
 
 class doctorHome(object):
-    def setup(self, doctorHome):
+    def setup(self, doctorHome,logindata = None):
+        self.logindata = logindata
         doctorHome.setObjectName("doctorHome")
         doctorHome.resize(1366, 779)
         self.centralwidget = QtWidgets.QWidget(doctorHome)
@@ -271,10 +277,10 @@ class doctorHome(object):
         self.myHospitalLabel.setObjectName("myHospitalLabel")
         doctorHome.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(doctorHome)
+        self.retranslateUi(doctorHome,logindata)
         QtCore.QMetaObject.connectSlotsByName(doctorHome)
 
-    def retranslateUi(self, doctorHome):
+    def retranslateUi(self, doctorHome,logindata):
         _translate = QtCore.QCoreApplication.translate
         doctorHome.setWindowTitle(_translate("doctorHome", "MainWindow"))
         self.title.setText(_translate("doctorHome", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -295,14 +301,62 @@ class doctorHome(object):
         self.searchTestCentersLabel.setText(_translate("doctorHome", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Search </span></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Test Centers</span></p></body></html>"))
         self.searchDispensariesLabel.setText(_translate("doctorHome", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Search Dispensaries</span></p></body></html>"))
 
-        self.clickEvents(doctorHome)
+        self.clickEvents(doctorHome,logindata)
 
-    def clickEvents(self, parent):
+    def clickEvents(self, parent,logindata):
         self.editProfile.clicked.connect(lambda: self.clickOnEditProfile(parent))
+        self.searchBloodBankCenters.clicked.connect(lambda : self.clickOnSearchBloodBankCenter())
+        self.searchDispensaries.clicked.connect(lambda : self.clickOnSearchDispensary())
+        self.searchHospitals.clicked.connect(lambda : self.clickOnSearchHospital())
+        self.searchTestCenters.clicked.connect(lambda : self.clickOnSearchTestCenter())
+        self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
+        self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+
+    def clickOnChangePassword(self,parent):
+        self.window = QDialog()
+        self.dialog = changePassword()
+        self.dialog.setup(self.window,self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
+        r = requests.get(url=URL)
+        self.logindata = r.json()
+
+    def clickOnLogoutButton(self,parent):
+        parent.loginpage.setup(parent)
 
     def clickOnEditProfile(self, parent):
         self.window = QDialog()
         self.dialog = editProfile()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchDispensary(self):
+        self.window = QDialog()
+        self.dialog = viewDispensary()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchBloodBankCenter(self):
+        self.window = QDialog()
+        self.dialog = viewBloodBankCenter()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchTestCenter(self):
+        self.window = QDialog()
+        self.dialog = viewTestCenter()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSearchHospital(self):
+        self.window = QDialog()
+        self.dialog = viewHospital()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

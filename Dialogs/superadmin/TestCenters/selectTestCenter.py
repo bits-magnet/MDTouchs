@@ -6,6 +6,9 @@ from Data.States import *
 from Dialogs.superadmin.TestCenters.removeTestCenter import *
 
 class selectTestCenter(object):
+    def __init__(self):
+        self.last_city = ''
+        self.hospital_list = []
     def setup(self, selectTestCenter):
         selectTestCenter.setObjectName("selectTestCenter")
         selectTestCenter.resize(366, 323)
@@ -67,24 +70,89 @@ class selectTestCenter(object):
         self.removeButton.clicked.connect(lambda: self.clickOnRemoveButton(parent))
 
     def clickOnRemoveButton(self, parent):
+        if self.testCenterComboBox.count() == 0 and self.searchByID.text() == "":
+            self.dialog = messageBox()
+            self.dialog.warningBox("Select the Test Center or Enter the Id")
+            return
+        if self.searchByID.text() != "":
+            id = self.searchByID.text()
+            print(id)
+            if id.isdigit():
+                import requests
+                url = "https://mdtouch.herokuapp.com/api/testcentre/" + id
+                r = requests.get(url= url)
+                l = r.json()
+                print(l)
+                if l == {'detail': 'Not found.'}:
+                    self.dialog = messageBox()
+                    self.dialog.warningBox("No Id Match")
+                    return
+                else:
+                    self.window = QDialog()
+                    self.dialog = removeTestCenter()
+                    self.dialog.setup(self.window,l)
+                    self.window.setModal(True)
+                    self.window.show()
+                    parent.close()
+                    return
+            else:
+                self.dialog = messageBox()
+                self.dialog.warningBox("Id must be integer")
+            return
+        hdata = {}
+        for i in self.testCenter_list:
+            if i["name"] == self.testCenterComboBox.currentText():
+                hdata = i
+        parent.close()
         self.window = QDialog()
         self.dialog = removeTestCenter()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,hdata)
         self.window.setModal(True)
         self.window.show()
 
-    def stateAddFunction(self, parent):
+    def stateAddFunction(self,parent):
         for i in states.values():
             self.stateComboBox.addItem(i)
         for i in cities["Andhra Pradesh"]:
             self.cityComboBox.addItem(i)
-        self.stateComboBox.currentIndexChanged.connect(lambda: self.cityAddFunction(parent))
+        self.stateComboBox.currentIndexChanged.connect(lambda : self.cityAddFunction(parent))
+        self.stateComboBox.currentIndexChanged.connect(lambda :self.testCenterComboBoxAdd(parent))
 
-    def cityAddFunction(self, parent):
+    def cityAddFunction(self,parent):
         state = self.stateComboBox.currentText()
-
-        while self.cityComboBox.count() > 0:
+        i = self.cityComboBox.count()
+        flag = True
+        while i > 0:
+            flag = False
             self.cityComboBox.removeItem(0)
-
+            i-=1
+        flag = True
         for i in cities[state]:
-            self.city.addItem(i)
+            flag = False
+            self.cityComboBox.addItem(i)
+        flag = True
+        if flag :
+            self.cityComboBox.currentIndexChanged.connect(lambda :self.testCenterComboBoxAdd(parent))
+
+    def testCenterComboBoxAdd(self,parent):
+        if self.last_city == self.cityComboBox.currentText() or self.cityComboBox.count() != len(cities[self.stateComboBox.currentText()]) or self.cityComboBox.itemText(self.cityComboBox.count()-1) != cities[self.stateComboBox.currentText()][-1]:
+            return
+        self.last_city = self.cityComboBox.currentText()
+        # First Erase all testCenters
+        i = self.testCenterComboBox.count()
+        while i > 0:
+            i -= 1
+            self.testCenterComboBox.removeItem(0)
+
+        import requests
+        print(self.cityComboBox.currentText())
+        URL = "https://mdtouch.herokuapp.com/api/testcentre/"
+        param ={
+            "city": self.cityComboBox.currentText()
+        }
+        r = requests.get(url=URL,params=param)
+        l = r.json()
+        print(l)
+        self.testCenter_list = l
+        for i in l:
+            self.testCenterComboBox.addItem(str(i["name"]))

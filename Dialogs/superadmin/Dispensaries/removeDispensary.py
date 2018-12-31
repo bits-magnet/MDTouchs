@@ -2,9 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.messageBox import *
 
 class removeDispensary(object):
-    def setup(self, removeDispensary):
+    def setup(self, removeDispensary,disepnsaryData):
         removeDispensary.setObjectName("removeDispensary")
         removeDispensary.resize(568, 464)
         removeDispensary.setWindowTitle("")
@@ -72,10 +73,10 @@ class removeDispensary(object):
 "font-weight: bold;")
         self.dispensaryID.setObjectName("dispensaryID")
 
-        self.retranslateUi(removeDispensary)
+        self.retranslateUi(removeDispensary,disepnsaryData)
         QtCore.QMetaObject.connectSlotsByName(removeDispensary)
 
-    def retranslateUi(self, removeDispensary):
+    def retranslateUi(self, removeDispensary,dispensaryData):
         _translate = QtCore.QCoreApplication.translate
         removeDispensary.setWindowTitle(_translate("removeDispensary", " "))
         self.title.setText(_translate("removeDispensary", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Remove Dispensary</span></p></body></html>"))
@@ -95,10 +96,27 @@ class removeDispensary(object):
         self.IDLabel.setText(_translate("removeDispensary", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">ID :</span></p></body></html>"))
         self.dispensaryID.setText(_translate("removeDispensary", "DispensaryID"))
 
-        self.clickEvents(removeDispensary)
+        self.clickEvents(removeDispensary,dispensaryData)
 
-    def clickEvents(self, parent):
-        self.removeButton.clicked.connect(lambda: self.clickOnRemoveDispensary(parent))
+    def clickEvents(self, parent,dispensaryData):
+        self.dispensaryID.setText(str(dispensaryData["id"]))
+        self.name.setText(str(dispensaryData["name"]))
+        self.address.setText(str(dispensaryData["address"]))
+        self.city.setText(str(dispensaryData["city"]))
+        self.state.setText(str(dispensaryData["state"]))
+        self.contact.setText(str("nil"))
+        self.pinCode.setText(str(dispensaryData["pin"]))
+        self.removeButton.clicked.connect(lambda: self.clickOnRemoveDispensary(parent,dispensaryData))
 
-    def clickOnRemoveDispensary(self, parent):
-        pass
+    def clickOnRemoveDispensary(self, parent,dispensaryData):
+        #print("Remove Button called")
+        print(dispensaryData)
+        parent.close()
+        self.window = messageBox()
+        self.window.infoBox("Dispensary with ID : " + str(dispensaryData["id"]) + " is deleted.")
+
+        # Deleting Hospital
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(dispensaryData["username"])
+        r = requests.delete(url=URL)
+        print(r)
