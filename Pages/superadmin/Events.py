@@ -334,6 +334,6 @@ class Events(object):
     def clickOnViewEvent(self):
         self.window = QDialog()
         self.dialog = viewEvent()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,'SA')
         self.window.setModal(True)
         self.window.show()

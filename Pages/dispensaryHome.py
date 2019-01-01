@@ -2,9 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.changePassword import *
 
 class dispensaryHome(object):
-    def setup(self, dispensaryHome):
+    def setup(self, dispensaryHome,loginData = None):
+        self.logindata = loginData
         dispensaryHome.setObjectName("dispensaryHome")
         dispensaryHome.resize(1366, 786)
         dispensaryHome.setStyleSheet("")
@@ -305,4 +307,20 @@ class dispensaryHome(object):
         self.clickEvents(dispensaryHome)
 
     def clickEvents(self, parent):
-        pass
+        self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
+        self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+
+    def clickOnLogoutButton(self,parent):
+        parent.loginpage.setup(parent)
+
+    def clickOnChangePassword(self,parent):
+        self.window = QDialog()
+        self.dialog = changePassword()
+        self.dialog.setup(self.window,self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+        return
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
+        r = requests.get(url=URL)
+        self.logindata = r.json()

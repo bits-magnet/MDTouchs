@@ -2,9 +2,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.messageBox import *
+from Dialogs.changePassword import *
 
 class hospitalHome(object):
-    def setup(self, hospitalHome):
+    def setup(self, hospitalHome,loginData = None):
+        self.logindata = loginData
         hospitalHome.setObjectName("hospitalHome")
         hospitalHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(hospitalHome)
@@ -313,10 +316,10 @@ class hospitalHome(object):
         self.statisticsLabel.setObjectName("statisticsLabel")
         hospitalHome.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(hospitalHome)
+        self.retranslateUi(hospitalHome,loginData)
         QtCore.QMetaObject.connectSlotsByName(hospitalHome)
 
-    def retranslateUi(self, hospitalHome):
+    def retranslateUi(self, hospitalHome,loginData):
         _translate = QtCore.QCoreApplication.translate
         hospitalHome.setWindowTitle(_translate("hospitalHome", "MainWindow"))
         self.searchBloodBanksLabel.setText(_translate("hospitalHome", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Search </span></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Blood Banks</span></p></body></html>"))
@@ -340,7 +343,24 @@ class hospitalHome(object):
         self.eventsLabel.setText(_translate("hospitalHome", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Events</span></p></body></html>"))
         self.statisticsLabel.setText(_translate("hospitalHome", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Statistics</span></p></body></html>"))
 
-        self.clickEvents(hospitalHome)
+        self.clickEvents(hospitalHome,loginData)
 
-    def clickEvents(self, parent):
-        pass
+    def clickEvents(self, parent,loginData):
+
+        self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
+        self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+
+    def clickOnLogoutButton(self,parent):
+        parent.loginpage.setup(parent)
+
+    def clickOnChangePassword(self,parent):
+        self.window = QDialog()
+        self.dialog = changePassword()
+        self.dialog.setup(self.window,self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+        return
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
+        r = requests.get(url=URL)
+        self.logindata = r.json()

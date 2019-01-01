@@ -4,7 +4,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class eventProfile(object):
-    def setup(self, eventProfile):
+    def setup(self, eventProfile,eventData= None):
+        self.eventdata = eventData
         eventProfile.setObjectName("eventProfile")
         eventProfile.resize(613, 422)
         eventProfile.setStyleSheet("")
@@ -94,4 +95,23 @@ class eventProfile(object):
         self.textBrowser.setPlaceholderText(_translate("eventProfile", "This area is used to store description."))
         self.OKButton.setText(_translate("eventProfile", "OK"))
 
+
         self.OKButton.clicked.connect(lambda: eventProfile.close())
+        self.clickevent(eventProfile)
+
+    def clickevent(self,parent):
+        self.eventID.setText(self.eventdata["id"])
+        self.venue.setText(self.eventdata["eventlocation"])
+        self.date.setText(str(self.eventdata["dateofevent"]))
+        self.name.setText(self.eventdata["title"])
+        self.textBrowser.setText(self.eventdata["description"])
+        if self.eventdata["hospitalid"]:
+            self.creator.setText("Hospital Id : " +str(self.eventdata["hospitalid"]))
+        elif self.eventdata["bloodbankid"]:
+            self.creator.setText("Blood BankCentre Id : " + str(self.eventdata["bloodbankid"]))
+        elif self.eventdata["dispensaryid"]:
+            self.creator.setText("Dispensary Id : " + str(self.eventdata["dispensaryid"]))
+        elif self.eventdata["testcentreid"]:
+            self.creator.setText("Test Center Id : " + str(self.eventdata["testcentreid"]))
+        else :
+            self.creator.setText("SuperAdmin")

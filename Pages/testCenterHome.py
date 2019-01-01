@@ -2,9 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.changePassword import *
 
 class testCenterHome(object):
-    def setup(self, testCenterHome):
+    def setup(self, testCenterHome,loginData= None):
+        self.logindata = loginData
         testCenterHome.setObjectName("testCenterHome")
         testCenterHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(testCenterHome)
@@ -293,4 +295,23 @@ class testCenterHome(object):
         self.clickEvents(testCenterHome)
 
     def clickEvents(self, parent):
-        pass
+        self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
+        self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+
+    def clickOnLogoutButton(self,parent):
+        parent.loginpage.setup(parent)
+
+    def clickOnChangePassword(self,parent):
+        self.window = QDialog()
+        self.dialog = changePassword()
+        self.dialog.setup(self.window,self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+
+        ###################### Please delete this return
+        return
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
+        r = requests.get(url=URL)
+        self.logindata = r.json()
+

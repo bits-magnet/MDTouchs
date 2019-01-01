@@ -4,6 +4,8 @@ from PyQt5.QtCore import *
 from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
+from Dialogs.superadmin.Events.eventProfile import *
+from Dialogs.superadmin.Events.new_eventProfile import *
 
 
 class Widget1(QWidget):
@@ -21,14 +23,14 @@ class Widget1(QWidget):
         self.eventNameLabel.setStyleSheet("align:left;font-size:20pt;font-weight:600;")
         self.addresslabel = QLabel(layout)
         self.addresslabel.setGeometry(QRect(190,40,500,80))
-        self.addresslabel.setStyleSheet("font-weight: 500; font-size : 9pt")
+        self.addresslabel.setStyleSheet("font-weight: 600; font-size : 9pt")
         self.addresslabel.setText("Aghhjhjjjjjjjjjjjjjjjjjj\nshahkhj\nsajhjdffffffffffffffkas\n")
         self.cityLabel = QLabel(layout)
-        self.cityLabel.setGeometry(QRect(500,80,300,30))
+        self.cityLabel.setGeometry(QRect(500,10,300,30))
         self.cityLabel.setText("City : Lokandwala")
         self.cityLabel.setStyleSheet("align:left;font-size:12pt;font-weight:600;")
         self.stateLabel = QLabel(layout)
-        self.stateLabel.setGeometry(QRect(900,80,300,30))
+        self.stateLabel.setGeometry(QRect(900,10,300,30))
         self.stateLabel.setText("State : Bihar")
         self.stateLabel.setStyleSheet("align:left;font-size:12pt;font-weight:550;")
 
@@ -36,7 +38,8 @@ class Widget1(QWidget):
 class viewEvent(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, EventListDialog):
+    def setup(self, EventListDialog,type = None):
+        self.type = type
         EventListDialog.setObjectName("EventListDialog")
         EventListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
         EventListDialog.resize(1291, 700)
@@ -110,7 +113,7 @@ class viewEvent(object):
         self.searchEventInput.setPlaceholderText("Enter Id")
         self.tableWidget.verticalHeader().hide()
         self.comboBox.addItem("Search By Id")
-        self.comboBox.addItem("Search By Name")
+        #self.comboBox.addItem("Search By Name")
         self.comboBox.currentIndexChanged.connect(lambda : self.placeholder(EventListDialog))
 
         #############
@@ -255,11 +258,20 @@ class viewEvent(object):
         for hdata in self.dataToFill:
 
             self.table = Widget1()
-            self.table.eventNameLabel.setText(str(hdata["name"]))
+            self.table.eventNameLabel.setText(str(hdata["title"]))
             self.table.eventIdLabel.setText("Id : " + str(hdata["id"]))
             self.table.cityLabel.setText("City : " + str(hdata["city"]))
             self.table.stateLabel.setText("State : " + str(hdata["state"]))
-            self.table.addresslabel.setText(hdata["address"])
+            if hdata["hospitalid"]:
+                self.table.addresslabel.setText("Host : Hospital Id : " +str(hdata["hospitalid"]))
+            elif hdata["bloodbankid"]:
+                self.table.addresslabel.setText("Host : BloodbankCentre Id : " + str(hdata["bloodbankid"]))
+            elif hdata["dispensaryid"]:
+                self.table.addresslabel.setText("Host : Dispensary Id : " + str(hdata["dispensaryid"]))
+            elif hdata["testcentreid"]:
+                self.table.addresslabel.setText("Host : Test Center Id : " + str(hdata["testcentreid"]))
+            else :
+                self.table.addresslabel.setText("Host : SuperAdmin")
             if(i%2):
                 self.table.setStyleSheet("background:rgb(225,225,225);")
             else:
@@ -279,7 +291,20 @@ class viewEvent(object):
 
     def cellClick(self,row,col):
         print(self.dataToFill[row])
-        print(row,col)
+        if self.type :
+            self.window = QDialog()
+            self.dialog = new_eventProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
+        else :
+            self.window = QDialog()
+            self.dialog = eventProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
+
+
 
 
     # Exit Button FUnction

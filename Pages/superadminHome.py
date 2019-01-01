@@ -12,7 +12,8 @@ from Pages.superadmin.TestCenter import *
 
 
 class superadminHome(object):
-    def setup(self, Home):
+    def setup(self, Home,loginData = None):
+        self.logindata = loginData
         Home.setObjectName("Home")
         Home.resize(1366, 768)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)

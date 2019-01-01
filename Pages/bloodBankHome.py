@@ -4,7 +4,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class bloodBankHome(object):
-    def setup(self, bloodBankHome):
+    def setup(self, bloodBankHome,loginData = None):
+        self.logindata = loginData
         bloodBankHome.setObjectName("bloodBankHome")
         bloodBankHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(bloodBankHome)
@@ -257,4 +258,7 @@ class bloodBankHome(object):
         self.clickEvents(bloodBankHome)
 
     def clickEvents(self, parent):
-        pass
+        self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
+
+    def clickOnLogoutButton(self,parent):
+        parent.parent.loginpage.setup(parent)

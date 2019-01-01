@@ -360,3 +360,4 @@ class doctorHome(object):
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()
+

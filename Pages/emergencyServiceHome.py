@@ -1,10 +1,14 @@
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.changePassword import *
 
 class emergencyServiceHome(object):
-    def setup(self, emergencyServiceHome):
+    def setup(self, emergencyServiceHome,loginData = None):
+        self.logindata = loginData
         emergencyServiceHome.setObjectName("emergencyServiceHome")
         emergencyServiceHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(emergencyServiceHome)
@@ -30,8 +34,8 @@ class emergencyServiceHome(object):
         self.profileLabel.setMinimumSize(QtCore.QSize(100, 30))
         self.profileLabel.setMaximumSize(QtCore.QSize(400, 100))
         self.profileLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                        "font-weight:bold;\n"
+                                        "text-decoration: underline")
         self.profileLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.profileLabel.setObjectName("profileLabel")
         self.changePasswordLabel = QtWidgets.QLabel(self.centralwidget)
@@ -44,8 +48,8 @@ class emergencyServiceHome(object):
         self.changePasswordLabel.setMinimumSize(QtCore.QSize(100, 30))
         self.changePasswordLabel.setMaximumSize(QtCore.QSize(400, 100))
         self.changePasswordLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                               "font-weight:bold;\n"
+                                               "text-decoration: underline")
         self.changePasswordLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.changePasswordLabel.setObjectName("changePasswordLabel")
         self.addAmbulanceLabel = QtWidgets.QLabel(self.centralwidget)
@@ -58,8 +62,8 @@ class emergencyServiceHome(object):
         self.addAmbulanceLabel.setMinimumSize(QtCore.QSize(100, 30))
         self.addAmbulanceLabel.setMaximumSize(QtCore.QSize(400, 100))
         self.addAmbulanceLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                             "font-weight:bold;\n"
+                                             "text-decoration: underline")
         self.addAmbulanceLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.addAmbulanceLabel.setObjectName("addAmbulanceLabel")
         self.noticesLabel = QtWidgets.QLabel(self.centralwidget)
@@ -72,8 +76,8 @@ class emergencyServiceHome(object):
         self.noticesLabel.setMinimumSize(QtCore.QSize(100, 30))
         self.noticesLabel.setMaximumSize(QtCore.QSize(400, 100))
         self.noticesLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                        "font-weight:bold;\n"
+                                        "text-decoration: underline")
         self.noticesLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.noticesLabel.setObjectName("noticesLabel")
         self.requestsLabel = QtWidgets.QLabel(self.centralwidget)
@@ -86,8 +90,8 @@ class emergencyServiceHome(object):
         self.requestsLabel.setMinimumSize(QtCore.QSize(100, 30))
         self.requestsLabel.setMaximumSize(QtCore.QSize(400, 100))
         self.requestsLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                         "font-weight:bold;\n"
+                                         "text-decoration: underline")
         self.requestsLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.requestsLabel.setObjectName("requestsLabel")
         self.inbox = QtWidgets.QPushButton(self.centralwidget)
@@ -161,8 +165,8 @@ class emergencyServiceHome(object):
         self.viewAmbulancesLabel.setMinimumSize(QtCore.QSize(100, 30))
         self.viewAmbulancesLabel.setMaximumSize(QtCore.QSize(400, 100))
         self.viewAmbulancesLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                               "font-weight:bold;\n"
+                                               "text-decoration: underline")
         self.viewAmbulancesLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.viewAmbulancesLabel.setObjectName("viewAmbulancesLabel")
         self.title = QtWidgets.QLabel(self.centralwidget)
@@ -225,8 +229,8 @@ class emergencyServiceHome(object):
         self.emergencyServiceName.setMinimumSize(QtCore.QSize(100, 30))
         self.emergencyServiceName.setMaximumSize(QtCore.QSize(400, 100))
         self.emergencyServiceName.setStyleSheet("font-size:20pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                                "font-weight:bold;\n"
+                                                "text-decoration: underline")
         self.emergencyServiceName.setObjectName("emergencyServiceName")
         self.recordsLabel = QtWidgets.QLabel(self.centralwidget)
         self.recordsLabel.setGeometry(QtCore.QRect(420, 280, 221, 51))
@@ -238,8 +242,8 @@ class emergencyServiceHome(object):
         self.recordsLabel.setMinimumSize(QtCore.QSize(100, 30))
         self.recordsLabel.setMaximumSize(QtCore.QSize(400, 100))
         self.recordsLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight:bold;\n"
-"text-decoration: underline")
+                                        "font-weight:bold;\n"
+                                        "text-decoration: underline")
         self.recordsLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.recordsLabel.setObjectName("recordsLabel")
         emergencyServiceHome.setCentralWidget(self.centralwidget)
@@ -257,16 +261,30 @@ class emergencyServiceHome(object):
         self.requestsLabel.setText(_translate("emergencyServiceHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Requests</span></p></body></html>"))
         self.viewAmbulancesLabel.setText(_translate("emergencyServiceHome", "<html><head/><body><p><span style=\" font-size:16pt;\">View Ambulances</span></p></body></html>"))
         self.title.setText(_translate("emergencyServiceHome", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36pt; font-weight:600; text-decoration: underline;\">MDTouch</span></p></body></html>"))
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36pt; font-weight:600; text-decoration: underline;\">MDTouch</span></p></body></html>"))
         self.emergencyServiceName.setText(_translate("emergencyServiceHome", "emergency_service_name"))
         self.recordsLabel.setText(_translate("emergencyServiceHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Records</span></p></body></html>"))
 
-
         self.clickEvents(emergencyServiceHome)
 
-    def clickEvents(self, parent):
-        pass
+    def clickEvents(self,parent):
+        self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
+        self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
 
+    def clickOnLogoutButton(self,parent):
+        parent.loginpage.setup(parent)
+
+    def clickOnChangePassword(self,parent):
+        self.window = QDialog()
+        self.dialog = changePassword()
+        self.dialog.setup(self.window,self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+        return
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
+        r = requests.get(url=URL)
+        self.logindata = r.json()
