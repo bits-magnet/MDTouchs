@@ -12,6 +12,7 @@ from Dialogs.superadmin.TestCenters.viewTestCenters import *
 from Dialogs.events import *
 from Dialogs.hospital.hospitalMyProfileOption import *
 from Dialogs.billsDialog import *
+from Dialogs.Notice.NoticeList import *
 
 class hospitalHome(object):
     def setup(self, hospitalHome,loginData = None):
@@ -380,6 +381,7 @@ class hospitalHome(object):
         self.events.clicked.connect(lambda : self.clickOnEvents())
         self.profile.clicked.connect(lambda : self.clickOnProfile(parent))
         self.bills.clicked.connect(lambda : self.clickOnBills(parent))
+        self.notices.clicked.connect(lambda : self.clickOnNotice())
 
     def clickOnBills(self,parent):
         self.window = QDialog()
@@ -403,14 +405,9 @@ class hospitalHome(object):
     def clickOnChangePassword(self,parent):
         self.window = QDialog()
         self.dialog = changePassword()
-        self.dialog.setup(self.window,self.logindata)
+        self.dialog.setup(self.window,self.logindata,self)
         self.window.setModal(True)
         self.window.show()
-        return
-        import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
-        r = requests.get(url=URL)
-        self.logindata = r.json()
 
     def clickOnEvents(self):
         self.window = QDialog()
@@ -443,6 +440,13 @@ class hospitalHome(object):
     def clickOnEs(self):
         self.window = QDialog()
         self.dialog = viewEs()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnNotice(self):
+        self.window = QDialog()
+        self.dialog = noticeList()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

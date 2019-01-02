@@ -1,18 +1,12 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'addNotice.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+import requests
+from Dialogs.messageBox import *
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(580, 439)
-        self.frame = QtWidgets.QFrame(Form)
+class addNotice(object):
+    def setup(self, addNotice):
+        addNotice.setObjectName("addNotice")
+        addNotice.resize(580, 439)
+        self.frame = QtWidgets.QFrame(addNotice)
         self.frame.setGeometry(QtCore.QRect(10, 10, 561, 381))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -35,18 +29,41 @@ class Ui_Form(object):
         self.noticeLabel = QtWidgets.QLabel(self.frame)
         self.noticeLabel.setGeometry(QtCore.QRect(10, 110, 91, 41))
         self.noticeLabel.setObjectName("noticeLabel")
-        self.publishButton = QtWidgets.QPushButton(Form)
+        self.publishButton = QtWidgets.QPushButton(addNotice)
         self.publishButton.setGeometry(QtCore.QRect(240, 410, 89, 25))
         self.publishButton.setObjectName("publishButton")
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(addNotice)
+        QtCore.QMetaObject.connectSlotsByName(addNotice)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, addNotice):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Add Notice"))
-        self.addNoticeLabel.setText(_translate("Form", "<html><head/><body><p><span style=\" text-decoration: underline;\">Add Notice</span></p></body></html>"))
-        self.titlelabel.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Title :</span></p></body></html>"))
-        self.noticeLabel.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Notice  :</span></p></body></html>"))
-        self.publishButton.setText(_translate("Form", "Publish"))
+        addNotice.setWindowTitle(_translate("addNotice", "Add Notice"))
+        self.addNoticeLabel.setText(_translate("addNotice", "<html><head/><body><p><span style=\" text-decoration: underline;\">Add Notice</span></p></body></html>"))
+        self.titlelabel.setText(_translate("addNotice", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Title :</span></p></body></html>"))
+        self.noticeLabel.setText(_translate("addNotice", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Notice  :</span></p></body></html>"))
+        self.publishButton.setText(_translate("addNotice", "Publish"))
+        self.events(addNotice)
+
+    def events(self,parent):
+        self.publishButton.clicked.connect(lambda : self.clickOnPublishButton(parent))
+
+    def clickOnPublishButton(self,parent):
+        title = self.title.text()
+        notice = self.notice.toPlainText()
+        if title == "" or len(notice) < 10:
+            self.window = messageBox()
+            self.window.infoBox("Please Provide Sufficient Information")
+            return
+        data = {
+            "title" : title,
+            "notice" : notice
+        }
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/notice/"
+        r = requests.post(url=URL,data=data)
+        print(r.json())
+        self.window = messageBox()
+        self.window.infoBox("Event Created")
+        parent.close()
+
 

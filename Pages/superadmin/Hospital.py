@@ -8,6 +8,7 @@ from Dialogs.superadmin.Hospitals.addAdmin import *
 from Dialogs.superadmin.Hospitals.selectAdmin import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.Hospitals.viewHospitals import *
+from Dialogs.Message.messageList import *
 
 class Hospital(object):
     def setup(self, Hospital,superadmin):
@@ -405,7 +406,11 @@ class Hospital(object):
         superadmin.doctor_home.setup(parent, superadmin)
 
     def clickOnInbox(self, parent, superadmin):
-        pass
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,superadmin.logindata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnLogOut(self, parent, superadmin):
         parent.loginpage.setup(parent)
@@ -416,7 +421,7 @@ class Hospital(object):
     def clickOnViewHospitals(self):
         self.window = QDialog()
         self.dialog = viewHospital()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,"SA")
         self.window.setModal(True)
         self.window.show()
 

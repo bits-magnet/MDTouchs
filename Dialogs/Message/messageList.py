@@ -1,7 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class messageList(object):
-    def setup(self, messageList):
+    def setup(self, messageList,userdata):
+        self.userdata = userdata
         messageList.setObjectName("messageList")
         messageList.resize(640, 480)
         self.frame = QtWidgets.QFrame(messageList)

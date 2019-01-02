@@ -5,6 +5,7 @@ from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Dialogs.superadmin.Hospitals.hospitalProfile import *
+from Dialogs.superadmin.Hospitals.new_hospitalProfile import *
 
 
 class Widget1(QWidget):
@@ -37,7 +38,8 @@ class Widget1(QWidget):
 class viewHospital(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, EventListDialog):
+    def setup(self, EventListDialog,type):
+        self.type = type
         EventListDialog.setObjectName("EventListDialog")
         EventListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
         EventListDialog.resize(1291, 700)
@@ -279,6 +281,14 @@ class viewHospital(object):
 
 
     def cellClick(self,row,col):
+        if self.type :
+            self.window = QDialog()
+            self.dialog = new_hospitalProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
+            return
+
         self.window = QDialog()
         self.dialog = hospitalProfile()
         self.dialog.setup(self.window,self.dataToFill[row])

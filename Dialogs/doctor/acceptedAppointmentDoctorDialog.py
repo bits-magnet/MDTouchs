@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class acceptedappointmentDoctor(object):
-    def setupUi(self, acceptedappointmentDoctor):
+    def setup(self, acceptedappointmentDoctor):
         acceptedappointmentDoctor.setObjectName("acceptedappointmentDoctor")
         acceptedappointmentDoctor.resize(636, 480)
         self.frame = QtWidgets.QFrame(acceptedappointmentDoctor)

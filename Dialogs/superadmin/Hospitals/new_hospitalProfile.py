@@ -4,12 +4,12 @@ from PyQt5.QtWidgets import *
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_bloodBankProfile(object):
-    def setupUi(self, bloodBankProfile,userData):
+class new_hospitalProfile(object):
+    def setup(self, hospitalProfile,userData):
         self.userdata = userData
-        bloodBankProfile.setObjectName("bloodBankProfile")
-        bloodBankProfile.resize(553, 563)
-        self.frame = QtWidgets.QFrame(bloodBankProfile)
+        hospitalProfile.setObjectName("hospitalProfile")
+        hospitalProfile.resize(553, 563)
+        self.frame = QtWidgets.QFrame(hospitalProfile)
         self.frame.setGeometry(QtCore.QRect(10, 10, 531, 501))
         self.frame.setStyleSheet("")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -111,39 +111,52 @@ class Ui_bloodBankProfile(object):
 "color:blue;\n"
 "border:none;")
         self.seeAdmins.setObjectName("seeAdmins")
-        self.pushButton = QtWidgets.QPushButton(bloodBankProfile)
+        self.pushButton = QtWidgets.QPushButton(hospitalProfile)
         self.pushButton.setGeometry(QtCore.QRect(450, 520, 80, 28))
         self.pushButton.setObjectName("pushButton")
 
-        self.retranslateUi(bloodBankProfile)
-        QtCore.QMetaObject.connectSlotsByName(bloodBankProfile)
+        self.retranslateUi(hospitalProfile)
+        QtCore.QMetaObject.connectSlotsByName(hospitalProfile)
 
-    def retranslateUi(self, bloodBankProfile):
+    def retranslateUi(self, hospitalProfile):
         _translate = QtCore.QCoreApplication.translate
-        bloodBankProfile.setWindowTitle(_translate("bloodBankProfile", "Hospital Profile"))
-        self.nameLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
-        self.addressLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))
-        self.contactLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Contact No. :</span></p></body></html>"))
-        self.stateLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State :</span></p></body></html>"))
-        self.pinCodeLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
-        self.cityLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
-        self.address.setPlaceholderText(_translate("bloodBankProfile", "Street, Landmark, Area"))
-        self.pinCode.setText(_translate("bloodBankProfile", "PinCode"))
-        self.state.setText(_translate("bloodBankProfile", "State"))
-        self.city.setText(_translate("bloodBankProfile", "City"))
-        self.contact.setText(_translate("bloodBankProfile", "1234567890"))
-        self.name.setText(_translate("bloodBankProfile", "Name"))
-        self.IDLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">ID :</span></p></body></html>"))
-        self.HospitalID.setText(_translate("bloodBankProfile", "HospitalID"))
-        self.seeDoctorsLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">See Doctors:</span></p></body></html>"))
-        self.billingRecordsLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Billing Records :</span></p></body></html>"))
-        self.eventsOrganizedLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Events Orgranized :</span></p></body></html>"))
-        self.seeDoctor.setText(_translate("bloodBankProfile", "Check Here"))
-        self.billingRecords.setText(_translate("bloodBankProfile", "Check Here"))
-        self.eventsOrganized.setText(_translate("bloodBankProfile", "Check Here"))
-        self.seeBedsStatusLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">See Beds Status :</span></p></body></html>"))
-        self.seeBedStatus.setText(_translate("bloodBankProfile", "Check Here"))
-        self.seeAdminLabel.setText(_translate("bloodBankProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">See Admins :</span></p></body></html>"))
-        self.seeAdmins.setText(_translate("bloodBankProfile", "Check Here"))
-        self.pushButton.setText(_translate("bloodBankProfile", "OK"))
+        hospitalProfile.setWindowTitle(_translate("hospitalProfile", "Hospital Profile"))
+        self.nameLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Name :</span></p></body></html>"))
+        self.addressLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Address :</span></p></body></html>"))
+        self.contactLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Contact No. :</span></p></body></html>"))
+        self.stateLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">State :</span></p></body></html>"))
+        self.pinCodeLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pin Code :</span></p></body></html>"))
+        self.cityLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">City :</span></p></body></html>"))
+        self.address.setPlaceholderText(_translate("hospitalProfile", "Street, Landmark, Area"))
+        self.pinCode.setText(_translate("hospitalProfile", "PinCode"))
+        self.state.setText(_translate("hospitalProfile", "State"))
+        self.city.setText(_translate("hospitalProfile", "City"))
+        self.contact.setText(_translate("hospitalProfile", "1234567890"))
+        self.name.setText(_translate("hospitalProfile", "Name"))
+        self.IDLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">ID :</span></p></body></html>"))
+        self.HospitalID.setText(_translate("hospitalProfile", "HospitalID"))
+        self.seeDoctorsLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">See Doctors:</span></p></body></html>"))
+        self.billingRecordsLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Billing Records :</span></p></body></html>"))
+        self.eventsOrganizedLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Events Orgranized :</span></p></body></html>"))
+        self.seeDoctor.setText(_translate("hospitalProfile", "Check Here"))
+        self.billingRecords.setText(_translate("hospitalProfile", "Check Here"))
+        self.eventsOrganized.setText(_translate("hospitalProfile", "Check Here"))
+        self.seeBedsStatusLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">See Beds Status :</span></p></body></html>"))
+        self.seeBedStatus.setText(_translate("hospitalProfile", "Check Here"))
+        self.seeAdminLabel.setText(_translate("hospitalProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">See Admins :</span></p></body></html>"))
+        self.seeAdmins.setText(_translate("hospitalProfile", "Check Here"))
+        self.pushButton.setText(_translate("hospitalProfile", "OK"))
+        self.events(hospitalProfile)
+
+    def events(self,parent):
+        data = self.userdata
+        self.name.setText(str(data["name"]))
+        self.HospitalID.setText(str(data["id"]))
+        self.city.setText(data["city"])
+        self.state.setText(data["state"])
+        self.pinCode.setText(str(data["pin"]))
+        self.address.setText(str(data["address"]))
+        self.contact.setText(str(data["contact"]))
+
+        self.pushButton.clicked.connect(lambda: parent.close())
 

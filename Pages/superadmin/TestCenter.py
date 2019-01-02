@@ -6,6 +6,7 @@ from Dialogs.superadmin.TestCenters.addTestCenter import *
 from Dialogs.superadmin.TestCenters.selectTestCenter import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.TestCenters.viewTestCenters import *
+from Dialogs.Message.messageList import *
 
 class TestCenter(object):
     def setup(self, TestCenter, superadmin):
@@ -339,7 +340,11 @@ class TestCenter(object):
         superadmin.doctor_home.setup(parent, superadmin)
 
     def clickOnInbox(self, parent, superadmin):
-        pass
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,superadmin.logindata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnLogOut(self, parent, superadmin):
         parent.loginpage.setup(parent)
@@ -372,6 +377,6 @@ class TestCenter(object):
     def clickOnViewTestCenter(self):
         self.window = QDialog()
         self.dialog = viewTestCenter()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,"SA")
         self.window.setModal(True)
         self.window.show()

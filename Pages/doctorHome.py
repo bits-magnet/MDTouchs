@@ -400,21 +400,21 @@ class doctorHome(object):
     def clickOnWritePrescription(self):
         self.window = QDialog()
         self.dialog = writePrescription()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,self.doctordata)
         self.window.setModal(True)
         self.window.show()
 
     def clickOnSelectPrescription(self):
         self.window = QDialog()
         self.dialog = selectPrescription()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,self.doctordata)
         self.window.setModal(True)
         self.window.show()
 
     def clickOnMessageDialog(self):
         self.window = QDialog()
         self.dialog = messageDoctorDialog()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,self.logindata)
         self.window.setModal(True)
         self.window.show()
 

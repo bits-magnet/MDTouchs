@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.changePassword import *
+from Dialogs.Notice.NoticeList import *
 
 class dispensaryHome(object):
     def setup(self, dispensaryHome,loginData = None):
@@ -309,6 +310,7 @@ class dispensaryHome(object):
     def clickEvents(self, parent):
         self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+        self.notices.clicked.connect(lambda : self.clickOnNotice())
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
@@ -316,11 +318,13 @@ class dispensaryHome(object):
     def clickOnChangePassword(self,parent):
         self.window = QDialog()
         self.dialog = changePassword()
-        self.dialog.setup(self.window,self.logindata)
+        self.dialog.setup(self.window,self.logindata,self)
         self.window.setModal(True)
         self.window.show()
-        return
-        import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
-        r = requests.get(url=URL)
-        self.logindata = r.json()
+
+    def clickOnNotice(self):
+        self.window = QDialog()
+        self.dialog = noticeList()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()

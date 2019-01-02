@@ -1,7 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Dialogs.messageBox import *
 
 class writePrescription(object):
-    def setup(self, writePrescription):
+    def setup(self, writePrescription,doctordata):
+        self.doctordata = doctordata
         writePrescription.setObjectName("writePrescription")
         writePrescription.setWindowModality(QtCore.Qt.ApplicationModal)
         writePrescription.resize(320, 395)
@@ -53,4 +55,46 @@ class writePrescription(object):
         self.patientIDLabel.setText(_translate("writePrescription", "<html><head/><body><p><span style=\" font-weight:600;\">Patient ID :</span></p></body></html>"))
         self.titleLabel.setText(_translate("writePrescription", "<html><head/><body><p><span style=\" font-weight:600;\">Title :</span></p></body></html>"))
         self.diseaseLabel.setText(_translate("writePrescription", "<html><head/><body><p><span style=\" font-weight:600;\">Disease : </span></p></body></html>"))
+
+        self.events(writePrescription)
+
+    def events(self,parent):
+        self.okButton.clicked.connect(lambda : self.clickOnWrite(parent))
+
+    def clickOnWrite(self,parent):
+        patientId = self.patientID.text()
+        data = {
+            "patientid" : int(patientId),
+            "doctorid" : int(self.doctordata["id"]),
+            "status" : 1
+        }
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/appointment/"
+        import requests
+        r = requests.get(url=URL,params=data)
+        appointmentData = r.json()
+        if len(appointmentData) == 0:
+            self.window = messageBox()
+            self.window.infoBox("This is not your Patient. Either you have not accepted his appointment")
+            return
+        title = self.title.text()
+        disease = self.disease.text()
+        prescription = self.prescriptionBox.toPlainText()
+        data = {
+
+            "name": title,
+            "dosage": disease,
+            "prescription": prescription,
+            "patient": int(patientId),
+            "doctor": int(self.doctordata["id"])
+        }
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/prescription/"
+        r = requests.post(url=URL,data=data)
+        prescriptiondata = r.json()
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/appointment/" + str(appointmentData[0]["id"])
+        r = requests.delete(url=URL)
+        self.window = messageBox()
+        self.window.infoBox("Prescription Generated with ID : ")
+        parent.close()
+
+
 

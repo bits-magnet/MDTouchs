@@ -38,14 +38,25 @@ class addQualification(object):
     def clickOnSaveButton(self,parent,grandparent):
         text = self.qualification.text()
         if text != "":
-            URL = "https://mdtouch.herokuapp.com/api/qualification/" + str(self.id)
-            data = {
-                "degree" : text
-            }
-            import requests
-            r = requests.put(url=URL, data= data)
-            print(r.json())
-            grandparent.qualificationComboBox.setItemText(0,text)
+            if self.id != 0:
+                URL = "https://mdtouch.herokuapp.com/api/qualification/" + str(self.id)
+                data = {
+                    "degree" : text
+                }
+                import requests
+                r = requests.put(url=URL, data= data)
+                print(r.json())
+                grandparent.qualificationComboBox.setItemText(0,text)
+            else:
+                URL = "https://mdtouch.herokuapp.com/api/qualification/"
+                data = {
+                    "degree" : text
+                }
+                import requests
+                r = requests.post(url= URL,data=data)
+                l = r.json()
+                grandparent.qualificationComboBox.addItem(str(text))
+                grandparent.doctordata["qualification"] = l["id"]
             parent.close()
         else:
             self.window = messageBox()

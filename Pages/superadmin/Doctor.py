@@ -6,6 +6,7 @@ from Dialogs.superadmin.Doctors.addDoctor import *
 from Dialogs.superadmin.Doctors.selectDoctor import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.Doctors.viewDoctors import *
+from Dialogs.Message.messageList import *
 
 class Doctor(object):
     def setup(self, doctor,superadmin):
@@ -320,7 +321,11 @@ class Doctor(object):
         superadmin.dispensary_home.setup(parent, superadmin)
 
     def clickOnInbox(self, parent, superadmin):
-        pass
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,superadmin.logindata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnLogOut(self, parent, superadmin):
         parent.loginpage.setup(parent)

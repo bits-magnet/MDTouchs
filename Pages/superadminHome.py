@@ -9,6 +9,8 @@ from Pages.superadmin.Events import *
 from Pages.superadmin.Dispensary import *
 from Pages.superadmin.EmergencyService import *
 from Pages.superadmin.TestCenter import *
+from Dialogs.Notice.noticeDialog import *
+from Dialogs.Message.messageList import *
 
 
 class superadminHome(object):
@@ -352,12 +354,20 @@ class superadminHome(object):
     def clickOnDoctors(self, parent):
         self.doctor_home.setup(parent,self)
     def clickOnNotices(self, parent):
-        pass
+        self.window = QDialog()
+        self.dialog = noticeDialog()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
     def clickOnAnalytics(self, parent):
         pass
     def clickOnSettings(self, parent):
         pass
     def clickOnInbox(self, parent):
-        pass
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,self.logindata)
+        self.window.setModal(True)
+        self.window.show()
     def clickOnLogOut(self, parent):
         parent.loginpage.setup(parent)

@@ -1,7 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+from Dialogs.messageBox import *
+from Dialogs.doctor.prescriptionList import *
+from Dialogs.doctor.prescriptionProfile import *
 
 class selectPrescription(object):
-    def setup(self, selectPrescription):
+    def setup(self, selectPrescription,doctordata):
+        self.doctordata = doctordata
         selectPrescription.setObjectName("selectPrescription")
         selectPrescription.resize(320, 295)
         selectPrescription.setWindowTitle("")
@@ -31,4 +36,57 @@ class selectPrescription(object):
         self.patientID.setPlaceholderText(_translate("selectPrescription", "Enter Patient ID"))
         self.prescriptionId.setPlaceholderText(_translate("selectPrescription", "Enter Prescription ID"))
         self.orLabel.setText(_translate("selectPrescription", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">OR</span></p></body></html>"))
+        self.events(selectPrescription)
+
+    def events(self,parent):
+        self.selectButton.clicked.connect(lambda : self.clickOnSelectButton(parent))
+
+    def clickOnSelectButton(self,parent):
+        PatientID = self.patientID.text()
+        prescriptionID = self.prescriptionId.text()
+        if PatientID == "" and prescriptionID == "":
+            self.window = messageBox()
+            self.window.infoBox("Ivalid data")
+            return
+        if PatientID != "":
+            if not(PatientID.isdigit()):
+                self.window = messageBox()
+                self.window.infoBox("Ivalid data")
+                return
+            params = {
+                "patient" : int(PatientID),
+                "doctor" : int(self.doctordata["id"])
+            }
+            import requests
+            URL = "https://mdtouch.herokuapp.com/api/prescription/"
+            r = requests.get(url=URL,params=params)
+            l = r.json()
+            if len(l) == 0:
+                self.window = messageBox()
+                self.window.infoBox("No Prescription Found for This patient")
+                return
+            self.window = QDialog()
+            self.dialog = prescriptionList()
+            self.dialog.setup(self.window,l)
+            self.window.setModal(True)
+            self.window.show()
+            parent.close()
+        else:
+            if prescriptionID.isdigit():
+                import requests
+                URL = "https://mdtouch.herokuapp.com/api/prescription/" + str(prescriptionID)
+                r= requests.get(url=URL)
+                data = r.json()
+                self.window = QDialog()
+                self.dialog = prescriptionProfile()
+                self.dialog.setup(self.window,data)
+                self.window.setModal(True)
+                self.window.show()
+                parent.close()
+            else:
+                self.window = messageBox()
+                self.window.infoBox("Ivalid Data")
+
+
+
 

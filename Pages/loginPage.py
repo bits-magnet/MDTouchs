@@ -107,11 +107,11 @@ class loginPage(object):
     def eventsUi(self, loginPage):
         self.forgotPasswordLink.clicked.connect(lambda: self.forgotPasswordEvent(loginPage))
         self.passwordInput.returnPressed.connect(self.loginButton.click)
-        self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
-        #self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
+        #self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
+        self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
-        logintype = 'H'
+        logintype = 'BB'
         if logintype == 'SA':
             self.superadminpage = superadminHome()
             self.superadminpage.setup(loginPage)
@@ -179,7 +179,7 @@ class loginPage(object):
             return
         if data[0]["dept"] == "SA":
             self.superadminpage = superadminHome()
-            self.superadminpage.setup(loginPage)
+            self.superadminpage.setup(loginPage,data[0])
             return
         if data[0]["dept"] == "D":
             self.doctorpage = doctorHome()

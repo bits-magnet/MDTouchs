@@ -40,14 +40,28 @@ class addSpecialization(object):
     def clickOnSaveButton(self,parent,grandparent):
         text = self.specilaization.text()
         if text != "":
-            URL = "https://mdtouch.herokuapp.com/api/specialization/" + str(self.id)
-            data = {
-                "skill" : text
-            }
-            import requests
-            r = requests.put(url=URL, data= data)
-            print(r.json())
-            grandparent.specializationComboBox.setItemText(0,text)
+            if self.id != 0:
+                URL = "https://mdtouch.herokuapp.com/api/specialization/" + str(self.id)
+                data = {
+                    "skill" : text
+                }
+                import requests
+                r = requests.put(url=URL, data= data)
+                print(r.json())
+                grandparent.specializationComboBox.setItemText(0,text)
+            else:
+                print(text)
+                URL = "https://mdtouch.herokuapp.com/api/specialization/"
+                data = {
+                    "skill" : text
+                }
+                import requests
+                r = requests.post(url=URL,data=data)
+
+                l = r.json()
+                print(l,"-------------------------")
+                grandparent.specializationComboBox.addItem(str(text))
+                grandparent.doctordata["specialization"] = l["id"]
             parent.close()
         else:
             self.window = messageBox()

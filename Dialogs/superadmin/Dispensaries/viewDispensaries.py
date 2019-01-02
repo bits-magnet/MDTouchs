@@ -5,6 +5,7 @@ from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Dialogs.superadmin.Dispensaries.dispensaryProfile import *
+from Dialogs.superadmin.Dispensaries.new_DispensaryProfile import *
 
 
 class Widget1(QWidget):
@@ -37,7 +38,8 @@ class Widget1(QWidget):
 class viewDispensary(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, dispensaryListDialog):
+    def setup(self, dispensaryListDialog,type = None):
+        self.type = type
         dispensaryListDialog.setObjectName("dispensaryListDialog")
         dispensaryListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
         dispensaryListDialog.resize(1291, 700)
@@ -278,6 +280,13 @@ class viewDispensary(object):
 
 
     def cellClick(self,row,col):
+        if self.type == 'SA':
+            self.window = QDialog()
+            self.dialog = new_dispensaryProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
+            return
         self.window = QDialog()
         self.dialog = dispensaryProfile()
         self.dialog.setup(self.window,self.dataToFill[row])

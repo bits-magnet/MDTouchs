@@ -145,15 +145,17 @@ class editProfile(object):
         self.hospital.setText(str(self.hospitaldata["name"]))
         self.city.setText(self.doctordata["city"])
         self.state.setText(self.doctordata["state"])
-        import requests
-        URL = "https://mdtouch.herokuapp.com/api/qualification/" + str(self.doctordata["qualification"])
-        r = requests.get(url=URL)
-        qualification = r.json()
-        self.qualificationComboBox.addItem(qualification["degree"])
-        URL = "https://mdtouch.herokuapp.com/api/specialization/" + str(self.doctordata["specialization"])
-        r = requests.get(url=URL)
-        specialization = r.json()
-        self.specializationComboBox.addItem(str(specialization["skill"]))
+        if self.doctordata["qualification"]:
+            import requests
+            URL = "https://mdtouch.herokuapp.com/api/qualification/" + str(self.doctordata["qualification"])
+            r = requests.get(url=URL)
+            qualification = r.json()
+            self.qualificationComboBox.addItem(qualification["degree"])
+        if self.doctordata["specialization"]:
+            URL = "https://mdtouch.herokuapp.com/api/specialization/" + str(self.doctordata["specialization"])
+            r = requests.get(url=URL)
+            specialization = r.json()
+            self.specializationComboBox.addItem(str(specialization["skill"]))
         self.saveButton.clicked.connect(lambda: self.clickOnSaveButton(parent,grandparent))
         self.exitButton.clicked.connect(lambda : parent.close())
         self.newQualificationButton.clicked.connect(lambda : self.addQualificationevent(parent))
@@ -163,7 +165,10 @@ class editProfile(object):
         print("Start")
         self.window = QDialog()
         self.dialog = addQualification()
-        self.dialog.setup(self.window,self.doctordata["qualification"],self)
+        if self.doctordata["qualification"]:
+            self.dialog.setup(self.window,self.doctordata["qualification"],self)
+        else :
+            self.dialog.setup(self.window,0,self)
         self.window.setModal(True)
         self.window.show()
         print("End")
@@ -171,31 +176,32 @@ class editProfile(object):
     def addSpecilizationevent(self,parent):
         self.window = QDialog()
         self.dialog = addSpecialization()
-        self.dialog.setup(self.window,self.doctordata["specialization"],self)
+        if self.doctordata["specialization"]:
+            self.dialog.setup(self.window,self.doctordata["specialization"],self)
+        else:
+            self.dialog.setup(self.window,0,self)
         self.window.setModal(True)
         self.window.show()
 
     def clickOnSaveButton(self,parent,grandparent):
 
         address =  self.address.toPlainText()
-        if address == self.doctordata["address"]:
-            self.window = messageBox()
-            self.window.infoBox("Changes are saved")
-            parent.close()
-        else:
-            import requests
-            URL = "https://mdtouch.herokuapp.com/api/doctor/" + str(self.doctordata["id"])
-            data = {
-                "address" : address
-            }
-            r = requests.put(url=URL,data= data)
-            print(r.json())
-            self.doctordata = r.json()
-            grandparent.doctordata = self.doctordata
-            print(self.doctordata)
-            self.window = messageBox()
-            self.window.infoBox("Changes are saved")
-            parent.close()
+
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/doctor/" + str(self.doctordata["id"])
+        data = {
+            "address" : address,
+            "qualification" : int(self.doctordata["qualification"]),
+            "specialization" : int(self.doctordata["specialization"])
+        }
+        r = requests.put(url=URL,data= data)
+        print(r.json())
+        self.doctordata = r.json()
+        grandparent.doctordata = self.doctordata
+        print(self.doctordata)
+        self.window = messageBox()
+        self.window.infoBox("Changes are saved")
+        parent.close()
 
 
 

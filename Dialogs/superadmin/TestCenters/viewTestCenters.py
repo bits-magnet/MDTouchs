@@ -5,6 +5,7 @@ from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Dialogs.superadmin.TestCenters.testCenterProfile import *
+from Dialogs.superadmin.TestCenters.new_testCenterProfile import *
 
 
 class Widget1(QWidget):
@@ -37,7 +38,8 @@ class Widget1(QWidget):
 class viewTestCenter(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, testCenterListDialog):
+    def setup(self, testCenterListDialog,type = None):
+        self.type = type
         testCenterListDialog.setObjectName("testCenterListDialog")
         testCenterListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
         testCenterListDialog.resize(1291, 700)
@@ -279,6 +281,14 @@ class viewTestCenter(object):
 
 
     def cellClick(self,row,col):
+        if self.type :
+            self.window = QDialog()
+            self.dialog = new_testCenterProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
+            return
+
         self.window = QDialog()
         self.dialog = testCenterProfile()
         self.dialog.setup(self.window,self.dataToFill[row])

@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.changePassword import *
+from Dialogs.Notice.NoticeList import *
 
 class testCenterHome(object):
     def setup(self, testCenterHome,loginData= None):
@@ -291,12 +292,12 @@ class testCenterHome(object):
         self.changePasswordLabel.setText(_translate("testCenterHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Change<br>Password</span></p></body></html>"))
         self.addTestLabel.setText(_translate("testCenterHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Add Test</span></p></body></html>"))
         self.eventsLabel.setText(_translate("testCenterHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Events</span></p></body></html>"))
-
         self.clickEvents(testCenterHome)
 
     def clickEvents(self, parent):
         self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+        self.notices.clicked.connect(lambda : self.clickOnNotice())
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
@@ -308,10 +309,10 @@ class testCenterHome(object):
         self.window.setModal(True)
         self.window.show()
 
-        ###################### Please delete this return
-        return
-        import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
-        r = requests.get(url=URL)
-        self.logindata = r.json()
+    def clickOnNotice(self):
+        self.window = QDialog()
+        self.dialog = noticeList()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
 

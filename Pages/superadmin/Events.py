@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import *
 from Dialogs.superadmin.Events.addEvent import *
 from Dialogs.superadmin.Events.selectEvent import *
 from Dialogs.superadmin.Events.viewEvents import *
+from Dialogs.Message.messageList import *
 
 
 class Events(object):
@@ -309,7 +310,11 @@ class Events(object):
         superadmin.doctor_home.setup(parent, superadmin)
 
     def clickOnInbox(self, parent, superadmin):
-        pass
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,superadmin.logindata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnLogOut(self, parent, superadmin):
         parent.loginpage.setup(parent)

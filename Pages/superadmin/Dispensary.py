@@ -6,7 +6,7 @@ from Dialogs.superadmin.Dispensaries.addDispensary import *
 from Dialogs.superadmin.Dispensaries.selectDispensary import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.Dispensaries.viewDispensaries import *
-
+from Dialogs.Message.messageList import *
 class Dispensary(object):
     def setup(self, Dispensary, superadmin):
         Dispensary.setObjectName("Dispensary")
@@ -334,7 +334,11 @@ class Dispensary(object):
         superadmin.doctor_home.setup(parent, superadmin)
 
     def clickOnInbox(self, parent, superadmin):
-        pass
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,superadmin.logindata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnLogOut(self, parent, superadmin):
         parent.loginpage.setup(parent)
@@ -366,6 +370,6 @@ class Dispensary(object):
     def clickOnViewDispensary(self):
         self.window = QDialog()
         self.dialog = viewDispensary()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,'SA')
         self.window.setModal(True)
         self.window.show()

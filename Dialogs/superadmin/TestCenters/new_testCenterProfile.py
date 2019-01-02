@@ -4,8 +4,8 @@ from PyQt5.QtWidgets import *
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_testCenterProfile(object):
-    def setupUi(self, testCenterProfile,userdata):
+class new_testCenterProfile(object):
+    def setup(self, testCenterProfile,userdata):
         self.userdata = userdata
         testCenterProfile.setObjectName("testCenterProfile")
         testCenterProfile.resize(550, 524)
@@ -124,4 +124,19 @@ class Ui_testCenterProfile(object):
         self.bloodQuantities.setText(_translate("testCenterProfile", "Check Here"))
         self.bloodQuantitiesLabel.setText(_translate("testCenterProfile", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Test Records :</span></p></body></html>"))
         self.removeButton.setText(_translate("testCenterProfile", "OK"))
+
+        self.events(testCenterProfile)
+
+    def events(self,parent):
+        data = self.userdata
+        self.address.setText(str(data["address"]))
+        self.testCenterID.setText(str(data["id"]))
+        self.pinCode.setText(str(data["pin"]))
+        self.state.setText(str(data["state"]))
+        self.city.setText(str(data["city"]))
+        #self.contactNo.setText(str(data["contact"]))
+        self.contactNo.setText("nil")
+        self.name.setText(str(data["name"]))
+
+        self.removeButton.clicked.connect(lambda: parent.close())
 

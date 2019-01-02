@@ -1,18 +1,13 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'noticeProfile.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(580, 429)
-        self.frame = QtWidgets.QFrame(Form)
+class noticeProfile(object):
+    def setup(self, Notice,data):
+        self.data = data
+        Notice.setObjectName("Notice")
+        Notice.resize(580, 429)
+        self.frame = QtWidgets.QFrame(Notice)
         self.frame.setGeometry(QtCore.QRect(10, 10, 561, 381))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -38,29 +33,38 @@ class Ui_Form(object):
         self.notice.setGeometry(QtCore.QRect(90, 120, 461, 251))
         self.notice.setObjectName("notice")
         self.dateLabel = QtWidgets.QLabel(self.frame)
-        self.dateLabel.setGeometry(QtCore.QRect(230, 10, 161, 41))
+        self.dateLabel.setGeometry(QtCore.QRect(230, 10, 178, 41))
         self.dateLabel.setStyleSheet("font-size:14pt;\n"
 "font-weight: bold;")
         self.dateLabel.setObjectName("dateLabel")
         self.date = QtWidgets.QLabel(self.frame)
-        self.date.setGeometry(QtCore.QRect(400, 10, 151, 41))
+        self.date.setGeometry(QtCore.QRect(420, 10, 151, 41))
         self.date.setObjectName("date")
-        self.closeButton = QtWidgets.QPushButton(Form)
+        self.closeButton = QtWidgets.QPushButton(Notice)
         self.closeButton.setGeometry(QtCore.QRect(480, 400, 89, 25))
         self.closeButton.setObjectName("closeButton")
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(Notice)
+        QtCore.QMetaObject.connectSlotsByName(Notice)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, Notice):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Notice"))
-        self.idLabel.setText(_translate("Form", "<html><head/><body><p>Id : </p></body></html>"))
-        self.titlelabel.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Title :</span></p></body></html>"))
-        self.noticeLabel.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Notice  :</span></p></body></html>"))
-        self.id.setText(_translate("Form", "<html><head/><body><p>ID</p></body></html>"))
-        self.title.setText(_translate("Form", "<html><head/><body><p>Title</p></body></html>"))
-        self.dateLabel.setText(_translate("Form", "<html><head/><body><p>Date Of Publish :</p></body></html>"))
-        self.date.setText(_translate("Form", "<html><head/><body><p>29/09/2002</p></body></html>"))
-        self.closeButton.setText(_translate("Form", "Close"))
+        Notice.setWindowTitle(_translate("Notice", "Notice"))
+        self.idLabel.setText(_translate("Notice", "<html><head/><body><p>Id : </p></body></html>"))
+        self.titlelabel.setText(_translate("Notice", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Title :</span></p></body></html>"))
+        self.noticeLabel.setText(_translate("Notice", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Notice  :</span></p></body></html>"))
+        self.id.setText(_translate("Notice", "<html><head/><body><p>ID</p></body></html>"))
+        self.title.setText(_translate("Notice", "<html><head/><body><p>Title</p></body></html>"))
+        self.dateLabel.setText(_translate("Notice", "<html><head/><body><p>Date Of Publish :</p></body></html>"))
+        self.date.setText(_translate("Notice", "<html><head/><body><p>29/09/2002</p></body></html>"))
+        self.closeButton.setText(_translate("Notice", "Close"))
+
+        self.clickevent(Notice)
+    def clickevent(self,parent):
+        print(self.data)
+        self.id.setText(str(self.data["id"]))
+        self.date.setText(str(self.data["date"])[:10])
+        self.title.setText(self.data["title"])
+        self.notice.setText(self.data["notice"])
+        self.closeButton.clicked.connect(lambda : parent.close())
 

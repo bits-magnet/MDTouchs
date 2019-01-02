@@ -6,6 +6,7 @@ from Dialogs.superadmin.EmergencyServices.addEmergencyService import *
 from Dialogs.superadmin.EmergencyServices.selectEmergencyService import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.EmergencyServices.viewEs import *
+from Dialogs.Message.messageList import *
 
 class Emergency(object):
     def setup(self, Emergency, superadmin):
@@ -335,7 +336,11 @@ class Emergency(object):
         superadmin.doctor_home.setup(parent,superadmin)
 
     def clickOnInbox(self, parent, superadmin):
-        pass
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,superadmin.logindata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnLogOut(self, parent, superadmin):
         parent.loginpage.setup(parent)

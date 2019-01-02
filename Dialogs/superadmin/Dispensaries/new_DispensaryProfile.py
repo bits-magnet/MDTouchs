@@ -5,8 +5,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
-class Ui_dispensaryProfile(object):
-    def setupUi(self, dispensaryProfile,userdata):
+class new_dispensaryProfile(object):
+    def setup(self, dispensaryProfile,userdata):
         self.userdata = userdata
         dispensaryProfile.setObjectName("dispensaryProfile")
         dispensaryProfile.resize(553, 490)
@@ -125,6 +125,20 @@ class Ui_dispensaryProfile(object):
         self.billingRecords.setText(_translate("dispensaryProfile", "Check Here"))
         self.eventsOrganized.setText(_translate("dispensaryProfile", "Check Here"))
         self.pushButton.setText(_translate("dispensaryProfile", "OK"))
+
+        self.events(dispensaryProfile)
+
+    def events(self,parent):
+        data = self.userdata
+        self.address.setText(str(data["address"]))
+        self.dispensaryID.setText(str(data["id"]))
+        self.pinCode.setText(str(data["pin"]))
+        self.state.setText(str(data["state"]))
+        self.city.setText(str(data["city"]))
+        self.contact.setText(str("Nil"))
+        self.name.setText(data["name"])
+
+        self.pushButton.clicked.connect(lambda: parent.close())
 
 
 

@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'prescriptionProfile.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_writePrescription(object):
-    def setupUi(self, writePrescription):
+class prescriptionProfile(object):
+    def setup(self, writePrescription,data):
+        self.data = data
         writePrescription.setObjectName("writePrescription")
         writePrescription.setWindowModality(QtCore.Qt.ApplicationModal)
         writePrescription.resize(320, 402)
@@ -73,3 +66,8 @@ class Ui_writePrescription(object):
         self.diseaseLabel.setText(_translate("writePrescription", "<html><head/><body><p><span style=\" font-weight:600;\">Disease : </span></p></body></html>"))
         self.disease.setText(_translate("writePrescription", "disease"))
 
+        self.disease.setText(self.data["dosage"])
+        self.title.setText(self.data["name"])
+        self.prescription.setText(self.data["prescription"])
+        self.patientId.setText(str(self.data["patient"]))
+        self.okButton.clicked.connect(lambda : writePrescription.close())
