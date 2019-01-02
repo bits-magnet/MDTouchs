@@ -7,11 +7,33 @@ from Dialogs.doctor.viewHospitals import *
 from Dialogs.doctor.viewBloodBankCenters import *
 from Dialogs.doctor.viewDispensaries import *
 from Dialogs.doctor.viewTestCenters import *
+from Dialogs.doctor.selectPrescription import *
+from Dialogs.doctor.writePrescription import *
 from Dialogs.changePassword import *
+from Dialogs.superadmin.Hospitals.hospitalProfile import *
+from Dialogs.doctor.messageDoctorDialog import *
+from Dialogs.Notice.NoticeList import *
+from Dialogs.doctor.myPatientDoctorList import *
+from Dialogs.doctor.appointmentDialogDoctor import *
 
 class doctorHome(object):
     def setup(self, doctorHome,logindata = None):
         self.logindata = logindata
+        self.doctordata = {}
+        self.hospital_data = {}
+        URL = "https://mdtouch.herokuapp.com/api/doctor/"
+        params = {
+            "username" : int(self.logindata["id"])
+        }
+        import requests
+        r = requests.get(url=URL,params= params)
+        l = r.json()
+        self.doctordata = l[0]
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/hospital/" + str(self.doctordata["workplace"])
+
+        r = requests.get(url=URL)
+        self.hospital_data = r.json()
         doctorHome.setObjectName("doctorHome")
         doctorHome.resize(1366, 779)
         self.centralwidget = QtWidgets.QWidget(doctorHome)
@@ -262,19 +284,19 @@ class doctorHome(object):
         self.searchDispensariesLabel.setMaximumSize(QtCore.QSize(240, 40))
         self.searchDispensariesLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.searchDispensariesLabel.setObjectName("searchDispensariesLabel")
-        self.myHospitalLabel = QtWidgets.QPushButton(self.centralwidget)
-        self.myHospitalLabel.setGeometry(QtCore.QRect(1120, 10, 100, 90))
-        self.myHospitalLabel.setMinimumSize(QtCore.QSize(100, 90))
-        self.myHospitalLabel.setMaximumSize(QtCore.QSize(100, 90))
-        self.myHospitalLabel.setStyleSheet("border-color: rgb(0, 0, 0);\n"
+        self.Inbox = QtWidgets.QPushButton(self.centralwidget)
+        self.Inbox.setGeometry(QtCore.QRect(1120, 10, 100, 90))
+        self.Inbox.setMinimumSize(QtCore.QSize(100, 90))
+        self.Inbox.setMaximumSize(QtCore.QSize(100, 90))
+        self.Inbox.setStyleSheet("border-color: rgb(0, 0, 0);\n"
 "border-style:solid;\n"
 "border-width:2px;")
-        self.myHospitalLabel.setText("")
+        self.Inbox.setText("")
         icon13 = QtGui.QIcon()
         icon13.addPixmap(QtGui.QPixmap("../MDTouch/Images/doctor_consultant.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.myHospitalLabel.setIcon(icon13)
-        self.myHospitalLabel.setIconSize(QtCore.QSize(80, 80))
-        self.myHospitalLabel.setObjectName("myHospitalLabel")
+        self.Inbox.setIcon(icon13)
+        self.Inbox.setIconSize(QtCore.QSize(80, 80))
+        self.Inbox.setObjectName("Inbox")
         doctorHome.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(doctorHome,logindata)
@@ -311,17 +333,31 @@ class doctorHome(object):
         self.searchTestCenters.clicked.connect(lambda : self.clickOnSearchTestCenter())
         self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+        self.myHospital.clicked.connect(lambda : self.clickOnMyHspital(parent))
+        self.searchPrescriptions.clicked.connect(lambda : self.clickOnSelectPrescription())
+        self.writePrescription.clicked.connect(lambda : self.clickOnWritePrescription())
+        self.Inbox.clicked.connect(lambda : self.clickOnMessageDialog())
+        self.notices.clicked.connect(lambda : self.clickOnNotice())
+        self.patients.clicked.connect(lambda : self.clickOnMyPatients())
+        self.appointments.clicked.connect(lambda : self.clickOnMyAppointments())
+
+
+
+    def clickOnMyHspital(self,parent):
+
+        self.window = QDialog()
+        self.dialog = hospitalProfile()
+        self.dialog.setup(self.window,self.hospital_data)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnChangePassword(self,parent):
         self.window = QDialog()
         self.dialog = changePassword()
-        self.dialog.setup(self.window,self.logindata)
+        self.dialog.setup(self.window,self.logindata,self)
         self.window.setModal(True)
         self.window.show()
-        import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
-        r = requests.get(url=URL)
-        self.logindata = r.json()
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
@@ -329,7 +365,7 @@ class doctorHome(object):
     def clickOnEditProfile(self, parent):
         self.window = QDialog()
         self.dialog = editProfile()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,self.doctordata,self.hospital_data,self)
         self.window.setModal(True)
         self.window.show()
 
@@ -360,4 +396,47 @@ class doctorHome(object):
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()
+
+    def clickOnWritePrescription(self):
+        self.window = QDialog()
+        self.dialog = writePrescription()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSelectPrescription(self):
+        self.window = QDialog()
+        self.dialog = selectPrescription()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnMessageDialog(self):
+        self.window = QDialog()
+        self.dialog = messageDoctorDialog()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnNotice(self):
+        self.window = QDialog()
+        self.dialog = noticeList()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnMyPatients(self):
+        self.window = QDialog()
+        self.dialog = myPatientDoctorList()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnMyAppointments(self):
+        self.window = QDialog()
+        self.dialog = appointmentDoctorDialog()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
 

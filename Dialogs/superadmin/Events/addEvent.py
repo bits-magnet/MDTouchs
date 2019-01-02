@@ -2,9 +2,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.superadmin.Events.eventProfile import *
+from Dialogs.messageBox import *
 
 class addEvent(object):
-    def setup(self, addEvent):
+    def setup(self, addEvent,type,userdata = None):
+        self.type = type
+        self.userData = userdata
         addEvent.setObjectName("addEvent")
         addEvent.resize(750, 492)
         self.addButton = QtWidgets.QPushButton(addEvent)
@@ -31,7 +35,7 @@ class addEvent(object):
         self.eventName = QtWidgets.QLineEdit(self.frame)
         self.eventName.setGeometry(QtCore.QRect(140, 20, 561, 41))
         self.eventName.setObjectName("eventName")
-        self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.frame)
+        self.dateTimeEdit = QtWidgets.QDateEdit(self.frame)
         self.dateTimeEdit.setGeometry(QtCore.QRect(430, 80, 271, 27))
         self.dateTimeEdit.setObjectName("dateTimeEdit")
         self.venue = QtWidgets.QLineEdit(self.frame)
@@ -74,4 +78,70 @@ class addEvent(object):
         self.clickEvents(addEvent)
 
     def clickEvents(self, parent):
-        pass
+        self.addButton.clicked.connect(lambda : self.clickOnAddEvent(parent))
+
+    def clickOnAddEvent(self,parent):
+        import datetime
+        todayDate = datetime.datetime.now()
+        date = self.dateTimeEdit.text()
+        dateToSend = date.split('/')[::-1]
+        dateToSend[0] = '20' + dateToSend[0]
+        dateToSend = '-'.join(dateToSend)
+        print(dateToSend)
+        title = self.eventName.text()
+        eventlocation = self.venue.text()
+        description = self.description.toPlainText()
+        if description == "" or title == "" or date == "" or eventlocation == "":
+            self.dialog = messageBox()
+            self.dialog.infoBox("Please Enter Details")
+            return
+        state = "All States"
+        city = "All Cities"
+        hid = None
+        tcid = None
+        bbcid = None
+        dsid = None
+        if self.type != 'SA':
+            state = self.userData["state"]
+            city = self.userData["city"]
+        if self.type == 'H':
+            hid = int(self.userData["id"])
+        elif self.type == 'BB':
+            bbcid = int(self.userData["id"])
+        elif self.type == 'DS':
+            dsid = int(self.userData["id"])
+        elif self.type == 'TC':
+            tcid = int(self.userData["id"])
+        data = {
+            "eventlocation": eventlocation,
+            "city": city,
+            "state": state,
+            "title": title,
+            "description": description,
+            "dateofevent": dateToSend,
+            "dateofcreation" : str(datetime.date.today()),
+            "hospitalid": hid,
+            "bloodbankid": bbcid,
+            "dispensaryid": dsid,
+            "testcentreid": tcid
+        }
+
+        URL = "https://mdtouch.herokuapp.com/api/event/"
+        import requests
+        r = requests.post(url= URL,data=data)
+        print(r)
+        l = r.json()
+        print(l)
+        self.window = messageBox()
+        self.window.infoBox("Event has been created")
+        parent.close()
+        self.window = QDialog()
+        self.dialog = eventProfile()
+        self.dialog.setup(self.window,l)
+        self.window.setModal(True)
+        self.window.show()
+
+
+
+
+

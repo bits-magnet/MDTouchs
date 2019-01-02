@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Dialogs.messageBox import *
 
 class changePassword(object):
-    def setup(self, changePassword,loginData):
+    def setup(self, changePassword,loginData,grandparent):
         changePassword.setObjectName("changePassword")
         changePassword.resize(400, 248)
         self.pushButton = QtWidgets.QPushButton(changePassword)
@@ -30,22 +30,22 @@ class changePassword(object):
         self._newPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self._newPassword.setObjectName("_newPassword")
 
-        self.retranslateUi(changePassword,loginData)
+        self.retranslateUi(changePassword,loginData,grandparent)
         QtCore.QMetaObject.connectSlotsByName(changePassword)
 
-    def retranslateUi(self, changePassword,loginData):
+    def retranslateUi(self, changePassword,loginData,grandparent):
         _translate = QtCore.QCoreApplication.translate
         changePassword.setWindowTitle(_translate("changePassword", "Change Password"))
         self.pushButton.setText(_translate("changePassword", "Change Password"))
         self.oldPasswordLabel.setText(_translate("changePassword", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Old password : </span></p></body></html>"))
         self.newPasswordLabel.setText(_translate("changePassword", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Enter new password : </span></p></body></html>"))
         self._newPassword_Label.setText(_translate("changePassword", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Reenter new password : </span></p></body></html>"))
-        self.events(changePassword,loginData)
+        self.events(changePassword,loginData,grandparent)
 
-    def events(self,parent,loginData):
-        self.pushButton.clicked.connect(lambda : self.clickOnButton(parent,loginData))
+    def events(self,parent,loginData,grandparent):
+        self.pushButton.clicked.connect(lambda : self.clickOnButton(parent,loginData,grandparent))
 
-    def clickOnButton(self,parent,loginData):
+    def clickOnButton(self,parent,loginData,grandparent):
         old_password = self.oldPassword.text()
         new_password = self.newPassword.text()
         _new_password = self._newPassword.text()
@@ -65,6 +65,7 @@ class changePassword(object):
         r = requests.put(url=URL,data=data)
         print(r)
         print(r.json())
+        grandparent.logindata = r.json()
         parent.close()
         self.window = messageBox()
         self.window.infoBox("Your Password has been changed")

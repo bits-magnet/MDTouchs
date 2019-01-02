@@ -2,9 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.messageBox import *
 
 class deleteEvent(object):
-    def setup(self, deleteEvent):
+    def setup(self, deleteEvent,eventdata):
+        self.eventdata = eventdata
         deleteEvent.setObjectName("deleteEvent")
         deleteEvent.resize(610, 480)
         self.title = QtWidgets.QLabel(deleteEvent)
@@ -100,7 +102,29 @@ class deleteEvent(object):
 
         self.clickEvents(deleteEvent)
 
-    def clickEvents(self, parent):self.deleteButton.clicked.connect(lambda: self.clickOnDeleteButton(parent))
+    def clickEvents(self, parent):
+        #self.eventID.setText(str(self.eventdata["id"]))
+        self.venue.setText(self.eventdata["eventlocation"])
+        self.date.setText(str(self.eventdata["dateofevent"]))
+        self.name.setText(self.eventdata["title"])
+        self.textBrowser.setText(self.eventdata["description"])
+        if self.eventdata["hospitalid"]:
+            self.creator.setText("Hospital Id : " +str(self.eventdata["hospitalid"]))
+        elif self.eventdata["bloodbankid"]:
+            self.creator.setText("Blood BankCentre Id : " + str(self.eventdata["bloodbankid"]))
+        elif self.eventdata["dispensaryid"]:
+            self.creator.setText("Dispensary Id : " + str(self.eventdata["dispensaryid"]))
+        elif self.eventdata["testcentreid"]:
+            self.creator.setText("Test Center Id : " + str(self.eventdata["testcentreid"]))
+        else :
+            self.creator.setText("SuperAdmin")
+        self.deleteButton.clicked.connect(lambda: self.clickOnDeleteButton(parent))
 
     def clickOnDeleteButton(self, parent):
-        pass
+        self.window = messageBox()
+        self.window.infoBox("Following event is deleted")
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/event/" + str(self.eventdata["id"])
+        r = requests.delete(url=URL)
+        print(r)
+        parent.close()

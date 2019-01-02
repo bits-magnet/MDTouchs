@@ -2,9 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.messageBox import *
+from Dialogs.doctor.addQualification import *
+from Dialogs.doctor.addSpecialization import *
 
 class editProfile(object):
-    def setup(self, editProfile):
+    def setup(self, editProfile,doctordata,hospitaldata,grandparent):
+        self.doctordata = doctordata
+        self.hospitaldata = hospitaldata
         editProfile.setObjectName("editProfile")
         editProfile.resize(792, 467)
         editProfile.setStyleSheet("")
@@ -104,11 +109,11 @@ class editProfile(object):
 "font-size:15pt;")
         self.name.setObjectName("name")
 
-        self.retranslateUi(editProfile)
+        self.retranslateUi(editProfile,grandparent)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(editProfile)
 
-    def retranslateUi(self, editProfile):
+    def retranslateUi(self, editProfile,grandparent):
         _translate = QtCore.QCoreApplication.translate
         editProfile.setWindowTitle(_translate("editProfile", "Profile"))
         self.exitButton.setText(_translate("editProfile", "EXIT"))
@@ -131,11 +136,66 @@ class editProfile(object):
         self.name.setText(_translate("editProfile", "first_name last_name"))
 
 
-        self.clickEvents(editProfile)
+        self.clickEvents(editProfile,grandparent)
 
-    def clickEvents(self, parent):
-        self.saveButton.clicked.connect(lambda: self.clickOnSaveButton())
+    def clickEvents(self, parent,grandparent):
+        self.name.setText("Dr. " + self.doctordata["firstName"] + self.doctordata["lastName"])
+        self.doctorID.setText(str(self.doctordata["id"]))
+        self.address.setText(self.doctordata["address"])
+        self.hospital.setText(str(self.hospitaldata["name"]))
+        self.city.setText(self.doctordata["city"])
+        self.state.setText(self.doctordata["state"])
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/qualification/" + str(self.doctordata["qualification"])
+        r = requests.get(url=URL)
+        qualification = r.json()
+        self.qualificationComboBox.addItem(qualification["degree"])
+        URL = "https://mdtouch.herokuapp.com/api/specialization/" + str(self.doctordata["specialization"])
+        r = requests.get(url=URL)
+        specialization = r.json()
+        self.specializationComboBox.addItem(str(specialization["skill"]))
+        self.saveButton.clicked.connect(lambda: self.clickOnSaveButton(parent,grandparent))
         self.exitButton.clicked.connect(lambda : parent.close())
+        self.newQualificationButton.clicked.connect(lambda : self.addQualificationevent(parent))
+        self.newSpecializationButton.clicked.connect(lambda : self.addSpecilizationevent(parent))
 
-    def clickOnSaveButton(self):
-        pass
+    def addQualificationevent(self,parent):
+        print("Start")
+        self.window = QDialog()
+        self.dialog = addQualification()
+        self.dialog.setup(self.window,self.doctordata["qualification"],self)
+        self.window.setModal(True)
+        self.window.show()
+        print("End")
+
+    def addSpecilizationevent(self,parent):
+        self.window = QDialog()
+        self.dialog = addSpecialization()
+        self.dialog.setup(self.window,self.doctordata["specialization"],self)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSaveButton(self,parent,grandparent):
+
+        address =  self.address.toPlainText()
+        if address == self.doctordata["address"]:
+            self.window = messageBox()
+            self.window.infoBox("Changes are saved")
+            parent.close()
+        else:
+            import requests
+            URL = "https://mdtouch.herokuapp.com/api/doctor/" + str(self.doctordata["id"])
+            data = {
+                "address" : address
+            }
+            r = requests.put(url=URL,data= data)
+            print(r.json())
+            self.doctordata = r.json()
+            grandparent.doctordata = self.doctordata
+            print(self.doctordata)
+            self.window = messageBox()
+            self.window.infoBox("Changes are saved")
+            parent.close()
+
+
+

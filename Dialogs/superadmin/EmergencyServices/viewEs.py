@@ -5,6 +5,7 @@ from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Dialogs.superadmin.EmergencyServices.emergencyServiceProfile import *
+from Dialogs.superadmin.EmergencyServices.new_emergencyServiceProfile import *
 
 
 class Widget1(QWidget):
@@ -37,7 +38,8 @@ class Widget1(QWidget):
 class viewEs(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, esListDialog):
+    def setup(self, esListDialog,type = None):
+        self.type = type
         esListDialog.setObjectName("esListDialog")
         esListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
         esListDialog.resize(1291, 700)
@@ -279,6 +281,13 @@ class viewEs(object):
 
 
     def cellClick(self,row,col):
+        if self.type == 'SA':
+            self.window = QDialog()
+            self.dialog = new_emergencyServiceProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
+            return
         self.window = QDialog()
         self.dialog = emergencyServiceProfile()
         self.dialog.setup(self.window,self.dataToFill[row])

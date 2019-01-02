@@ -367,7 +367,7 @@ class Emergency(object):
     def clickOnViewEs(self):
         self.window = QDialog()
         self.dialog = viewEs()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,'SA')
         self.window.setModal(True)
         self.window.show()
 

@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'events.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-class Ui_eventsDialog(object):
-    def setupUi(self, eventsDialog):
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from Dialogs.superadmin.Events.addEvent import *
+from Dialogs.superadmin.Events.deleteEvent import *
+from Dialogs.superadmin.Events.selectEvent import *
+from Dialogs.viewEventDialog import *
+class eventsDialog(object):
+    def setup(self, eventsDialog,type = None,userdata = None):
+        self.type = type
+        self.userdata = userdata
         eventsDialog.setObjectName("eventsDialog")
         eventsDialog.resize(484, 235)
         self.deleteEvent = QtWidgets.QPushButton(eventsDialog)
@@ -81,4 +81,30 @@ class Ui_eventsDialog(object):
         self.deleteEventLabel.setText(_translate("eventsDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Delete<br>Event</span></p></body></html>"))
         self.addEventLabel.setText(_translate("eventsDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Add<br>Event</span></p></body></html>"))
         self.viewEventsLabel.setText(_translate("eventsDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">View<br>Events</span></p></body></html>"))
+        self.clickEvents(eventsDialog)
+
+    def clickEvents(self,parent):
+        self.addEvent.clicked.connect(lambda : self.clickOnAddEvent(parent))
+        self.deleteEvent.clicked.connect(lambda : self.clickOnDeleteEvent(parent))
+        self.viewEvents.clicked.connect(lambda : self.clickOnViewEvent(parent))
+
+    def clickOnAddEvent(self,parent):
+        self.window = QDialog()
+        self.dialog = addEvent()
+        self.dialog.setup(self.window,'H',self.userdata)
+        self.window.setModal(True)
+        self.window.show()
+    def clickOnDeleteEvent(self,parent):
+        self.window = QDialog()
+        self.dialog = selectEvent()
+        self.dialog.setup(self.window,'H',self.userdata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnViewEvent(self,parent):
+        self.window = QDialog()
+        self.dialog = viewEventDialog()
+        self.dialog.setup(self.window,'H',self.userdata)
+        self.window.setModal(True)
+        self.window.show()
 

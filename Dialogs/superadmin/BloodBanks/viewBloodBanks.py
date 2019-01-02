@@ -5,7 +5,7 @@ from Data.States import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Dialogs.superadmin.BloodBanks.bloodBankProfile import *
-
+from Dialogs.superadmin.BloodBanks.new_bloodBankProfile import *
 
 class Widget1(QWidget):
     def __init__(self,parent = None):
@@ -37,7 +37,8 @@ class Widget1(QWidget):
 class viewBloodBankCenter(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, bloodBankCenterListDialog):
+    def setup(self, bloodBankCenterListDialog,type = None):
+        self.type = type
         bloodBankCenterListDialog.setObjectName("bloodBankCenterListDialog")
         bloodBankCenterListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
         bloodBankCenterListDialog.resize(1291, 700)
@@ -279,11 +280,18 @@ class viewBloodBankCenter(object):
 
 
     def cellClick(self,row,col):
-        self.window = QDialog()
-        self.dialog = bloodBankProfile()
-        self.dialog.setup(self.window,self.dataToFill[row])
-        self.window.setModal(True)
-        self.window.show()
+        if self.type :
+            self.window = QDialog()
+            self.dialog = new_bloodBankProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
+        else :
+            self.window = QDialog()
+            self.dialog = bloodBankProfile()
+            self.dialog.setup(self.window,self.dataToFill[row])
+            self.window.setModal(True)
+            self.window.show()
         print(row,col)
 
 

@@ -360,6 +360,6 @@ class BloodBank(object):
     def clickOnViewBloodBank(self):
         self.window = QDialog()
         self.dialog = viewBloodBankCenter()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,'SA')
         self.window.setModal(True)
         self.window.show()

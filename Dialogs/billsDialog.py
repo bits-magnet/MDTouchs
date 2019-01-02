@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'bills.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_billsDialog(object):
-    def setupUi(self, billsDialog):
+class billsDialog(object):
+    def setup(self, billsDialog,hospitalData):
+        self.hospitaldata = hospitalData
         billsDialog.setObjectName("billsDialog")
         billsDialog.resize(348, 186)
         self.createBill = QtWidgets.QPushButton(billsDialog)

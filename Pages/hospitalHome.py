@@ -4,10 +4,34 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Dialogs.changePassword import *
+from Dialogs.superadmin.Hospitals.viewHospitals import *
+from Dialogs.superadmin.BloodBanks.viewBloodBanks import *
+from Dialogs.superadmin.Dispensaries.viewDispensaries import *
+from Dialogs.superadmin.EmergencyServices.viewEs import *
+from Dialogs.superadmin.TestCenters.viewTestCenters import *
+from Dialogs.events import *
+from Dialogs.hospital.hospitalMyProfileOption import *
+from Dialogs.billsDialog import *
 
 class hospitalHome(object):
     def setup(self, hospitalHome,loginData = None):
         self.logindata = loginData
+        self.admindata = {}
+        self.hospitaldata = {}
+        URL = "https://mdtouch.herokuapp.com/api/administrator/"
+        params = {
+            "username" : int(self.logindata["id"])
+        }
+        import requests
+        r = requests.get(url=URL,params=params)
+        l = r.json()
+        self.admindata = l[0]
+        print("admindata : ", self.admindata)
+
+        URL = "https://mdtouch.herokuapp.com/api/hospital/" + str(self.admindata["workplace"])
+        r = requests.get(URL)
+        self.hospitaldata = r.json()
+        print("hospitaldata  : ",self.hospitaldata)
         hospitalHome.setObjectName("hospitalHome")
         hospitalHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(hospitalHome)
@@ -346,9 +370,32 @@ class hospitalHome(object):
         self.clickEvents(hospitalHome,loginData)
 
     def clickEvents(self, parent,loginData):
-
+        self.hospitalName.setText(str(self.hospitaldata["name"]))
         self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
+        self.searchTestCenters.clicked.connect(lambda : self.clickOnTestCenter())
+        self.searchDispensaries.clicked.connect(lambda : self.clickOnDispenary())
+        self.searchBloodBankCenters.clicked.connect(lambda : self.clickOnBloodBank())
+        self.searchEmergencyServices.clicked.connect(lambda : self.clickOnEs())
+        self.events.clicked.connect(lambda : self.clickOnEvents())
+        self.profile.clicked.connect(lambda : self.clickOnProfile(parent))
+        self.bills.clicked.connect(lambda : self.clickOnBills(parent))
+
+    def clickOnBills(self,parent):
+        self.window = QDialog()
+        self.dialog = billsDialog()
+        self.dialog.setup(self.window,self.hospitaldata)
+        self.window.setModal(True)
+        self.window.show()
+
+
+    def clickOnProfile(self,parent):
+        self.window = QDialog()
+        self.dialog = hospitalMyProfileDialog()
+        self.dialog.setup(self.window,self.admindata,self.hospitaldata)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
@@ -364,3 +411,38 @@ class hospitalHome(object):
         URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(self.logindata["id"])
         r = requests.get(url=URL)
         self.logindata = r.json()
+
+    def clickOnEvents(self):
+        self.window = QDialog()
+        self.dialog = eventsDialog()
+        self.dialog.setup(self.window,'H',self.hospitaldata)
+        self.window.setModal(True)
+        self.window.show()
+
+
+    def clickOnTestCenter(self):
+        self.window = QDialog()
+        self.dialog = viewTestCenter()
+        self.dialog.setup(self.window,)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBloodBank(self):
+        self.window = QDialog()
+        self.dialog = viewBloodBankCenter()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+    def clickOnDispenary(self):
+        self.window = QDialog()
+        self.dialog = viewDispensary()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnEs(self):
+        self.window = QDialog()
+        self.dialog = viewEs()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()

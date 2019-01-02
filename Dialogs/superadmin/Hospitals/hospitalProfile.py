@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import *
 
 class hospitalProfile(object):
     def setup(self, hospitalProfile,data):
+        print(data)
         hospitalProfile.setObjectName("hospitalProfile")
         hospitalProfile.resize(462, 420)
         self.frame = QtWidgets.QFrame(hospitalProfile)

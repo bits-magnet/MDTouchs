@@ -320,7 +320,7 @@ class Events(object):
     def clickOnAddEvent(self):
         self.window = QDialog()
         self.dialog = addEvent()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,'SA')
         self.window.setModal(True)
         self.window.show()
 

@@ -100,7 +100,7 @@ class eventProfile(object):
         self.clickevent(eventProfile)
 
     def clickevent(self,parent):
-        self.eventID.setText(self.eventdata["id"])
+        self.eventID.setText(str(self.eventdata["id"]))
         self.venue.setText(self.eventdata["eventlocation"])
         self.date.setText(str(self.eventdata["dateofevent"]))
         self.name.setText(self.eventdata["title"])
