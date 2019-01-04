@@ -414,7 +414,7 @@ class doctorHome(object):
     def clickOnMessageDialog(self):
         self.window = QDialog()
         self.dialog = messageDoctorDialog()
-        self.dialog.setup(self.window,self.logindata)
+        self.dialog.setup(self.window,self.logindata, self.hospital_data)
         self.window.setModal(True)
         self.window.show()
 

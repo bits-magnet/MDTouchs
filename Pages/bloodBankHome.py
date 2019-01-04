@@ -4,10 +4,59 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.Notice.NoticeList import *
 from Dialogs.changePassword import *
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FingureCanvas
+from matplotlib.figure import Figure
+import matplotlib
+from matplotlib import *
+import numpy as np
+from Dialogs.bloodBank.bloodCamp import *
+from Dialogs.Message.MessageDialog import *
+from Dialogs.bloodBank.bloodentry import *
+from Dialogs.bloodBank.blooddonation import *
+from Dialogs.bloodBank.writeReciept import *
+from Dialogs.bloodBank.bloodRecordsDialog import *
+from Dialogs.bloodBank.bloodwasteEntry import *
+from Dialogs.superadmin.BloodBanks.new_bloodBankProfile import *
+
+
+class Canvas(FingureCanvas):
+    def __init__(self, parent = None, width =7.5, height = 4.6, dpi =100):
+
+        fig = Figure(figsize=(width, height), dpi=dpi)
+        a = fig.add_subplot(111)
+        self.axes = fig.add_subplot(111)
+        people = ('A+', 'A-', 'B+', 'B-', 'AB+','AB-','O+','O-')
+        self.y_pos = np.arange(len(people))
+        performance = [15,223,893,422,51,116,993,715]
+        self.axes.set_yticks(self.y_pos)
+        self.axes.set_yticklabels(people)
+        self.axes.invert_yaxis()  # labels read top-to-bottom
+        self.axes.set_xlabel('Quantity in Litre')
+        self.axes.set_title('Blood Quantity Table')
+
+        FingureCanvas.__init__(self, fig)
+        FingureCanvas.setSizePolicy(self,QSizePolicy.Expanding,QSizePolicy.Expanding)
+        FingureCanvas.updateGeometry(self)
+
+    def plot(self,performance):
+        self.axes.barh(self.y_pos, performance, align='center',color='red', ecolor='black')
+
+
+
+
+
 
 class bloodBankHome(object):
     def setup(self, bloodBankHome,loginData = None):
         self.logindata = loginData
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/"
+        data = {
+            "username" : self.logindata["id"]
+        }
+        r = requests.get(url=URL,params=data)
+        l = r.json()
+        self.bloodbankdata = l[0]
         bloodBankHome.setObjectName("bloodBankHome")
         bloodBankHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(bloodBankHome)
@@ -85,8 +134,6 @@ class bloodBankHome(object):
         self.writeReceiptLabel.setObjectName("writeReceiptLabel")
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(240, 150, 701, 461))
-        self.widget.setStyleSheet("image: url(:/bar-graph-horiz.svg);\n"
-"background-color: rgb(255, 255, 127);")
         self.widget.setObjectName("widget")
         self.quantityGraphLabel = QtWidgets.QLabel(self.centralwidget)
         self.quantityGraphLabel.setGeometry(QtCore.QRect(460, 630, 261, 31))
@@ -255,14 +302,94 @@ class bloodBankHome(object):
         self.bloodBankName.setText(_translate("bloodBankHome", "blood_bank_name"))
         self.eventsLabel.setText(_translate("bloodBankHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Events</span></p></body></html>"))
         self.noticesLabel.setText(_translate("bloodBankHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Notices</span></p></body></html>"))
-        self.bloodRequestsLabel.setText(_translate("bloodBankHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Blood Requests</span></p></body></html>"))
+        self.bloodRequestsLabel.setText(_translate("bloodBankHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Blood Waste Entry</span></p></body></html>"))
 
+        self.bloodBankName.setText(str(self.bloodbankdata["name"]))
         self.clickEvents(bloodBankHome)
+        self.addgraph()
+
+    def addgraph(self):
+        widget1 = QWidget(self.widget)
+        layout = QVBoxLayout()
+        canvas = Canvas()
+        layout.addWidget(canvas)
+        widget1.setLayout(layout)
+        Ap = self.bloodbankdata["quantityAp"]
+        Am = self.bloodbankdata["quantityAm"]
+        Bp = self.bloodbankdata["quantityBp"]
+        Bm = self.bloodbankdata["quantityBm"]
+        ABp = self.bloodbankdata["quantityABp"]
+        ABm = self.bloodbankdata["quantityABm"]
+        Op = self.bloodbankdata["quantityOp"]
+        Om = self.bloodbankdata["quantityOm"]
+        canvas.plot([Ap,Am,Bp,Bm,ABp,ABm,Op,Om])
+
 
     def clickEvents(self, parent):
         self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
+        self.events.clicked.connect(lambda : self.clickOnEvents(parent))
+        self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
+        self.bloodRequests.clicked.connect(lambda : self.clickOnBloodRequest(parent))
+        self.bloodEntry.clicked.connect(lambda : self.clickOnBloodEntry(parent))
+        self.writeReceipt.clicked.connect(lambda : self.clickOnWriteReciept(parent))
+        self.bloodTransfers.clicked.connect(lambda : self.clickOnBloodTransfers(parent))
+        self.donation.clicked.connect(lambda : self.clickOnDonation(parent))
+        self.profile.clicked.connect(lambda : self.clickOnProfile(parent))
+
+    def clickOnProfile(self,parent):
+        self.window = QDialog()
+        self.dialog = new_bloodBankProfile()
+        self.dialog.setup(self.window,self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+
+
+
+    def clickOnDonation(self,parent):
+        self.window = QDialog()
+        self.dialog = bloodDonation()
+        self.dialog.setup(self.window,self)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBloodTransfers(self,parent):
+        self.window = QDialog()
+        self.dialog = bloodDialog()
+        self.dialog.setup(self.window,self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnWriteReciept(self,parent):
+        self.window = QDialog()
+        self.dialog = bloodReciept()
+        self.dialog.setup(self.window,self)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBloodRequest(self,parent):
+        self.window = QDialog()
+        self.dialog = bloodwasteEntry()
+        self.dialog.setup(self.window,self,parent)
+        self.window.setModal(True)
+        self.window.show()
+    def clickOnBloodEntry(self,parent):
+        self.window = QDialog()
+        self.dialog = bloodentry()
+        self.dialog.setup(self.window,self)
+        self.window.setModal(True)
+        self.window.show()
+
+
+
+    def clickOnEvents(self,parent):
+        self.window = QDialog()
+        self.dialog = bloodCampDialog()
+        self.dialog.setup(self.window,self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnChangePassword(self,parent):
         self.window = QDialog()
@@ -280,4 +407,12 @@ class bloodBankHome(object):
 
 
     def clickOnLogoutButton(self,parent):
-        parent.parent.loginpage.setup(parent)
+        parent.loginpage.setup(parent)
+
+    def clickOnMessages(self,parent):
+        self.window = QDialog()
+        self.dialog = messageDialog()
+        self.dialog.setup(self.window, self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+

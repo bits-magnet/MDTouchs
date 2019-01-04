@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Dialogs.changePassword import *
 from Dialogs.Notice.NoticeList import *
+from Dialogs.Message.MessageDialog import *
 
 class emergencyServiceHome(object):
     def setup(self, emergencyServiceHome,loginData = None):
@@ -275,6 +276,7 @@ class emergencyServiceHome(object):
         self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
+        self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
@@ -290,5 +292,12 @@ class emergencyServiceHome(object):
         self.window = QDialog()
         self.dialog = noticeList()
         self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnMessages(self,parent):
+        self.window = QDialog()
+        self.dialog = messageDialog()
+        self.dialog.setup(self.window, self.logindata)
         self.window.setModal(True)
         self.window.show()

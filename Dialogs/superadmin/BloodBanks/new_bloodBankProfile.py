@@ -1,6 +1,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from Dialogs.bloodBank.bloodRecordsDialog import *
+from Dialogs.superadmin.Events.myEventList import *
+from Dialogs.bloodBank.bloodquantityList import *
 class new_bloodBankProfile(object):
     def setup(self, bloodBankProfile,userdata):
         self.userdata = userdata
@@ -136,13 +138,28 @@ class new_bloodBankProfile(object):
         self.city.setText(data["city"])
         self.billingRecords.clicked.connect(lambda : self)
         self.pushButton.clicked.connect(lambda: parent.close())
-        self.billingRecords.clicked.connect(lambda : self.clickOnBillingRecords(parent))
-        self.eventsOrganized.clicked.connect(lambda : self.clickOneventOrganized(parent))
-        self.bloodQuantities.clicked.connect(lambda : self.clickOnBloodQuantities(parent))
+        self.billingRecords.clicked.connect(lambda : self.clickOnBillingRecords(parent,data))
+        self.eventsOrganized.clicked.connect(lambda : self.clickOneventOrganized(parent,data))
+        self.bloodQuantities.clicked.connect(lambda : self.clickOnBloodQuantities(parent,data))
 
-    def clickOnBillingRecords(self,parent):
-        pass
-    def clickOneventOrganized(self,parent):
-        pass
-    def clickOnBloodQuantities(self,parent):
-        pass
+    def clickOnBillingRecords(self,parent,userdata):
+        self.window = QDialog()
+        self.dialog = bloodDialog()
+        self.dialog.setup(self.window,userdata)
+        self.window.setModal(True)
+        self.window.show()
+
+
+    def clickOneventOrganized(self,parent,userdata):
+        self.window = QDialog()
+        self.dialog = myEventList()
+        self.dialog.setup(self.window,'BB',userdata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnBloodQuantities(self,parent,userdata):
+        self.window = QDialog()
+        self.dialog = myEventList()
+        self.dialog.setup(self.window,userdata)
+        self.window.setModal(True)
+        self.window.show()

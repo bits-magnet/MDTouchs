@@ -107,8 +107,8 @@ class loginPage(object):
     def eventsUi(self, loginPage):
         self.forgotPasswordLink.clicked.connect(lambda: self.forgotPasswordEvent(loginPage))
         self.passwordInput.returnPressed.connect(self.loginButton.click)
-        #self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
-        self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
+        self.loginButton.clicked.connect(lambda: self.loginEvent(loginPage))
+        #self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
         logintype = 'BB'
@@ -191,7 +191,7 @@ class loginPage(object):
             return
         if data[0]["dept"] == "BB":
             self.bloodBankpage = bloodBankHome()
-            self.bloodBankpage.setup(loginPage)
+            self.bloodBankpage.setup(loginPage,data[0])
             return
         if data[0]["dept"] == "TC":
             self.testCenterpage = testCenterHome()

@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'bloodCamp.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from Dialogs.superadmin.Events.addEvent import *
+from Dialogs.superadmin.Events.myEventList import *
+from Dialogs.superadmin.Events.viewEvents import *
+from Dialogs.superadmin.Events.selectEvent import *
 
-class Ui_bloodCampDialog(object):
-    def setupUi(self, bloodCampDialog):
+class bloodCampDialog(object):
+    def setup(self, bloodCampDialog, bloodbankdata = None):
+        self.bloodbankdata = bloodbankdata
         bloodCampDialog.setObjectName("bloodCampDialog")
         bloodCampDialog.resize(553, 219)
         self.cancelBloodCampLabel = QtWidgets.QLabel(bloodCampDialog)
@@ -58,6 +58,7 @@ class Ui_bloodCampDialog(object):
         self.viewBloodCamps.setIconSize(QtCore.QSize(100, 100))
         self.viewBloodCamps.setObjectName("viewBloodCamps")
 
+
         self.retranslateUi(bloodCampDialog)
         QtCore.QMetaObject.connectSlotsByName(bloodCampDialog)
 
@@ -67,4 +68,34 @@ class Ui_bloodCampDialog(object):
         self.cancelBloodCampLabel.setText(_translate("bloodCampDialog", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; text-decoration: underline;\">Cancel<br>Blood Camp</span></p></body></html>"))
         self.viewBloodCampsLabel.setText(_translate("bloodCampDialog", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; text-decoration: underline;\">View<br>Blood Camps</span></p></body></html>"))
         self.addBloodCampLabel.setText(_translate("bloodCampDialog", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; text-decoration: underline;\">Add<br>Blood Camp</span></p></body></html>"))
+        self.events(bloodCampDialog)
+
+    def events(self,parent):
+        self.addBloodCamp.clicked.connect(lambda : self.clickOnAddBloodCamp(parent))
+        self.cancelBloodCamp.clicked.connect(lambda : self.clickOndeleteBloodCamp(parent))
+        self.viewBloodCamps.clicked.connect(lambda : self.clickOnViewBloodCam(parent))
+
+    def clickOnAddBloodCamp(self,parent):
+        self.window = QDialog()
+        self.dialog = addEvent()
+        self.dialog.setup(self.window,'BB',self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+        parent.close()
+
+    def clickOnViewBloodCam(self,parent):
+        self.window = QDialog()
+        self.dialog = viewEvent()
+        self.dialog.setup(self.window,"BB",self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+        parent.close()
+
+    def clickOndeleteBloodCamp(self,parent):
+        self.window = QDialog()
+        self.dialog = selectEvent()
+        self.dialog.setup(self.window,'BB',self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+        parent.close()
 

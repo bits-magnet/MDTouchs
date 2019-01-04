@@ -13,6 +13,7 @@ from Dialogs.events import *
 from Dialogs.hospital.hospitalMyProfileOption import *
 from Dialogs.billsDialog import *
 from Dialogs.Notice.NoticeList import *
+from Dialogs.Message.MessageDialog import *
 
 class hospitalHome(object):
     def setup(self, hospitalHome,loginData = None):
@@ -382,6 +383,14 @@ class hospitalHome(object):
         self.profile.clicked.connect(lambda : self.clickOnProfile(parent))
         self.bills.clicked.connect(lambda : self.clickOnBills(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
+        self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
+
+    def clickOnMessages(self,parent):
+        self.window = QDialog()
+        self.dialog = messageDialog()
+        self.dialog.setup(self.window, self.logindata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnBills(self,parent):
         self.window = QDialog()

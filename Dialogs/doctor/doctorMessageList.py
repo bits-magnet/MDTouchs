@@ -1,7 +1,22 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 
-class messageList(object):
-    def setup(self, messageList,userdata):
+class Widget1(QWidget):
+    def __init__(self,parent = None):
+        QWidget.__init__(self,parent=None)
+        layout = QFrame(self)
+        layout.setGeometry(0,0,600,50)
+        self.noticeIdLabel = QLabel(layout)
+        self.noticeIdLabel.setGeometry(QRect(10,10,150,30))
+        self.noticeIdLabel.setText("Id : 123")
+        self.noticeNameLabel = QLabel(layout)
+        self.noticeNameLabel.setGeometry(QRect(180,10,500,30))
+
+class doectormessageList(object):
+    def setup(self, messageList,userdata,hospitaldata):
+        self.hospitaldata = hospitaldata
         self.userdata = userdata
         messageList.setObjectName("messageList")
         messageList.resize(640, 480)
@@ -13,7 +28,7 @@ class messageList(object):
         self.ambulanceListLabel = QtWidgets.QLabel(self.frame)
         self.ambulanceListLabel.setGeometry(QtCore.QRect(260, 0, 191, 41))
         self.ambulanceListLabel.setStyleSheet("font-size:14pt;\n"
-"font-weight: bold;")
+                                              "font-weight: bold;")
         self.ambulanceListLabel.setObjectName("ambulanceListLabel")
         self.sendTableWidget = QtWidgets.QTableWidget(self.frame)
         self.sendTableWidget.setGeometry(QtCore.QRect(10, 41, 300, 371))
@@ -35,7 +50,6 @@ class messageList(object):
         self.retranslateUi(messageList)
         QtCore.QMetaObject.connectSlotsByName(messageList)
 
-
     def retranslateUi(self, messageList):
         _translate = QtCore.QCoreApplication.translate
         messageList.setWindowTitle(_translate("messageList", "Message List"))
@@ -45,5 +59,8 @@ class messageList(object):
         self.events(messageList)
 
     def events(self,parent):
+
+
+
         self.okButton.clicked.connect(lambda : parent.close())
 

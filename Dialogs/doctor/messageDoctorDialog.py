@@ -1,11 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Dialogs.Message.broadcastList import *
-from Dialogs.Message.messageList import *
+from Dialogs.doctor.doctorMessageList import *
 from PyQt5.QtWidgets import *
 
 class messageDoctorDialog(object):
-    def setup(self, messageDoctorDialog,data):
+    def setup(self, messageDoctorDialog,data,hospitaldata):
         self.logindata = data
+        self.hospitaldata = hospitaldata
         messageDoctorDialog.setObjectName("messageDoctorDialog")
         messageDoctorDialog.resize(348, 228)
         self.doctorMessage = QtWidgets.QPushButton(messageDoctorDialog)
@@ -65,7 +66,7 @@ class messageDoctorDialog(object):
 
     def clickOnDoctorMessage(self,parent):
         self.window = QDialog()
-        self.dialog = messageList()
-        self.dialog.setup(self.window,self.logindata)
+        self.dialog = messageDoctorDialog()
+        self.dialog.setup(self.window,self.logindata, self.hospitaldata)
         self.window.setModal(True)
         self.window.show()

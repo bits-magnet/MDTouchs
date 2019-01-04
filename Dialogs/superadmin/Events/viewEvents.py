@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import *
 from Dialogs.messageBox import *
 from Dialogs.superadmin.Events.eventProfile import *
 from Dialogs.superadmin.Events.new_eventProfile import *
+from Dialogs.superadmin.Events.myEventList import *
 
 
 class Widget1(QWidget):
@@ -38,7 +39,8 @@ class Widget1(QWidget):
 class viewEvent(object):
     def __init__(self):
         self.dataToFill = []
-    def setup(self, EventListDialog,type = None):
+    def setup(self, EventListDialog,type = None,data = None):
+        self.data = data
         self.type = type
         EventListDialog.setObjectName("EventListDialog")
         EventListDialog.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -78,6 +80,10 @@ class viewEvent(object):
         self.cityComboBox.setGeometry(QtCore.QRect(870,80,300,31))
         self.cityComboBox.addItem("All Cities")
         self.stateComboBox.addItem("All States")
+
+        self.myevent = QPushButton(EventListDialog)
+        self.myevent.setGeometry(QRect(100,10,100,50))
+        self.myevent.setText("My Events")
 
         self.exitButton.setObjectName("exitButton")
 
@@ -128,7 +134,15 @@ class viewEvent(object):
         # Exit Button Functionality
         self.searchButton.clicked.connect(lambda : self.addRowDataFunction(EventListDialog))
         self.exitButton.clicked.connect(lambda : self.exitFunction(EventListDialog))
+        self.myevent.clicked.connect(lambda : self.clickOnMyEvents(EventListDialog))
 
+    def clickOnMyEvents(self,parent):
+        self.window = QDialog()
+        self.dialog = myEventList()
+        self.dialog.setup(self.window,self.type,self.data)
+        self.window.setModal(True)
+        self.window.show()
+        parent.close()
     def placeholder(self,EventListDialog):
         a = self.comboBox.currentText()
         if "Id" in a:

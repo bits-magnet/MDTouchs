@@ -186,14 +186,25 @@ class addDoctor(object):
         loginData = r.json()
         print(loginData)
         id = loginData["id"]
-
+        sdata = {
+            "skill" : " "
+        }
+        qdata = {
+            "degree" : " "
+        }
+        r = requests.post(url="https://mdtouch.herokuapp.com/api/qualification/",data=qdata)
+        qualification = r.json()
+        r =requests.post(url="https://mdtouch.herokuapp.com/api/specialization/",data=sdata)
+        specilization = r.json()
 
         URLD = "https://mdtouch.herokuapp.com/api/administrator/"
         data1 = {
             "firstName":fname,
             "lastName": lname,
             "username": id,
-            "workplace": hospital_id
+            "workplace": hospital_id,
+            "qualification": int(qualification["id"]),
+            "specialization" : int(specilization["id"])
         }
         r = requests.post(url=URLD,data=data1)
         l = r.json()

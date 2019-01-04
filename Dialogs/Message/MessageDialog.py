@@ -1,7 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from Dialogs.Message.messageList import *
+from Dialogs.Message.broadcastList import *
 
-class Ui_messageDialog(object):
-    def setupUi(self, messageDialog):
+class messageDialog(object):
+    def setup(self, messageDialog,userdata):
+        self.userdata = userdata
         messageDialog.setObjectName("messageDialog")
         messageDialog.resize(484, 235)
         self.broadcastMessages = QtWidgets.QPushButton(messageDialog)
@@ -54,4 +60,21 @@ class Ui_messageDialog(object):
         messageDialog.setWindowTitle(_translate("messageDialog", "Messages"))
         self.broadcastMessageLabel.setText(_translate("messageDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Broadcast</span></p><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Messages</span></p></body></html>"))
         self.superadminMessageLabel.setText(_translate("messageDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">SuperAdmin</span></p><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Messages</span></p></body></html>"))
+        self.events(messageDialog)
 
+    def events(self,parent):
+        self.broadcastMessages.clicked.connect(lambda : self.clickOnBroadCast(parent))
+        self.superadminMessage.clicked.connect(lambda : self.clickOnSM(parent))
+
+    def clickOnBroadCast(self,parent):
+        self.window = QDialog()
+        self.dialog = broadcastList()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+    def clickOnSM(self,parent):
+        self.window = QDialog()
+        self.dialog = messageList()
+        self.dialog.setup(self.window,self.userdata)
+        self.window.setModal(True)
+        self.window.show()

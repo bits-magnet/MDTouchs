@@ -373,3 +373,5 @@ class Dispensary(object):
         self.dialog.setup(self.window,'SA')
         self.window.setModal(True)
         self.window.show()
+
+
