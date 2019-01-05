@@ -111,20 +111,20 @@ class loginPage(object):
         #self.loginButton.clicked.connect(lambda: self.justLogin(loginPage))
 
     def justLogin(self, loginPage):
-        logintype = 'BB'
+        logintype = 'DS'
         if logintype == 'SA':
             self.superadminpage = superadminHome()
             self.superadminpage.setup(loginPage)
         elif logintype == 'D':
             self.doctorpage = doctorHome()
             self.doctorpage.setup(loginPage)
-        elif logintype == 'Di':
+        elif logintype == 'DS':
             self.dispensarypage = dispensaryHome()
             self.dispensarypage.setup(loginPage)
         elif logintype == 'BB':
             self.bloodBankpage = bloodBankHome()
             self.bloodBankpage.setup(loginPage)
-        elif logintype == 'TC':
+        elif logintype == 'T':
             self.testCenterpage = testCenterHome()
             self.testCenterpage.setup(loginPage)
         elif logintype == 'H':
@@ -193,7 +193,7 @@ class loginPage(object):
             self.bloodBankpage = bloodBankHome()
             self.bloodBankpage.setup(loginPage,data[0])
             return
-        if data[0]["dept"] == "TC":
+        if data[0]["dept"] == "T":
             self.testCenterpage = testCenterHome()
             self.testCenterpage.setup(loginPage)
             return

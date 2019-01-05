@@ -7,6 +7,7 @@ from Dialogs.superadmin.BloodBanks.selectBloodBank import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.BloodBanks.viewBloodBanks import *
 from Dialogs.Message.messageList import *
+from Dialogs.superadmin.BloodBanks.fraudBlood import *
 
 class BloodBank(object):
     def setup(self, bloodBank, superadmin):

@@ -11,6 +11,8 @@ from Pages.superadmin.EmergencyService import *
 from Pages.superadmin.TestCenter import *
 from Dialogs.Notice.noticeDialog import *
 from Dialogs.Message.messageList import *
+from Dialogs.superadmin.statistics import *
+from Dialogs.changePassword import *
 
 
 class superadminHome(object):
@@ -304,7 +306,7 @@ class superadminHome(object):
         self.doctorLabel.setText(_translate("Home", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Doctors</span></p></body></html>"))
         self.testLabel.setText(_translate("Home", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Test Centers</span></p></body></html>"))
         self.dispensaryLabel.setText(_translate("Home", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Dispensaries</span></p></body></html>"))
-        self.settingsLabel.setText(_translate("Home", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Settings</span></p></body></html>"))
+        self.settingsLabel.setText(_translate("Home", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Change Password</span></p></body></html>"))
         self.analyticsLabel.setText(_translate("Home", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Statistics</span></p></body></html>"))
         self.noticesLabel.setText(_translate("Home", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600; text-decoration: underline;\">Notices</span></p></body></html>"))
         self.title.setText(_translate("Home", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -360,9 +362,19 @@ class superadminHome(object):
         self.window.setModal(True)
         self.window.show()
     def clickOnAnalytics(self, parent):
-        pass
+        self.window = QDialog()
+        self.dialog = superadminstats()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
     def clickOnSettings(self, parent):
-        pass
+        self.window = QDialog()
+        self.dialog = changePassword()
+        self.dialog.setup(self.window,self.logindata,self)
+        self.window.setModal(True)
+        self.window.show()
+
     def clickOnInbox(self, parent):
         self.window = QDialog()
         self.dialog = messageList()

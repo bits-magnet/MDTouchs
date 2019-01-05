@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'bloodDonationList.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_donationList(object):
-    def setupUi(self, donationList):
+class donationList(object):
+    def setup(self, donationList,userdata):
+        self.userdata = userdata
         donationList.setObjectName("donationList")
         donationList.resize(640, 480)
         self.frame = QtWidgets.QFrame(donationList)

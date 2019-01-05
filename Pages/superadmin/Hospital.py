@@ -9,6 +9,8 @@ from Dialogs.superadmin.Hospitals.selectAdmin import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.Hospitals.viewHospitals import *
 from Dialogs.Message.messageList import *
+from Dialogs.superadmin.hospitalStats import *
+from Dialogs.hospital.bedRecordSuperadmin import *
 
 class Hospital(object):
     def setup(self, Hospital,superadmin):
@@ -386,6 +388,22 @@ class Hospital(object):
         self.removeAdmin.clicked.connect(lambda : self.clickOnRemoveAdmin())
         self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
         self.viewHospitals.clicked.connect(lambda : self.clickOnViewHospitals())
+        self.statistics.clicked.connect(lambda : self.clickOnStatistics())
+        self.beds.clicked.connect(lambda : self.clickOnBed())
+
+    def clickOnBed(self):
+        self.window = QDialog()
+        self.dialog = bedviewlialogsuperadmin()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnStatistics(self):
+        self.window = QDialog()
+        self.dialog = hospitalStats()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnBloodBank(self, parent, superadmin):
         superadmin.bloodbank_home.setup(parent, superadmin)

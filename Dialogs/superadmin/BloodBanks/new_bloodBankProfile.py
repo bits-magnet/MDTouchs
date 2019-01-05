@@ -159,7 +159,7 @@ class new_bloodBankProfile(object):
 
     def clickOnBloodQuantities(self,parent,userdata):
         self.window = QDialog()
-        self.dialog = myEventList()
+        self.dialog = bloodquanityList()
         self.dialog.setup(self.window,userdata)
         self.window.setModal(True)
         self.window.show()

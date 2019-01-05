@@ -7,6 +7,8 @@ from Dialogs.superadmin.TestCenters.selectTestCenter import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.TestCenters.viewTestCenters import *
 from Dialogs.Message.messageList import *
+from Dialogs.superadmin.testcenterStats import *
+from Dialogs.superadmin.TestCenters.searchTest import *
 
 class TestCenter(object):
     def setup(self, TestCenter, superadmin):
@@ -317,6 +319,15 @@ class TestCenter(object):
         self.removeTestCenter.clicked.connect(lambda: self.clickOnRemoveTestCenter())
         self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
         self.viewTestCenter.clicked.connect(lambda : self.clickOnViewTestCenter())
+        self.statistics.clicked.connect(lambda : self.clickOnStatistics())
+        self.searchTests.clicked.connect(lambda : self.clickOnSearchTest())
+
+    def clickOnSearchTest(self):
+        self.window = QDialog()
+        self.dialog = searchTest()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)
@@ -378,5 +389,12 @@ class TestCenter(object):
         self.window = QDialog()
         self.dialog = viewTestCenter()
         self.dialog.setup(self.window,"SA")
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnStatistics(self):
+        self.window = QDialog()
+        self.dialog = testcenterStats()
+        self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()

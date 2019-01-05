@@ -6,6 +6,7 @@ from Dialogs.superadmin.Events.addEvent import *
 from Dialogs.superadmin.Events.selectEvent import *
 from Dialogs.superadmin.Events.viewEvents import *
 from Dialogs.Message.messageList import *
+from Dialogs.superadmin.eventStats import *
 
 
 class Events(object):
@@ -290,6 +291,14 @@ class Events(object):
         self.addEvent.clicked.connect(lambda: self.clickOnAddEvent())
         self.deleteEvent.clicked.connect(lambda: self.clickOnDeleteEvent())
         self.viewEvents.clicked.connect(lambda : self.clickOnViewEvent())
+        self.eventStatistics.clicked.connect(lambda : self.clickOnStatistics())
+
+    def clickOnStatistics(self):
+        self.window = QDialog()
+        self.dialog = eventStats()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)

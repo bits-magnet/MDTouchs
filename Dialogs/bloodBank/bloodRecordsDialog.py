@@ -2,6 +2,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Dialogs.bloodBank.wasteRecordsList import *
+from Dialogs.bloodBank.billingRecordList import *
+from Dialogs.bloodBank.bloodentryList import *
+from Dialogs.bloodBank.bloodDonationList import *
 class bloodDialog(object):
     def setup(self, bloodDialog,bloodbankdata):
         self.bloodbankdata = bloodbankdata
@@ -82,6 +85,33 @@ class bloodDialog(object):
 
     def events(self,parent):
         self.wasteRecords.clicked.connect(lambda : self.clickOnwasteRecords(parent))
+        self.billingRecords.clicked.connect(lambda : self.clickOnbillingrecords(parent))
+        self.donationRecords.clicked.connect(lambda : self.clickOnDonationRecords(parent))
+        self.entryRecord.clicked.connect(lambda : self.clickOnEntryRecord(parent))
+
+    def clickOnEntryRecord(self,parent):
+        self.window = QDialog()
+        self.dialog = bloodentryList()
+        self.dialog.setup(self.window,self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+
+
+    def clickOnDonationRecords(self,parent):
+        self.window = QDialog()
+        self.dialog = donationList()
+        self.dialog.setup(self.window,self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+
+
+    def clickOnbillingrecords(self,parent):
+        self.window = QDialog()
+        self.dialog = billingList()
+        self.dialog.setup(self.window,self.bloodbankdata)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnwasteRecords(self,parent):
         self.window = QDialog()

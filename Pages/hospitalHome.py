@@ -14,6 +14,9 @@ from Dialogs.hospital.hospitalMyProfileOption import *
 from Dialogs.billsDialog import *
 from Dialogs.Notice.NoticeList import *
 from Dialogs.Message.MessageDialog import *
+from Dialogs.superadmin.Hospitals.new_hospitalProfile import *
+from Dialogs.hospital.doctorList import *
+from Dialogs.hospital.bedView import *
 
 class hospitalHome(object):
     def setup(self, hospitalHome,loginData = None):
@@ -384,6 +387,22 @@ class hospitalHome(object):
         self.bills.clicked.connect(lambda : self.clickOnBills(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
         self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
+        self.doctors.clicked.connect(lambda : self.clickOnDoctors())
+        self.beds.clicked.connect(lambda : self.clickOnBeds())
+
+    def clickOnBeds(self):
+        self.window = QDialog()
+        self.dialog = bedviewlialog()
+        self.dialog.setup(self.window,self.hospitaldata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnDoctors(self):
+        self.window = QDialog()
+        self.dialog = doctorList()
+        self.dialog.setup(self.window,self.hospitaldata)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnMessages(self,parent):
         self.window = QDialog()
@@ -402,10 +421,11 @@ class hospitalHome(object):
 
     def clickOnProfile(self,parent):
         self.window = QDialog()
-        self.dialog = hospitalMyProfileDialog()
-        self.dialog.setup(self.window,self.admindata,self.hospitaldata)
+        self.dialog = billsDialog()
+        self.dialog.setup(self.window,self.hospitaldata)
         self.window.setModal(True)
         self.window.show()
+
 
 
     def clickOnLogoutButton(self,parent):

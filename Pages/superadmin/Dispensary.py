@@ -7,6 +7,7 @@ from Dialogs.superadmin.Dispensaries.selectDispensary import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.Dispensaries.viewDispensaries import *
 from Dialogs.Message.messageList import *
+from Dialogs.superadmin.Dispensaries.searchMedicine import *
 class Dispensary(object):
     def setup(self, Dispensary, superadmin):
         Dispensary.setObjectName("Dispensary")
@@ -314,6 +315,15 @@ class Dispensary(object):
         self.removeDispensary.clicked.connect(lambda: self.clickOnRemoveDispensary())
         self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
         self.viewDispensary.clicked.connect(lambda : self.clickOnViewDispensary())
+        self.searchMedicines.clicked.connect(lambda : self.clickOnSearchMedicine())
+
+    def clickOnSearchMedicine(self):
+        self.window = QDialog()
+        self.dialog = searchMedicine()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)

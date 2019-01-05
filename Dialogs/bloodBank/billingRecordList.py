@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'billingRecordList.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_billingList(object):
-    def setupUi(self, billingList):
+class billingList(object):
+    def setup(self, billingList, userdata):
+        self.userdata = userdata
         billingList.setObjectName("billingList")
         billingList.resize(640, 480)
         self.frame = QtWidgets.QFrame(billingList)

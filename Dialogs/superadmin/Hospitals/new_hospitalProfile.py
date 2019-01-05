@@ -1,6 +1,8 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from Dialogs.hospital.adminList import *
+from Dialogs.hospital.doctorList import *
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -157,6 +159,21 @@ class new_hospitalProfile(object):
         self.pinCode.setText(str(data["pin"]))
         self.address.setText(str(data["address"]))
         self.contact.setText(str(data["contact"]))
+        self.seeAdmins.clicked.connect(lambda : clickOnSeeAdmins())
+        self.seeDoctor.clicked.connect(lambda : clickOnSeeDoctors)
 
         self.pushButton.clicked.connect(lambda: parent.close())
 
+    def clickOnSeeDoctors(self):
+        self.window = QDialog()
+        self.dialog = doctorList()
+        self.dialog.setup(self.window,self.hospitaldata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnSeeAdmins(self):
+        self.window = QDialog()
+        self.dialog = adminList()
+        self.dialog.setup(self.window,self.hospitaldata)
+        self.window.setModal(True)
+        self.window.show()
