@@ -187,7 +187,7 @@ class loginPage(object):
             return
         if data[0]["dept"] == "DS":
             self.dispensarypage = dispensaryHome()
-            self.dispensarypage.setup(loginPage)
+            self.dispensarypage.setup(loginPage,data[0])
             return
         if data[0]["dept"] == "BB":
             self.bloodBankpage = bloodBankHome()
@@ -195,7 +195,7 @@ class loginPage(object):
             return
         if data[0]["dept"] == "T":
             self.testCenterpage = testCenterHome()
-            self.testCenterpage.setup(loginPage)
+            self.testCenterpage.setup(loginPage,data[0])
             return
         if data[0]["dept"] == "H":
             self.hospitalpage = hospitalHome()

@@ -5,10 +5,20 @@ from PyQt5.QtWidgets import *
 from Dialogs.changePassword import *
 from Dialogs.Notice.NoticeList import *
 from Dialogs.Message.MessageDialog import *
+from Dialogs.superadmin.TestCenters.new_testCenterProfile import *
+from Dialogs.events import *
 
 class testCenterHome(object):
     def setup(self, testCenterHome,loginData= None):
         self.logindata = loginData
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/testcentre/"
+        data = {
+            "username" : self.logindata["id"]
+        }
+        r = requests.get(url=URL,params=data)
+        l = r.json()
+        self.testcenterdata = l[0]
         testCenterHome.setObjectName("testCenterHome")
         testCenterHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(testCenterHome)
@@ -294,12 +304,16 @@ class testCenterHome(object):
         self.addTestLabel.setText(_translate("testCenterHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Add Test</span></p></body></html>"))
         self.eventsLabel.setText(_translate("testCenterHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Events</span></p></body></html>"))
         self.clickEvents(testCenterHome)
+        self.testCenterName.setText(self.testcenterdata["name"])
 
     def clickEvents(self, parent):
         self.logout.clicked.connect(lambda : self.clickOnLogoutButton(parent))
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
         self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
+        self.events.clicked.connect(lambda : self.clickOnEvents())
+        self.profile.clicked.connect(lambda : self.clickOnProfile(parent))
+
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
@@ -307,7 +321,7 @@ class testCenterHome(object):
     def clickOnChangePassword(self,parent):
         self.window = QDialog()
         self.dialog = changePassword()
-        self.dialog.setup(self.window,self.logindata)
+        self.dialog.setup(self.window,self.logindata,self)
         self.window.setModal(True)
         self.window.show()
 
@@ -321,5 +335,19 @@ class testCenterHome(object):
         self.window = QDialog()
         self.dialog = messageDialog()
         self.dialog.setup(self.window, self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnProfile(self,parent):
+        self.window = QDialog()
+        self.dialog = new_testCenterProfile()
+        self.dialog.setup(self.window,self.testcenterdata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnEvents(self):
+        self.window = QDialog()
+        self.dialog = eventsDialog()
+        self.dialog.setup(self.window,'TC',self.testcenterdata)
         self.window.setModal(True)
         self.window.show()

@@ -5,10 +5,20 @@ from PyQt5.QtWidgets import *
 from Dialogs.changePassword import *
 from Dialogs.Notice.NoticeList import *
 from Dialogs.Message.MessageDialog import *
+from Dialogs.events import *
+from Dialogs.superadmin.Dispensaries.new_DispensaryProfile import *
 
 class dispensaryHome(object):
     def setup(self, dispensaryHome,loginData = None):
         self.logindata = loginData
+        import requests
+        URL = "https://mdtouch.herokuapp.com/api/dispensaries/"
+        data = {
+            "username" : self.logindata["id"]
+        }
+        r = requests.get(url=URL,params=data)
+        l = r.json()
+        self.dispensarydata = l[0]
         dispensaryHome.setObjectName("dispensaryHome")
         dispensaryHome.resize(1366, 786)
         dispensaryHome.setStyleSheet("")
@@ -305,6 +315,7 @@ class dispensaryHome(object):
         self.filterComboBox.setItemText(5, _translate("dispensaryHome", "Sort by Expiry Date"))
         self.searchButton.setText(_translate("dispensaryHome", "SEARCH"))
         self.dispensaryName.setText(_translate("dispensaryHome", "dispensary_name"))
+        self.dispensaryName.setText(str(self.dispensarydata["name"]))
 
         self.clickEvents(dispensaryHome)
 
@@ -313,6 +324,8 @@ class dispensaryHome(object):
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
         self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
+        self.events.clicked.connect(lambda : self.clickOnEvents())
+        self.profile.clicked.connect(lambda : self.clickOnProfile(parent))
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
@@ -335,5 +348,19 @@ class dispensaryHome(object):
         self.window = QDialog()
         self.dialog = messageDialog()
         self.dialog.setup(self.window, self.logindata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnEvents(self):
+        self.window = QDialog()
+        self.dialog = eventsDialog()
+        self.dialog.setup(self.window,'DS',self.dispensarydata)
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnProfile(self,parent):
+        self.window = QDialog()
+        self.dialog = new_dispensaryProfile()
+        self.dialog.setup(self.window,self.dispensarydata)
         self.window.setModal(True)
         self.window.show()

@@ -74,7 +74,7 @@ font-weight: bold;</string>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>12</string>
    </property>
   </widget>
   <widget class="QLabel" name="totalRegistration">
@@ -87,7 +87,7 @@ font-weight: bold;</string>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>120</string>
    </property>
   </widget>
   <widget class="QFrame" name="frame">

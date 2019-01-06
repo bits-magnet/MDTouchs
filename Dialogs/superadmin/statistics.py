@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Dialogs.superadmin.eventStats import *
 from Dialogs.superadmin.hospitalStats import *
 from Dialogs.superadmin.testcenterStats import *
+from Dialogs.superadmin.bloodcenterStats import *
 from PyQt5.QtWidgets import *
 
 class superadminstats(object):
@@ -98,7 +99,12 @@ class superadminstats(object):
     def clickOnDoctor(self):
         pass
     def clickOnBloodBankCenter(self):
-        pass
+        self.window = QDialog()
+        self.dialog = bloodcenterstats()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
     def clickOnHospital(self):
         self.window = QDialog()
         self.dialog = hospitalStats()

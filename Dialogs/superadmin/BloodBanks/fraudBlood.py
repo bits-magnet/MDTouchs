@@ -141,7 +141,7 @@ class bloodFraud(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setItem(7, 5, item)
         self.startingDate = QtWidgets.QDateEdit(self.frame)
-        self.startingDate.setGeometry(QtCore.QRect(160, 10, 111, 26))
+        self.startingDate.setGeometry(QtCore.QRect(150, 10, 111, 26))
         self.startingDate.setObjectName("startingDate")
         self.titleLabel_2 = QtWidgets.QLabel(self.frame)
         self.titleLabel_2.setGeometry(QtCore.QRect(10, 10, 131, 31))

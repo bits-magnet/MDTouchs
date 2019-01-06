@@ -8,6 +8,7 @@ from Dialogs.broadcast import *
 from Dialogs.superadmin.BloodBanks.viewBloodBanks import *
 from Dialogs.Message.messageList import *
 from Dialogs.superadmin.BloodBanks.fraudBlood import *
+from Dialogs.superadmin.bloodcenterStats import *
 
 class BloodBank(object):
     def setup(self, bloodBank, superadmin):
@@ -307,6 +308,24 @@ class BloodBank(object):
         self.removeBloodBank.clicked.connect(lambda : self.clickOnRemoveBloodBank())
         self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
         self.view_bloodBanks.clicked.connect(lambda : self.clickOnViewBloodBank())
+        self.fraud.clicked.connect(lambda : self.clickOnFraud())
+        self.statistics.clicked.connect(lambda : self.clickOnStats())
+
+    def clickOnStats(self):
+        self.window = QDialog()
+        self.dialog = bloodcenterstats()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
+
+    def clickOnFraud(self):
+        self.window = QDialog()
+        self.dialog = bloodFraud()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)

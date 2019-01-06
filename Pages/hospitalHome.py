@@ -421,7 +421,7 @@ class hospitalHome(object):
 
     def clickOnProfile(self,parent):
         self.window = QDialog()
-        self.dialog = billsDialog()
+        self.dialog = new_hospitalProfile()
         self.dialog.setup(self.window,self.hospitaldata)
         self.window.setModal(True)
         self.window.show()
