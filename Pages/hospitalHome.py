@@ -17,6 +17,7 @@ from Dialogs.Message.MessageDialog import *
 from Dialogs.superadmin.Hospitals.new_hospitalProfile import *
 from Dialogs.hospital.doctorList import *
 from Dialogs.hospital.bedView import *
+from Dialogs.superadmin.Hospitals.new_hospitalProfile import *
 
 class hospitalHome(object):
     def setup(self, hospitalHome,loginData = None):

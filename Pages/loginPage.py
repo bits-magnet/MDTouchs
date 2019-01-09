@@ -200,6 +200,9 @@ class loginPage(object):
         if data[0]["dept"] == "H":
             self.hospitalpage = hospitalHome()
             self.hospitalpage.setup(loginPage,data[0])
+        if data[0]["dept"] == "ES":
+            self.espage = emergencyServiceHome()
+            self.espage.setup(loginPage,data[0])
 
 
 

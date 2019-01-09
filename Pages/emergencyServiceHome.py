@@ -7,10 +7,20 @@ from PyQt5.QtWidgets import *
 from Dialogs.changePassword import *
 from Dialogs.Notice.NoticeList import *
 from Dialogs.Message.MessageDialog import *
+from Dialogs.superadmin.EmergencyServices.new_emergencyServiceProfile import *
 
 class emergencyServiceHome(object):
     def setup(self, emergencyServiceHome,loginData = None):
         self.logindata = loginData
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/emergencyservice/"
+        params = {
+            "username" : self.logindata["id"]
+        }
+
+        r = requests.get(url=URL,params= params)
+        l =r.json()
+        self.esdata = l[0]
         emergencyServiceHome.setObjectName("emergencyServiceHome")
         emergencyServiceHome.resize(1366, 768)
         self.centralwidget = QtWidgets.QWidget(emergencyServiceHome)
@@ -269,7 +279,7 @@ class emergencyServiceHome(object):
                                                               "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36pt; font-weight:600; text-decoration: underline;\">MDTouch</span></p></body></html>"))
         self.emergencyServiceName.setText(_translate("emergencyServiceHome", "emergency_service_name"))
         self.recordsLabel.setText(_translate("emergencyServiceHome", "<html><head/><body><p><span style=\" font-size:16pt;\">Records</span></p></body></html>"))
-
+        self.emergencyServiceName.setText(self.esdata["name"])
         self.clickEvents(emergencyServiceHome)
 
     def clickEvents(self,parent):
@@ -277,6 +287,14 @@ class emergencyServiceHome(object):
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
         self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
+        self.esdata.clicked.connect(lambda : self.clickOnProfile())
+
+    def clickOnProfile(self):
+        self.window = QDialog()
+        self.dialog = new_emergencyServiceProfile(self.esdata)
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnLogoutButton(self,parent):
         parent.loginpage.setup(parent)
