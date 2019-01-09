@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'blooddonationProfile.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_bloodDonationProfile(object):
-    def setupUi(self, bloodDonationProfile):
+class bloodDonationProfile(object):
+    def setup(self, bloodDonationProfile,data):
+        self.data = data
         bloodDonationProfile.setObjectName("bloodDonationProfile")
         bloodDonationProfile.setWindowModality(QtCore.Qt.ApplicationModal)
         bloodDonationProfile.resize(335, 411)
@@ -95,4 +88,11 @@ class Ui_bloodDonationProfile(object):
         self.bloodtype.setText(_translate("bloodDonationProfile", "TextLabel"))
         self.id.setText(_translate("bloodDonationProfile", "TextLabel"))
         self.exitbutton.setText(_translate("bloodDonationProfile", "Exit"))
+        self.exitbutton.clicked.connect(lambda : bloodDonationProfile.close())
+
+        self.quantity.setText(str(self.data["bloodquantity"]))
+        self.patientid.setText(str(self.data["patid"]))
+        self.eventId.setText("No")
+        self.bloodtype.setText(str(self.data["bloodtype"]))
+        self.date.setText(str(self.data["date"]))
 

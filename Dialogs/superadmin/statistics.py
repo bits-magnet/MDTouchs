@@ -6,6 +6,7 @@ from Dialogs.superadmin.testcenterStats import *
 from Dialogs.superadmin.bloodcenterStats import *
 from PyQt5.QtWidgets import *
 from Dialogs.superadmin.diseaseList import *
+from Dialogs.Graphs.userOnDevicestats import *
 
 class superadminstats(object):
     def setup(self, superadminstats):
@@ -99,7 +100,11 @@ class superadminstats(object):
         self.window.setModal(True)
         self.window.show()
     def clickOnPatient(self):
-        pass
+        self.window = QDialog()
+        self.dialog = geographicalGraph()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
     def clickOnDispensary(self):
         pass
     def clickOnDoctor(self):

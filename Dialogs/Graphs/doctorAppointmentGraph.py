@@ -98,11 +98,12 @@ class doctorAppointmentGraph(object):
     def retranslateUi(self, geographicalGraph):
         _translate = QtCore.QCoreApplication.translate
         geographicalGraph.setWindowTitle(_translate("geographicalGraph", "Form"))
-        self.titleLabel.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; text-decoration: underline;\">Half Month Report Of Doctors</span></p></body></html>"))
+        self.titleLabel.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; text-decoration: underline;\">Half Year Report Of Doctors</span></p></body></html>"))
         self.closeButton.setText(_translate("geographicalGraph", "Close"))
-        self.titleLabel_2.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\">Doctor ID : 5</p></body></html>"))
-        self.titleLabel_3.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\">Hospital ID : 5</p></body></html>"))
+        self.titleLabel_2.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\">Doctor ID : 1</p></body></html>"))
+        self.titleLabel_3.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\">Hospital ID : 1</p></body></html>"))
         self.events(geographicalGraph)
+        self.closeButton.clicked.connect(lambda : geographicalGraph.close())
 
     def events(self,BloodBankMainWindow):
 

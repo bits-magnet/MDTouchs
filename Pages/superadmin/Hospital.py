@@ -11,6 +11,7 @@ from Dialogs.superadmin.Hospitals.viewHospitals import *
 from Dialogs.Message.messageList import *
 from Dialogs.superadmin.hospitalStats import *
 from Dialogs.hospital.bedRecordSuperadmin import *
+from Dialogs.superadmin.Doctors.doctorFraudDetection import *
 
 class Hospital(object):
     def setup(self, Hospital,superadmin):
@@ -390,6 +391,14 @@ class Hospital(object):
         self.viewHospitals.clicked.connect(lambda : self.clickOnViewHospitals())
         self.statistics.clicked.connect(lambda : self.clickOnStatistics())
         self.beds.clicked.connect(lambda : self.clickOnBed())
+        self.fraud.clicked.connect(lambda : self.clickOnFraud())
+
+    def clickOnFraud(self):
+        self.window = QDialog()
+        self.dialog = DoctorFraud()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
 
     def clickOnBed(self):
         self.window = QDialog()

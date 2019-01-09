@@ -1,7 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from Dialogs.messageBox import *
+from Dialogs.bloodBank.blooddonationProfile import *
 
 class bloodDonation(object):
-    def setup(self, bloodDonation,grandparent):
+    def setup(self, bloodDonation,grandparent,bloodBankHome):
         bloodDonation.setObjectName("bloodDonation")
         bloodDonation.setWindowModality(QtCore.Qt.ApplicationModal)
         bloodDonation.resize(342, 336)
@@ -59,10 +64,10 @@ class bloodDonation(object):
         self.addButton.setGeometry(QtCore.QRect(120, 300, 89, 25))
         self.addButton.setObjectName("addButton")
 
-        self.retranslateUi(bloodDonation,grandparent)
+        self.retranslateUi(bloodDonation,grandparent,bloodBankHome)
         QtCore.QMetaObject.connectSlotsByName(bloodDonation)
 
-    def retranslateUi(self, bloodDonation,grandparent):
+    def retranslateUi(self, bloodDonation,grandparent,bloodBankHome):
         _translate = QtCore.QCoreApplication.translate
         bloodDonation.setWindowTitle(_translate("bloodDonation", "Blood Entry"))
         self.bloodDonationLabel.setText(_translate("bloodDonation", "<html><head/><body><p><span style=\" font-size:16pt; text-decoration: underline;\">Blood Donation Entry</span></p></body></html>"))
@@ -73,16 +78,121 @@ class bloodDonation(object):
         self.bloodTypeComboBox.setItemText(2, _translate("bloodDonation", "B+"))
         self.bloodTypeComboBox.setItemText(3, _translate("bloodDonation", "B-"))
         self.bloodTypeComboBox.setItemText(4, _translate("bloodDonation", "AB+"))
-        self.bloodTypeComboBox.setItemText(5, _translate("bloodDonation", "AB_"))
+        self.bloodTypeComboBox.setItemText(5, _translate("bloodDonation", "AB-"))
         self.bloodTypeComboBox.setItemText(6, _translate("bloodDonation", "O+"))
         self.bloodTypeComboBox.setItemText(7, _translate("bloodDonation", "O-"))
         self.patientIDLabel.setText(_translate("bloodDonation", "<html><head/><body><p>Patient ID:</p></body></html>"))
         self.eventIDLabel.setText(_translate("bloodDonation", "<html><head/><body><p>Event ID <span style=\" font-size:10pt;\">(if any) </span><span style=\" font-size:16pt;\">:</span></p></body></html>"))
         self.addButton.setText(_translate("bloodDonation", "Add "))
 
-        self.events(bloodDonation,grandparent)
+        self.events(bloodDonation,grandparent,bloodBankHome)
 
-    def events(self,parent,grandparent):
-        pass
+    def events(self,parent,grandparent,bloodBankHome):
+        self.addButton.clicked.connect(lambda : self.clickOnAddButton(parent,grandparent,bloodBankHome))
+
+    def clickOnAddButton(self,parent,grandparent,bloodBankHome):
+        pid = self.patientID.text()
+
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/patient/" + pid
+        import requests
+        r = requests.get(url=URL)
+        if r.json() == {"detail": "Not found."}:
+            self.window = messageBox()
+            self.window.infoBox("Patient ID Does Not exits")
+            return
+        quantity = self.quantity.text()
+        bloodtype = self.bloodTypeComboBox.currentText()
+        if bloodtype == 'A+':
+            left = grandparent.bloodbankdata["quantityAp"] + int(quantity)
+            grandparent.bloodbankdata["quantityAp"] = left
+            data = {
+                "quantityAp" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        elif bloodtype == 'A-':
+
+            left = grandparent.bloodbankdata["quantityAm"] + int(quantity)
+            grandparent.bloodbankdata["quantityAm"] = left
+            data = {
+                "quantityAm" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        elif bloodtype == 'B+':
+            left = grandparent.bloodbankdata["quantityBp"] + int(quantity)
+            grandparent.bloodbankdata["quantityBp"] = left
+            data = {
+                "quantityBp" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        elif bloodtype == 'B-':
+            left = grandparent.bloodbankdata["quantityBm"] + int(quantity)
+            grandparent.bloodbankdata["quantityBm"] = left
+            data = {
+                "quantityBm" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        elif bloodtype == 'AB+':
+
+            left = grandparent.bloodbankdata["quantityABp"] + int(quantity)
+            grandparent.bloodbankdata["quantityABp"] = left
+            data = {
+                "quantityABp" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        elif bloodtype == 'AB-':
+            left = grandparent.bloodbankdata["quantityABm"] + int(quantity)
+            grandparent.bloodbankdata["quantityABm"] = left
+            data = {
+                "quantityABm" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        elif bloodtype == 'O+':
+            left = grandparent.bloodbankdata["quantityOp"] + int(quantity)
+            grandparent.bloodbankdata["quantityOp"] = left
+            data = {
+                "quantityOp" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        else:
+            left = grandparent.bloodbankdata["quantityOm"] + int(quantity)
+            grandparent.bloodbankdata["quantityOm"] = left
+            data = {
+                "quantityOm" : int(left)
+            }
+            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            r = requests.put(url=URL,data = data)
+        import datetime
+        data = {
+            "date" : datetime.date.today(),
+            "quantity": int(quantity),
+            "bloodtype": bloodtype,
+            "bloodquantity": int(quantity),
+            "status": False,
+            "patid": int(pid),
+            "bbcid": grandparent.bloodbankdata["id"]
+        }
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbilling/"
+        r = requests.post(url=URL,data=data)
+        l = None
+        l = r.json()
+        print(l)
+        parent.close()
+        if l :
+            self.window = QDialog()
+            self.dialog = bloodDonationProfile()
+            self.dialog.setup(self.window,l)
+            self.window.setModal(True)
+            self.window.show()
+        grandparent.setup(bloodBankHome,grandparent.logindata)
+
+
+
 
 

@@ -428,14 +428,14 @@ class doctorHome(object):
     def clickOnMyPatients(self):
         self.window = QDialog()
         self.dialog = myPatientDoctorList()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,self.doctordata)
         self.window.setModal(True)
         self.window.show()
 
     def clickOnMyAppointments(self):
         self.window = QDialog()
         self.dialog = appointmentDoctorDialog()
-        self.dialog.setup(self.window)
+        self.dialog.setup(self.window,)
         self.window.setModal(True)
         self.window.show()
 

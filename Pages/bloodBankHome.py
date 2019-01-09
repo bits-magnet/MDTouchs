@@ -350,7 +350,7 @@ class bloodBankHome(object):
     def clickOnDonation(self,parent):
         self.window = QDialog()
         self.dialog = bloodDonation()
-        self.dialog.setup(self.window,self)
+        self.dialog.setup(self.window,self,parent)
         self.window.setModal(True)
         self.window.show()
 

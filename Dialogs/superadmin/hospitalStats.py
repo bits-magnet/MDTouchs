@@ -1,6 +1,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+from Dialogs.Graphs.HospitalApointmentGraph import *
+from Dialogs.Graphs.bedreportAnalysis import *
 
 class hospitalStats(object):
     def setup(self, hospitalStats):
@@ -68,8 +71,23 @@ class hospitalStats(object):
         self.titleLabel_3.setText(_translate("hospitalStats", "<html><head/><body><p align=\"center\">Total Hospital Bills:</p></body></html>"))
         self.hid.setPlaceholderText(_translate("hospitalStats", "Enter Hospital ID"))
         self.goToProfile.setText(_translate("hospitalStats", "Go To Profile"))
-        self.billingstatsButton.setText(_translate("hospitalStats", "Billing Stats"))
-        self.locationstatsButton.setText(_translate("hospitalStats", "Location Stats"))
-        self.hospitalRegistered.setText(_translate("hospitalStats", "TextLabel"))
+        self.billingstatsButton.setText(_translate("hospitalStats", "Appointment Stats"))
+        self.locationstatsButton.setText(_translate("hospitalStats", "Bed Stats"))
+        self.hospitalRegistered.setText(_translate("hospitalStats", "5"))
         self.totalbills.setText(_translate("hospitalStats", "TextLabel"))
+        self.billingstatsButton.clicked.connect(lambda : self.clickOnbillingstats())
+        self.locationstatsButton.clicked.connect(lambda : self.clickOnBedStats())
+
+    def clickOnbillingstats(self):
+        self.window = QDialog()
+        self.dialog = hospitalAppointmentGraph()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+    def clickOnBedStats(self):
+        self.window = QDialog()
+        self.dialog = bedReportGraph()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
 

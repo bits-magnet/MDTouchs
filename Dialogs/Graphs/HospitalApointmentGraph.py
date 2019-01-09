@@ -103,6 +103,7 @@ class hospitalAppointmentGraph(object):
         self.titleLabel_2.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\"></p></body></html>"))
         self.titleLabel_3.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\">Hospital ID : 5</p></body></html>"))
         self.events(geographicalGraph)
+        self.closeButton.clicked.connect(lambda :geographicalGraph.close())
 
     def events(self,BloodBankMainWindow):
 
