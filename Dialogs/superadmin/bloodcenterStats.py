@@ -1,5 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Dialogs.Graphs.bloodReportGraph import *
+from Dialogs.messageBox import *
+from Dialogs.superadmin.BloodBanks.viewBloodBanks import *
+from Dialogs.superadmin.BloodBanks.new_bloodBankProfile import *
 
 class bloodcenterstats(object):
     def setup(self, bloodcenterstats):
@@ -65,18 +68,53 @@ class bloodcenterstats(object):
         self.tcid.setPlaceholderText(_translate("bloodcenterstats", "Enter Blood Center ID"))
         self.goToProfile.setText(_translate("bloodcenterstats", "Go To Profile"))
         self.bloodstatsgraph.setText(_translate("bloodcenterstats", "See Blood Stats"))
-        self.bbcRegistered.setText(_translate("bloodcenterstats", "12"))
-        self.totalbills.setText(_translate("bloodcenterstats", "24"))
+        self.bbcRegistered.setText(_translate("bloodcenterstats", "4"))
+        self.totalbills.setText(_translate("bloodcenterstats", "10"))
         self.events(bloodcenterstats)
 
     def events(self,parent):
         self.bloodstatsgraph.clicked.connect(lambda : self.clickOnBloodGraph())
+        self.goToProfile.clicked.connect(lambda : self.clickOnGotoProfile())
+        self.searchtcButton.clicked.connect(lambda : self.clickOnSearchButton())
 
-
-    def clickOnBloodGraph(self):
-
+    def clickOnSearchButton(self):
         self.window = QDialog()
-        self.dialog = bloodbankGraph()
+        self.dialog = viewBloodBankCenter()
         self.dialog.setup(self.window)
         self.window.setModal(True)
         self.window.show()
+
+
+
+    def clickOnBloodGraph(self):
+        if  not(self.tcid.text().isdigit()):
+            self.window = messageBox()
+            self.window.infoBox("Invalid ID")
+            return
+
+        self.window = QDialog()
+        self.dialog = bloodbankGraph()
+        self.dialog.setup(self.window,int(self.tcid.text()))
+        self.window.setModal(True)
+        self.window.show()
+
+    def clickOnGotoProfile(self):
+        if  not(self.tcid.text().isdigit()):
+            self.window = messageBox()
+            self.window.infoBox("Invalid ID")
+            return
+        import requests
+        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(self.tcid.text())
+        r = requests.get(url=URL)
+        l = r.json()
+        if l == {"detail": "Not found."}:
+            self.window = messageBox()
+            self.window.infoBox("Id Does Not Exits")
+            return
+
+        self.window = QDialog()
+        self.dialog = new_bloodBankProfile()
+        self.dialog.setup(self.window,l)
+        self.window.setModal(True)
+        self.window.show()
+

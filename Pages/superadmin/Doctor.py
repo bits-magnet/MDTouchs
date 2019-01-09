@@ -7,6 +7,7 @@ from Dialogs.superadmin.Doctors.selectDoctor import *
 from Dialogs.broadcast import *
 from Dialogs.superadmin.Doctors.viewDoctors import *
 from Dialogs.Message.messageList import *
+from Dialogs.superadmin.Doctors.doctorFraudDetection import *
 
 class Doctor(object):
     def setup(self, doctor,superadmin):
@@ -301,6 +302,15 @@ class Doctor(object):
         self.removeDoctor.clicked.connect(lambda: self.clickOnRemoveDoctor())
         self.broadcast.clicked.connect(lambda: self.clickOnBroadcast())
         self.viewDoctors.clicked.connect(lambda : self.clickOnViewDoctors())
+        self.fraud.clicked.connect(lambda : self.clickOnFraud())
+
+    def clickOnFraud(self):
+        self.window = QDialog()
+        self.dialog = DoctorFraud()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
 
     def clickOnHospital(self, parent, superadmin):
         superadmin.hospital_home.setup(parent, superadmin)

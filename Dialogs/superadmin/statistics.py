@@ -5,6 +5,7 @@ from Dialogs.superadmin.hospitalStats import *
 from Dialogs.superadmin.testcenterStats import *
 from Dialogs.superadmin.bloodcenterStats import *
 from PyQt5.QtWidgets import *
+from Dialogs.superadmin.diseaseList import *
 
 class superadminstats(object):
     def setup(self, superadminstats):
@@ -55,7 +56,7 @@ class superadminstats(object):
         _translate = QtCore.QCoreApplication.translate
         superadminstats.setWindowTitle(_translate("superadminstats", "Form"))
         self.titleLabel.setText(_translate("superadminstats", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; text-decoration: underline;\">Stats View</span></p></body></html>"))
-        self.overall.setText(_translate("superadminstats", "Overall"))
+        self.overall.setText(_translate("superadminstats", "Disease"))
         self.dispensary.setText(_translate("superadminstats", "Dispensary"))
         self.patient.setText(_translate("superadminstats", "Patient"))
         self.hospital.setText(_translate("superadminstats", "Hospital"))
@@ -85,7 +86,12 @@ class superadminstats(object):
         self.window.show()
 
     def clickOnOverall(self):
-        pass
+        self.window = QDialog()
+        self.dialog = DiseaseList()
+        self.dialog.setup(self.window)
+        self.window.setModal(True)
+        self.window.show()
+
     def clickOntestcenter(self):
         self.window = QDialog()
         self.dialog = testcenterStats()

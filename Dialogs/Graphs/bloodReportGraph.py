@@ -60,7 +60,8 @@ class Canvas(FingureCanvas):
 
 
 class bloodbankGraph(object):
-    def setup(self, geographicalGraph):
+    def setup(self, geographicalGraph,id):
+        self.id = id
         geographicalGraph.setObjectName("geographicalGraph")
         geographicalGraph.resize(728, 564)
         self.frame = QtWidgets.QFrame(geographicalGraph)
@@ -99,6 +100,7 @@ class bloodbankGraph(object):
         self.titleLabel_2.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\"></p></body></html>"))
         self.titleLabel_3.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\">Blood Bank Id  : 1</p></body></html>"))
         self.events(geographicalGraph)
+        self.titleLabel_3.setText("Blood Bank ID :",self.id)
 
     def events(self,BloodBankMainWindow):
 
