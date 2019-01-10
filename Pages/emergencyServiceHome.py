@@ -287,12 +287,12 @@ class emergencyServiceHome(object):
         self.changePassword.clicked.connect(lambda : self.clickOnChangePassword(parent))
         self.notices.clicked.connect(lambda : self.clickOnNotice())
         self.inbox.clicked.connect(lambda : self.clickOnMessages(parent))
-        self.esdata.clicked.connect(lambda : self.clickOnProfile())
+        self.profile.clicked.connect(lambda : self.clickOnProfile())
 
     def clickOnProfile(self):
         self.window = QDialog()
-        self.dialog = new_emergencyServiceProfile(self.esdata)
-        self.dialog.setup(self.window)
+        self.dialog = new_emergencyServiceProfile()
+        self.dialog.setup(self.window,self.esdata)
         self.window.setModal(True)
         self.window.show()
 

@@ -100,7 +100,7 @@ class bloodbankGraph(object):
         self.titleLabel_2.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\"></p></body></html>"))
         self.titleLabel_3.setText(_translate("geographicalGraph", "<html><head/><body><p align=\"center\">Blood Bank Id  : 1</p></body></html>"))
         self.events(geographicalGraph)
-        self.titleLabel_3.setText("Blood Bank ID :",self.id)
+        self.titleLabel_3.setText("Blood Bank ID :"+ str(self.id))
 
     def events(self,BloodBankMainWindow):
 

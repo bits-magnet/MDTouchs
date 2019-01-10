@@ -84,7 +84,7 @@ class myPatientDoctorList(object):
 
             self.item  = Widget1()
             self.item.noticeIdLabel.setText("ID : " + str(i["id"]))
-            self.item.noticeNameLabel.setText(str(i["title"]))
+            self.item.noticeNameLabel.setText(str(i["patient"]))
             self.tableWidget.setCellWidget(ctr,0,self.item)
             self.tableWidget.setRowHeight(ctr,50)
             ctr += 1

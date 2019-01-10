@@ -193,7 +193,7 @@ class loginPage(object):
             self.bloodBankpage = bloodBankHome()
             self.bloodBankpage.setup(loginPage,data[0])
             return
-        if data[0]["dept"] == "T":
+        if data[0]["dept"] == "TC":
             self.testCenterpage = testCenterHome()
             self.testCenterpage.setup(loginPage,data[0])
             return
