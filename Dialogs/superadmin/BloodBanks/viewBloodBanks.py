@@ -160,7 +160,7 @@ class viewBloodBankCenter(object):
 
     def addRowDataFunction(self,bloodBankCenterListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/"
         self.dataToFill = []
         if self.searchbloodBankCenterInput.text()== "":
             print("Yes")

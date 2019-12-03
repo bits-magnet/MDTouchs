@@ -39,7 +39,7 @@ class addQualification(object):
         text = self.qualification.text()
         if text != "":
             if self.id != 0:
-                URL = "https://mdtouch.herokuapp.com/api/qualification/" + str(self.id)
+                URL = "https://mdtouchs.herokuapp.com/api/qualification/" + str(self.id)
                 data = {
                     "degree" : text
                 }
@@ -48,7 +48,7 @@ class addQualification(object):
                 print(r.json())
                 grandparent.qualificationComboBox.setItemText(0,text)
             else:
-                URL = "https://mdtouch.herokuapp.com/api/qualification/"
+                URL = "https://mdtouchs.herokuapp.com/api/qualification/"
                 data = {
                     "degree" : text
                 }

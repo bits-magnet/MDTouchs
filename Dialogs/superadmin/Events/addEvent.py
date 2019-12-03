@@ -126,7 +126,7 @@ class addEvent(object):
             "testcentreid": tcid
         }
 
-        URL = "https://mdtouch.herokuapp.com/api/event/"
+        URL = "https://mdtouchs.herokuapp.com/api/event/"
         import requests
         r = requests.post(url= URL,data=data)
         print(r)

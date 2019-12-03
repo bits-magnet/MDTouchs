@@ -55,7 +55,7 @@ class doctorList(object):
     def events(self,parent):
         self.okbutton.clicked.connect(lambda : parent.close())
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/doctor/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/doctor/"
         params = {
             "workplace" : int(self.hospitaldata["id"])
         }

@@ -126,7 +126,7 @@ class addAdmin(object):
 
         import requests
         print(self.cityComboBox.currentText())
-        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        URL = "https://mdtouchs.herokuapp.com/api/hospital/"
         param ={
             "city": self.cityComboBox.currentText()
         }
@@ -156,7 +156,7 @@ class addAdmin(object):
 
 
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/login/"
+        URL = "https://mdtouchs.herokuapp.com/api/login/"
         data = {
             "username": username,
             "password": "12345",
@@ -167,7 +167,7 @@ class addAdmin(object):
         loginData = r.json()
         print(loginData)
         id = loginData["id"]
-        URL1 = "https://mdtouch.herokuapp.com/api/administrator/"
+        URL1 = "https://mdtouchs.herokuapp.com/api/administrator/"
         data2 = {
 
             "firstName": fname,

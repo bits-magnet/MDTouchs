@@ -58,7 +58,7 @@ class selectPrescription(object):
                 "doctor" : int(self.doctordata["id"])
             }
             import requests
-            URL = "https://mdtouch.herokuapp.com/api/prescription/"
+            URL = "https://mdtouchs.herokuapp.com/api/prescription/"
             r = requests.get(url=URL,params=params)
             l = r.json()
             if len(l) == 0:
@@ -74,7 +74,7 @@ class selectPrescription(object):
         else:
             if prescriptionID.isdigit():
                 import requests
-                URL = "https://mdtouch.herokuapp.com/api/prescription/" + str(prescriptionID)
+                URL = "https://mdtouchs.herokuapp.com/api/prescription/" + str(prescriptionID)
                 r= requests.get(url=URL)
                 data = r.json()
                 self.window = QDialog()

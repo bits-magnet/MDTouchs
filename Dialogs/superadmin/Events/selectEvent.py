@@ -49,7 +49,7 @@ class selectEvent(object):
             self.dialog.warningBox("Enter Valid ID")
             return
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/event/" + id
+        URL = "https://mdtouchs.herokuapp.com/api/event/" + id
         r = requests.get(url=URL)
         l = r.json()
         print(l)

@@ -97,7 +97,7 @@ class addHospital(object):
         # Fetching from The api
         # Add Hospitals
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        URL = "https://mdtouchs.herokuapp.com/api/hospital/"
         data = {
             "name": name,
             "address": address,

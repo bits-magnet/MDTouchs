@@ -161,7 +161,7 @@ class viewTestCenter(object):
 
     def addRowDataFunction(self,testCenterListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/testcentre/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/testcentre/"
         self.dataToFill = []
         if self.searchtestCenterInput.text()== "":
             print("Yes")

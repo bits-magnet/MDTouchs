@@ -102,7 +102,7 @@ class deleteAdmin(object):
 
         # Deleting Hospital
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(adminData["username"])
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/login/" + str(adminData["username"])
         r = requests.delete(url=URL)
         print(r)
         

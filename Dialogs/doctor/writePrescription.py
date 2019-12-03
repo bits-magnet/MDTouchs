@@ -68,7 +68,7 @@ class writePrescription(object):
             "doctorid" : int(self.doctordata["id"]),
             "status" : 1
         }
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/appointment/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/appointment/"
         import requests
         r = requests.get(url=URL,params=data)
         appointmentData = r.json()
@@ -87,10 +87,10 @@ class writePrescription(object):
             "patient": int(patientId),
             "doctor": int(self.doctordata["id"])
         }
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/prescription/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/prescription/"
         r = requests.post(url=URL,data=data)
         prescriptiondata = r.json()
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/appointment/" + str(appointmentData[0]["id"])
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/appointment/" + str(appointmentData[0]["id"])
         r = requests.delete(url=URL)
         self.window = messageBox()
         self.window.infoBox("Prescription Generated with ID : ")

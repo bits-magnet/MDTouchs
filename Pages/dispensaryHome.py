@@ -12,7 +12,7 @@ class dispensaryHome(object):
     def setup(self, dispensaryHome,loginData = None):
         self.logindata = loginData
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/dispensaries/"
+        URL = "https://mdtouchs.herokuapp.com/api/dispensaries/"
         data = {
             "username" : self.logindata["id"]
         }

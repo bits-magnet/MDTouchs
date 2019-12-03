@@ -161,7 +161,7 @@ class viewEs(object):
 
     def addRowDataFunction(self,esListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/emergencyservice/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/emergencyservice/"
         self.dataToFill = []
         if self.searchesInput.text()== "":
             print("Yes")

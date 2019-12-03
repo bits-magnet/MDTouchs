@@ -36,7 +36,7 @@ class selectNotice(object):
             self.window = messageBox()
             self.window.infoBox("Invalid Id")
             return
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/notice/" + str(id)
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/notice/" + str(id)
         import requests
         r = requests.get(url=URL)
         l = r.json()

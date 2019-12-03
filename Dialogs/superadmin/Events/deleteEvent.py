@@ -124,7 +124,7 @@ class deleteEvent(object):
         self.window = messageBox()
         self.window.infoBox("Following event is deleted")
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/event/" + str(self.eventdata["id"])
+        URL = "https://mdtouchs.herokuapp.com/api/event/" + str(self.eventdata["id"])
         r = requests.delete(url=URL)
         print(r)
         parent.close()

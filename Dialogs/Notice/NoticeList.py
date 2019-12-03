@@ -70,7 +70,7 @@ class noticeList(object):
         self.tableWidget.setColumnCount(1)
         self.okbutton.clicked.connect(lambda : parent.close())
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/notice/?ordering=-date"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/notice/?ordering=-date"
         r = requests.get(url=URL)
         self.notice_list = r.json()
         ctr = 0

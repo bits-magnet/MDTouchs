@@ -115,6 +115,6 @@ class removeTestCenter(object):
 
         # Deleting TestCenter
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(tcData["username"])
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/login/" + str(tcData["username"])
         r = requests.delete(url=URL)
         print(r)

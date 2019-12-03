@@ -79,7 +79,7 @@ class selectTestCenter(object):
             print(id)
             if id.isdigit():
                 import requests
-                url = "https://mdtouch.herokuapp.com/api/testcentre/" + id
+                url = "https://mdtouchs.herokuapp.com/api/testcentre/" + id
                 r = requests.get(url= url)
                 l = r.json()
                 print(l)
@@ -146,7 +146,7 @@ class selectTestCenter(object):
 
         import requests
         print(self.cityComboBox.currentText())
-        URL = "https://mdtouch.herokuapp.com/api/testcentre/"
+        URL = "https://mdtouchs.herokuapp.com/api/testcentre/"
         param ={
             "city": self.cityComboBox.currentText()
         }

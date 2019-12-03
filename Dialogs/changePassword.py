@@ -58,7 +58,7 @@ class changePassword(object):
             self.window.warningBox("New Password Does not match")
             return
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/login/" + str(loginData["id"])
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/login/" + str(loginData["id"])
         data = {
             "password" : new_password
         }

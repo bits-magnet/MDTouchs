@@ -95,7 +95,7 @@ class addBloodBank(object):
         import requests
         from random import randint
         username = name.replace(" ","") +  str(randint(0,100))
-        URL = "https://mdtouch.herokuapp.com/api/login/"
+        URL = "https://mdtouchs.herokuapp.com/api/login/"
         params = {
             "username" : username
         }
@@ -108,7 +108,7 @@ class addBloodBank(object):
                 username = name.replace(" ","") +  str(randint(0,100))
             else:
                 break
-        URL = "https://mdtouch.herokuapp.com/api/login/"
+        URL = "https://mdtouchs.herokuapp.com/api/login/"
         data = {
             "username": username,
             "password": "12345",
@@ -132,7 +132,7 @@ class addBloodBank(object):
             "username": id
         }
 
-        URL1 = "https://mdtouch.herokuapp.com/api/bloodbankcenter/"
+        URL1 = "https://mdtouchs.herokuapp.com/api/bloodbankcenter/"
         r = requests.post(url=URL1,data=data1)
         l = r.json()
         print(l)

@@ -175,7 +175,7 @@ class viewEvent(object):
 
     def addRowDataFunction(self,EventListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/event/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/event/"
         self.dataToFill = []
         if self.searchEventInput.text()== "":
             print("Yes")

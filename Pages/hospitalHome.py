@@ -24,7 +24,7 @@ class hospitalHome(object):
         self.logindata = loginData
         self.admindata = {}
         self.hospitaldata = {}
-        URL = "https://mdtouch.herokuapp.com/api/administrator/"
+        URL = "https://mdtouchs.herokuapp.com/api/administrator/"
         params = {
             "username" : int(self.logindata["id"])
         }
@@ -34,7 +34,7 @@ class hospitalHome(object):
         self.admindata = l[0]
         print("admindata : ", self.admindata)
 
-        URL = "https://mdtouch.herokuapp.com/api/hospital/" + str(self.admindata["workplace"])
+        URL = "https://mdtouchs.herokuapp.com/api/hospital/" + str(self.admindata["workplace"])
         r = requests.get(URL)
         self.hospitaldata = r.json()
         print("hospitaldata  : ",self.hospitaldata)

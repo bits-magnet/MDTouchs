@@ -104,7 +104,7 @@ class bloodcenterstats(object):
             self.window.infoBox("Invalid ID")
             return
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(self.tcid.text())
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(self.tcid.text())
         r = requests.get(url=URL)
         l = r.json()
         if l == {"detail": "Not found."}:

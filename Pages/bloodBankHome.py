@@ -50,7 +50,7 @@ class bloodBankHome(object):
     def setup(self, bloodBankHome,loginData = None):
         self.logindata = loginData
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/"
         data = {
             "username" : self.logindata["id"]
         }

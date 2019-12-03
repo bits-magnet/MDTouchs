@@ -147,12 +147,12 @@ class editProfile(object):
         self.state.setText(self.doctordata["state"])
         if self.doctordata["qualification"]:
             import requests
-            URL = "https://mdtouch.herokuapp.com/api/qualification/" + str(self.doctordata["qualification"])
+            URL = "https://mdtouchs.herokuapp.com/api/qualification/" + str(self.doctordata["qualification"])
             r = requests.get(url=URL)
             qualification = r.json()
             self.qualificationComboBox.addItem(qualification["degree"])
         if self.doctordata["specialization"]:
-            URL = "https://mdtouch.herokuapp.com/api/specialization/" + str(self.doctordata["specialization"])
+            URL = "https://mdtouchs.herokuapp.com/api/specialization/" + str(self.doctordata["specialization"])
             r = requests.get(url=URL)
             specialization = r.json()
             self.specializationComboBox.addItem(str(specialization["skill"]))
@@ -188,7 +188,7 @@ class editProfile(object):
         address =  self.address.toPlainText()
 
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/doctor/" + str(self.doctordata["id"])
+        URL = "https://mdtouchs.herokuapp.com/api/doctor/" + str(self.doctordata["id"])
         data = {
             "address" : address,
             "qualification" : int(self.doctordata["qualification"]),

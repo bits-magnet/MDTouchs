@@ -114,7 +114,7 @@ class removeHospital(object):
 
         # Deleting Hospital
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/hospital/" + str(hdata["id"])
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/hospital/" + str(hdata["id"])
         r = requests.delete(url=URL)
         print(r)
 

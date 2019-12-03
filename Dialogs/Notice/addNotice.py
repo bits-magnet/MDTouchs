@@ -59,7 +59,7 @@ class addNotice(object):
             "title" : title,
             "notice" : notice
         }
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/notice/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/notice/"
         r = requests.post(url=URL,data=data)
         print(r.json())
         self.window = messageBox()

@@ -82,7 +82,7 @@ class selectEmergencyService(object):
             print(id)
             if id.isdigit():
                 import requests
-                url = "https://mdtouch.herokuapp.com/api/emergencyservice/" + id
+                url = "https://mdtouchs.herokuapp.com/api/emergencyservice/" + id
                 r = requests.get(url= url)
                 l = r.json()
                 print(l)
@@ -149,7 +149,7 @@ class selectEmergencyService(object):
 
         import requests
         print(self.cityComboBox.currentText())
-        URL = "https://mdtouch.herokuapp.com/api/emergencyservice/"
+        URL = "https://mdtouchs.herokuapp.com/api/emergencyservice/"
         param ={
             "city": self.cityComboBox.currentText()
         }

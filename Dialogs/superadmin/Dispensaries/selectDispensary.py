@@ -80,7 +80,7 @@ class selectDispensary(object):
             print(id)
             if id.isdigit():
                 import requests
-                url = "https://mdtouch.herokuapp.com/api/dispensaries/" + id
+                url = "https://mdtouchs.herokuapp.com/api/dispensaries/" + id
                 r = requests.get(url= url)
                 l = r.json()
                 print(l)
@@ -147,7 +147,7 @@ class selectDispensary(object):
     
         import requests
         print(self.cityComboBox.currentText())
-        URL = "https://mdtouch.herokuapp.com/api/dispensaries"
+        URL = "https://mdtouchs.herokuapp.com/api/dispensaries"
         param ={
             "city": self.cityComboBox.currentText()
         }

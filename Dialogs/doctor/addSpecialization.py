@@ -41,7 +41,7 @@ class addSpecialization(object):
         text = self.specilaization.text()
         if text != "":
             if self.id != 0:
-                URL = "https://mdtouch.herokuapp.com/api/specialization/" + str(self.id)
+                URL = "https://mdtouchs.herokuapp.com/api/specialization/" + str(self.id)
                 data = {
                     "skill" : text
                 }
@@ -51,7 +51,7 @@ class addSpecialization(object):
                 grandparent.specializationComboBox.setItemText(0,text)
             else:
                 print(text)
-                URL = "https://mdtouch.herokuapp.com/api/specialization/"
+                URL = "https://mdtouchs.herokuapp.com/api/specialization/"
                 data = {
                     "skill" : text
                 }

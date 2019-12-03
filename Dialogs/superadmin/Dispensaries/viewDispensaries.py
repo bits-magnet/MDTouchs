@@ -160,7 +160,7 @@ class viewDispensary(object):
     # Add data From Database
 
     def addRowDataFunction(self,dispensaryListDialog):
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/dispensaries/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/dispensaries/"
         self.dataToFill = []
         if self.searchdispensaryInput.text()== "":
             print("Yes")

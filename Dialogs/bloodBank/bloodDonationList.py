@@ -69,7 +69,7 @@ class donationList(object):
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.setColumnCount(1)
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbilling/?ordering=-date"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbilling/?ordering=-date"
         param = {
             "bbcid": int(self.bloodbankdata["id"])
         }

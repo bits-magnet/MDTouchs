@@ -93,7 +93,7 @@ class bloodDonation(object):
     def clickOnAddButton(self,parent,grandparent,bloodBankHome):
         pid = self.patientID.text()
 
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/patient/" + pid
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/patient/" + pid
         import requests
         r = requests.get(url=URL)
         if r.json() == {"detail": "Not found."}:
@@ -108,7 +108,7 @@ class bloodDonation(object):
             data = {
                 "quantityAp" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         elif bloodtype == 'A-':
 
@@ -117,7 +117,7 @@ class bloodDonation(object):
             data = {
                 "quantityAm" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         elif bloodtype == 'B+':
             left = grandparent.bloodbankdata["quantityBp"] + int(quantity)
@@ -125,7 +125,7 @@ class bloodDonation(object):
             data = {
                 "quantityBp" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         elif bloodtype == 'B-':
             left = grandparent.bloodbankdata["quantityBm"] + int(quantity)
@@ -133,7 +133,7 @@ class bloodDonation(object):
             data = {
                 "quantityBm" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         elif bloodtype == 'AB+':
 
@@ -142,7 +142,7 @@ class bloodDonation(object):
             data = {
                 "quantityABp" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         elif bloodtype == 'AB-':
             left = grandparent.bloodbankdata["quantityABm"] + int(quantity)
@@ -150,7 +150,7 @@ class bloodDonation(object):
             data = {
                 "quantityABm" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         elif bloodtype == 'O+':
             left = grandparent.bloodbankdata["quantityOp"] + int(quantity)
@@ -158,7 +158,7 @@ class bloodDonation(object):
             data = {
                 "quantityOp" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         else:
             left = grandparent.bloodbankdata["quantityOm"] + int(quantity)
@@ -166,7 +166,7 @@ class bloodDonation(object):
             data = {
                 "quantityOm" : int(left)
             }
-            URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
+            URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbankcenter/" + str(grandparent.bloodbankdata["id"])
             r = requests.put(url=URL,data = data)
         import datetime
         data = {
@@ -178,7 +178,7 @@ class bloodDonation(object):
             "patid": int(pid),
             "bbcid": grandparent.bloodbankdata["id"]
         }
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/bloodbilling/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/bloodbilling/"
         r = requests.post(url=URL,data=data)
         l = None
         l = r.json()

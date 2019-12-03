@@ -95,7 +95,7 @@ class selectDoctor(object):
         if id != "":
             if id.isdigit():
                 import requests
-                URL = "https://mdtouch.herokuapp.com/api/doctor/" + str(id)
+                URL = "https://mdtouchs.herokuapp.com/api/doctor/" + str(id)
                 r = requests.get(url= URL)
                 data = r.json()
                 if data == {"detail": "Not found."}:
@@ -104,7 +104,7 @@ class selectDoctor(object):
                     self.searchByID.setText("")
                     return
                 else:
-                    URL = "https://mdtouch.herokuapp.com/api/hospital/" + str(data["workplace"])
+                    URL = "https://mdtouchs.herokuapp.com/api/hospital/" + str(data["workplace"])
                     r = requests.get(url=URL)
                     hdata = r.json()
                     parent.close()
@@ -180,7 +180,7 @@ class selectDoctor(object):
 
         import requests
         print(self.cityComboBox.currentText())
-        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        URL = "https://mdtouchs.herokuapp.com/api/hospital/"
         param ={
             "city": self.cityComboBox.currentText()
         }
@@ -208,7 +208,7 @@ class selectDoctor(object):
 
         print(workplace_id)
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/doctor/"
+        URL = "https://mdtouchs.herokuapp.com/api/doctor/"
         param = {
             "workplace" : int(workplace_id)
         }

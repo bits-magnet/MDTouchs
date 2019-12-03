@@ -12,7 +12,7 @@ class testCenterHome(object):
     def setup(self, testCenterHome,loginData= None):
         self.logindata = loginData
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/testcentre/"
+        URL = "https://mdtouchs.herokuapp.com/api/testcentre/"
         data = {
             "username" : self.logindata["id"]
         }

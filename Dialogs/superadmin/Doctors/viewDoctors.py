@@ -158,7 +158,7 @@ class viewDoctor(object):
 
     def addRowDataFunction(self,doctorListDialog):
         print("Hey baby")
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/doctor/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/doctor/"
         self.dataToFill = []
         if self.searchdoctorInput.text()== "":
             print("Yes")

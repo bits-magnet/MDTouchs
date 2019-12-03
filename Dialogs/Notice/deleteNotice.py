@@ -79,7 +79,7 @@ class deleteNotice(object):
         self.window.infoBox("Notice is deleted")
         parent.close()
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/notice/" + str(self.data["id"])
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/notice/" + str(self.data["id"])
         r = requests.delete(url = URL)
 
 

@@ -117,7 +117,7 @@ class broadcast():
         title = self.titleInput.text()
         message =str(self.message.toPlainText())
         import requests
-        URL = "https://mdtouch.herokuapp.com/api/broadcast/"
+        URL = "https://mdtouchs.herokuapp.com/api/broadcast/"
 
         # Yaha pae sendto ko chnage karna hai callerId se
         data = {

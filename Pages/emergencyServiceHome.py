@@ -13,7 +13,7 @@ class emergencyServiceHome(object):
     def setup(self, emergencyServiceHome,loginData = None):
         self.logindata = loginData
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/emergencyservice/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/emergencyservice/"
         params = {
             "username" : self.logindata["id"]
         }

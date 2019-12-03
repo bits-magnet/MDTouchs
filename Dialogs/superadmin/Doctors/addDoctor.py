@@ -125,7 +125,7 @@ class addDoctor(object):
 
         import requests
         print(self.cityComboBox.currentText())
-        URL = "https://mdtouch.herokuapp.com/api/hospital/"
+        URL = "https://mdtouchs.herokuapp.com/api/hospital/"
         param ={
             "city": self.cityComboBox.currentText()
         }
@@ -147,7 +147,7 @@ class addDoctor(object):
         from random import randint
         username = fname.replace(" ","") +  str(randint(0,100))
         '''
-        URL = "https://mdtouch.herokuapp.com/api/login/"
+        URL = "https://mdtouchs.herokuapp.com/api/login/"
         params = {
             "username" : username
         }
@@ -167,7 +167,7 @@ class addDoctor(object):
                 hdata = i
                 break
         '''
-        URLH = "https://mdtouch.herokuapp.com/api/hospital/"
+        URLH = "https://mdtouchs.herokuapp.com/api/hospital/"
         r = requests.get(url=URLH,params={
             "name" : hospital,
             "city" : city,
@@ -175,7 +175,7 @@ class addDoctor(object):
         })
         '''
         hospital_id = hdata["id"]
-        URL = "https://mdtouch.herokuapp.com/api/login/"
+        URL = "https://mdtouchs.herokuapp.com/api/login/"
         data = {
             "username":username,
             "password": "12345",
@@ -192,12 +192,12 @@ class addDoctor(object):
         qdata = {
             "degree" : " "
         }
-        r = requests.post(url="https://mdtouch.herokuapp.com/api/qualification/",data=qdata)
+        r = requests.post(url="https://mdtouchs.herokuapp.com/api/qualification/",data=qdata)
         qualification = r.json()
-        r =requests.post(url="https://mdtouch.herokuapp.com/api/specialization/",data=sdata)
+        r =requests.post(url="https://mdtouchs.herokuapp.com/api/specialization/",data=sdata)
         specilization = r.json()
 
-        URLD = "https://mdtouch.herokuapp.com/api/administrator/"
+        URLD = "https://mdtouchs.herokuapp.com/api/administrator/"
         data1 = {
             "firstName":fname,
             "lastName": lname,

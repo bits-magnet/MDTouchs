@@ -82,7 +82,7 @@ class selectBloodBank(object):
             print(id)
             if id.isdigit():
                 import requests
-                url = "https://mdtouch.herokuapp.com/api/bloodbankcenter/" + id
+                url = "https://mdtouchs.herokuapp.com/api/bloodbankcenter/" + id
                 r = requests.get(url= url)
                 l = r.json()
                 print(l)
@@ -149,7 +149,7 @@ class selectBloodBank(object):
 
         import requests
         print(self.cityComboBox.currentText())
-        URL = "https://mdtouch.herokuapp.com/api/bloodbankcenter/"
+        URL = "https://mdtouchs.herokuapp.com/api/bloodbankcenter/"
         param ={
             "city": self.cityComboBox.currentText()
         }

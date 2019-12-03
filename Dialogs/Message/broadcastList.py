@@ -72,7 +72,7 @@ class broadcastList(object):
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.setColumnCount(1)
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/broadcast/?ordering=-date"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/broadcast/?ordering=-date"
         r = requests.get(url=URL)
         self.notice_list = r.json()
         ctr = 0

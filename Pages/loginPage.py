@@ -168,7 +168,7 @@ class loginPage(object):
             "username" : usernameInput,
             "password" : passwordInput
         }
-        URL = "https://mdtouch.herokuapp.com/api/login/"
+        URL = "https://mdtouchs.herokuapp.com/api/login/"
         import requests
         r = requests.get(url=URL,params=param)
         data = r.json()

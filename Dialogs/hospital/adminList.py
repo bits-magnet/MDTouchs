@@ -55,7 +55,7 @@ class adminList(object):
 
     def events(self,parent):
         import requests
-        URL = "https://mdtouch.herokuapp.com/MDTouch/api/administrator/"
+        URL = "https://mdtouchs.herokuapp.com/MDTouch/api/administrator/"
         params = {
             "workplace" : int(self.hospitaldata["id"])
         }
